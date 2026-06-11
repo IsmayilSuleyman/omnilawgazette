@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -89,17 +90,18 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
   const [matchTotal, setMatchTotal] = useState(0);
   const [activeMatch, setActiveMatch] = useState(0);
 
-  /* ---------- measurements ---------- */
-  useEffect(() => {
+  /* ---------- measurements ----------
+     Runs again once the document is ready (numPages > 0): react-pdf shows a
+     loading state first, so the scroll container only exists after load. */
+  useLayoutEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const measure = () =>
-      setContainerSize({ w: el.clientWidth, h: el.clientHeight });
+    const measure = () => setContainerSize({ w: el.clientWidth, h: el.clientHeight });
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [numPages]);
 
   const aspectOf = useCallback(
     (n: number) => {
@@ -491,10 +493,10 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
             </div>
           </div>
         }
-        className="flex flex-1 min-h-0"
+        className="flex flex-1 min-h-0 min-w-0"
       >
         {thumbsOpen && numPages > 0 && (
-          <aside className="w-[148px] shrink-0 overflow-y-auto border-r hairline p-3 space-y-3 bg-black/25">
+          <aside className="w-[104px] sm:w-[148px] shrink-0 overflow-y-auto border-r hairline p-2 sm:p-3 space-y-2 sm:space-y-3 bg-black/25">
             {Array.from({ length: numPages }, (_, i) => i + 1).map((n) => (
               <div
                 key={`thumb-${n}`}
@@ -519,7 +521,10 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
           </aside>
         )}
 
-        <div ref={scrollRef} className="flex-1 overflow-auto overscroll-contain px-5 py-5">
+        <div
+          ref={scrollRef}
+          className="flex-1 min-w-0 overflow-auto overscroll-contain px-3 sm:px-5 py-4 sm:py-5"
+        >
           <div className="flex flex-col items-center gap-5">
             {Array.from({ length: numPages }, (_, i) => i + 1).map((n) => (
               <div
