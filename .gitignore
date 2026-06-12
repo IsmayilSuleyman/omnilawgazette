@@ -45,3 +45,6 @@ next-env.d.ts
 
 # generated gazette PDF (uploaded to Supabase storage, not stored in git)
 gazette-issue.pdf
+
+# gazette build output
+/build/
