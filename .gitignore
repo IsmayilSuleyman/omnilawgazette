@@ -42,3 +42,6 @@ next-env.d.ts
 
 # pdf.js worker is copied from node_modules on install
 /public/pdf.worker.min.mjs
+
+# generated gazette PDF (uploaded to Supabase storage, not stored in git)
+gazette-issue.pdf
