@@ -2,10 +2,10 @@
 """
 Omni Law Gazette — DOCX issue builder.
 
-Rebuilds word/document.xml inside the firm's gazette template
-(templates/OmniLawGazette_template.docx), keeping the masthead header,
-footer, fonts, styles and hero image intact, and repackages the result
-as build/OmniLawGazette_Issue<N>.docx.
+Rebuilds word/document.xml (and footer1.xml) inside the firm's gazette
+template (templates/OmniLawGazette_template.docx), keeping the masthead
+header, fonts and styles intact, and repackages the result as
+build/OmniLawGazette_Issue<N>.docx.
 
 Run: python3 scripts/build-issue.py
 """
@@ -22,6 +22,7 @@ BUILD_DIR = os.path.join(ROOT, "build")
 WORK = os.path.join(BUILD_DIR, "_docx")
 
 ISSUE_NUMBER = 2
+ISSUE_PERIOD = "5–12 JUNE 2026"
 
 # ───────────────────────────── content ──────────────────────────────
 # Issue No. 2 · review period 5–12 June 2026.
@@ -29,6 +30,16 @@ ISSUE_NUMBER = 2
 # (api.e-qanun.az/framework/{id}) on 12 June 2026.
 
 EQ = "https://e-qanun.az/framework/"
+
+GLANCE = {
+    "title": "Sixteen instruments enter the State Register",
+    "counts": "5 presidential decrees   ·   8 Cabinet decisions   ·   3 presidential orders",
+    "takeaways": [
+        ("01", "Baku city administration restructured from the ground up"),
+        ("02", "State credit guarantees and interest subsidies for business overhauled"),
+        ("06", "A rare onshore oil exploration deal — SOCAR & Gran Tierra Energy — approved"),
+    ],
+}
 
 LEAD = {
     "num": "01",
@@ -48,7 +59,6 @@ LEAD = {
     "source": ("62002", EQ + "62002"),
 }
 
-# Stories are laid out in pairs: (left story, right story) per grid band.
 STORIES = [
     {
         "num": "02",
@@ -190,47 +200,84 @@ IN_BRIEF = {
     ],
 }
 
+MECLIS = "https://meclis.gov.az/news-layihe.php?id="
+
+HORIZON = {
+    "kicker": "ON THE HORIZON · MİLLİ MƏCLİS",
+    "headline": "Bills opened for public discussion",
+    "intro": ("Fifteen bills were opened for public discussion during the review period — "
+              "none yet law, all worth tracking. Submitted 12 June unless noted."),
+    "left": [
+        ("Execution of the 2025 state budget", "2649"),
+        ("Land Code and related legislation — amendments", "2644"),
+        ("Housing Code & IDP legislation — amendments", "2646"),
+        ("Administrative Violations Code — amendments", "2638"),
+        ("Administrative Violations Code & information laws", "2643"),
+        ("Civil Service Law — amendments", "2642"),
+        ("Law on Protection of Green Spaces — amendments", "2637"),
+        ("Shusha Cultural Capital Law — amendments", "2648"),
+    ],
+    "right": [
+        ("Embassy of Azerbaijan in Lisbon — establishment", "2645"),
+        ("Anti-fouling Systems Convention — accession", "2647"),
+        ("Criminal Procedure Code — amendments (5 June)", "2640"),
+        ("Penal Enforcement Code & enforcement laws (5 June)", "2639"),
+        ("Anti-Corruption Law — amendments (5 June)", "2641"),
+        ("Diplomatic Service Law — amendments (5 June)", "2635"),
+        ("Customs Code — amendments (5 June)", "2630"),
+    ],
+}
+
 INDEX_TITLE = "All New Legislation · 5–12 June 2026"
 INDEX_INTRO = ("Every act entered into the official State Register (e-qanun.az) "
                "during the review period. Click any link to open the full text.")
 
 INDEX = [
-    ("Presidential Decree — improvement of the structure and management of the Baku City Executive Authority", "10 June · Gazette item 01", "62002"),
-    ("Presidential Decree — improvement of credit-guarantee and interest-subsidy mechanisms for entrepreneurs", "9 June · Gazette item 02", "61987"),
-    ("Presidential Decree — additional measures to stimulate non-oil-gas exports and support transport costs", "9 June · Gazette item 03", "61986"),
-    ("Presidential Decree — amendments to the Statute of the Agrarian Credit and Development Agency", "8 June · Gazette item 04", "61985"),
-    ("Presidential Decree — implementation of the amendment to the Law on Citizens’ Appeals", "10 June · Gazette item 05", "62000"),
-    ("Cabinet Decision No. 174 — SOCAR–Gran Tierra Energy onshore oil exploration and production agreement", "9 June · Gazette item 06", "62004"),
-    ("Cabinet Decision No. 173 — gas-supply rules aligned with the 2025 Gas Supply Law", "9 June · Gazette item 07", "61994"),
-    ("Cabinet Decision No. 171 — Rules on the maintenance and use of public railway infrastructure", "9 June · Gazette item 08", "61993"),
-    ("Cabinet Decision No. 168 — Statute of the Energy Efficiency Information System", "9 June · Gazette item 09", "61995"),
-    ("Cabinet Decision No. 169 — implementation of the State Security Service digital-analytics system", "9 June · Gazette item 10", "61988"),
-    ("Cabinet Decision No. 170 — amendment to the mandatory health-insurance Services Package", "9 June · Gazette item 11", "61990"),
-    ("Cabinet Decision No. 175 — list of bodies subordinate to the Ministry of Economy revised", "10 June · Gazette item 12", "61999"),
-    ("Cabinet Decision No. 172 — list of state bodies with designated official parking areas", "9 June · In Brief", "62003"),
-    ("Presidential Order — financial support to the Azerbaijan Minifootball Federation", "5 June · In Brief", "61973"),
-    ("Presidential Order — state decoration for water-management and land-reclamation workers", "5 June · In Brief", "61972"),
-    ("Presidential Order — Honour Diploma of the President conferred on R.M. Fətəliyev", "8 June · In Brief", "61984"),
+    ("Presidential Decree — improvement of the structure and management of the Baku City Executive Authority", "10 June", "item 01", "62002"),
+    ("Presidential Decree — improvement of credit-guarantee and interest-subsidy mechanisms for entrepreneurs", "9 June", "item 02", "61987"),
+    ("Presidential Decree — additional measures to stimulate non-oil-gas exports and support transport costs", "9 June", "item 03", "61986"),
+    ("Presidential Decree — amendments to the Statute of the Agrarian Credit and Development Agency", "8 June", "item 04", "61985"),
+    ("Presidential Decree — implementation of the amendment to the Law on Citizens’ Appeals", "10 June", "item 05", "62000"),
+    ("Cabinet Decision No. 174 — SOCAR–Gran Tierra Energy onshore oil exploration and production agreement", "9 June", "item 06", "62004"),
+    ("Cabinet Decision No. 173 — gas-supply rules aligned with the 2025 Gas Supply Law", "9 June", "item 07", "61994"),
+    ("Cabinet Decision No. 171 — Rules on the maintenance and use of public railway infrastructure", "9 June", "item 08", "61993"),
+    ("Cabinet Decision No. 168 — Statute of the Energy Efficiency Information System", "9 June", "item 09", "61995"),
+    ("Cabinet Decision No. 169 — implementation of the State Security Service digital-analytics system", "9 June", "item 10", "61988"),
+    ("Cabinet Decision No. 170 — amendment to the mandatory health-insurance Services Package", "9 June", "item 11", "61990"),
+    ("Cabinet Decision No. 175 — list of bodies subordinate to the Ministry of Economy revised", "10 June", "item 12", "61999"),
+    ("Cabinet Decision No. 172 — list of state bodies with designated official parking areas", "9 June", "In Brief", "62003"),
+    ("Presidential Order — financial support to the Azerbaijan Minifootball Federation", "5 June", "In Brief", "61973"),
+    ("Presidential Order — state decoration for water-management and land-reclamation workers", "5 June", "In Brief", "61972"),
+    ("Presidential Order — Honour Diploma of the President conferred on R.M. Fətəliyev", "8 June", "In Brief", "61984"),
 ]
 
-# ───────────────────────── XML helpers ──────────────────────────────
+# ───────────────────────── design tokens ────────────────────────────
 
 NAVY, GOLD, BODY, GRAY = "033B74", "8A6D1E", "3A3A3A", "7A7A7A"
+GOLD_BRIGHT = "D8B54A"        # gold accents on dark navy
+IVORY = "F5F2E9"              # warm shaded boxes
+IVORY_DEEP = "EFEAD9"         # zebra stripe
+RULE = "DCD5C2"               # hairline rules between bands
+NUM_BLUE = "B7C4D6"           # ghost story numbers
 FONT = "Eloquia Text"
 FONT_LT = "Eloquia Text ExtLt"
 
-_hyperlinks: list[str] = []  # collected targets; rIds assigned from 100
+FULL_W = 10456                # content width in dxa
+
+_hyperlinks: list[str] = []   # collected targets; rIds assigned from 100
 
 
 def esc(t: str) -> str:
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def run(text, *, font=FONT, sz=17, color=BODY, b=False, i=False, u=False):
+def run(text, *, font=FONT, sz=17, color=BODY, b=False, i=False, u=False, track=None):
     rpr = f'<w:rFonts w:ascii="{font}" w:hAnsi="{font}"/>'
     if b: rpr += "<w:b/>"
     if i: rpr += "<w:i/>"
-    rpr += f'<w:color w:val="{color}"/><w:sz w:val="{sz}"/><w:szCs w:val="{sz}"/>'
+    rpr += f'<w:color w:val="{color}"/>'
+    if track: rpr += f'<w:spacing w:val="{track}"/>'
+    rpr += f'<w:sz w:val="{sz}"/><w:szCs w:val="{sz}"/>'
     if u: rpr += '<w:u w:val="single"/>'
     rpr += '<w:lang w:val="en-US"/>'
     return f'<w:r><w:rPr>{rpr}</w:rPr><w:t xml:space="preserve">{esc(text)}</w:t></w:r>'
@@ -242,18 +289,22 @@ def hyperlink(url, text=None, **rkw):
     return f'<w:hyperlink r:id="{rid}">{run(text or url, u=True, **rkw)}</w:hyperlink>'
 
 
-def para(runs_xml, *, after=80, jc=None):
-    ppr = f'<w:spacing w:after="{after}"/>'
+def para(runs_xml, *, after=80, before=0, jc=None, tabs=None):
+    ppr = ''
+    if tabs:
+        ppr += '<w:tabs>' + ''.join(f'<w:tab w:val="{v}" w:pos="{p}"/>' for v, p in tabs) + '</w:tabs>'
+    ppr += f'<w:spacing w:before="{before}" w:after="{after}"/>'
     if jc: ppr += f'<w:jc w:val="{jc}"/>'
     return f'<w:p><w:pPr>{ppr}<w:rPr><w:lang w:val="en-US"/></w:rPr></w:pPr>{runs_xml}</w:p>'
 
 
-def empty_para():
-    return '<w:p><w:pPr><w:rPr><w:lang w:val="en-US"/></w:rPr></w:pPr></w:p>'
+def empty_para(sz=2):
+    return (f'<w:p><w:pPr><w:spacing w:after="0" w:line="40" w:lineRule="exact"/>'
+            f'<w:rPr><w:sz w:val="{sz}"/><w:lang w:val="en-US"/></w:rPr></w:pPr></w:p>')
 
 
 def p_kicker(text):
-    return para(run(text, sz=15, color=GOLD, b=True), after=80)
+    return para(run(text, sz=15, color=GOLD, b=True, track=30), after=80)
 
 
 def p_headline(text, sz=24):
@@ -264,50 +315,89 @@ def p_lead(bold_part, rest):
     return para(run(bold_part, sz=18, b=True) + run(rest, sz=18), after=80, jc="both")
 
 
-def p_body(text, sz=17):
-    return para(run(text, sz=sz), after=80, jc="both")
+def p_body(text, sz=17, keep=False):
+    keep_xml = '<w:keepNext/>' if keep else ''
+    return (f'<w:p><w:pPr>{keep_xml}<w:spacing w:after="80"/><w:jc w:val="both"/>'
+            f'<w:rPr><w:lang w:val="en-US"/></w:rPr></w:pPr>{run(text, sz=sz)}</w:p>')
+
+
+_DOC_RE = re.compile(r'doc\. (\d{4,6})')
 
 
 def p_brief(topic, rest):
-    return para(run(topic, b=True) + run(rest), after=80, jc="both")
+    """In-Brief paragraph; every `doc. NNNNN` becomes a live register link."""
+    runs = [run(topic, b=True)]
+    pos = 0
+    for m in _DOC_RE.finditer(rest):
+        if m.start() > pos:
+            runs.append(run(rest[pos:m.start()]))
+        runs.append(hyperlink(EQ + m.group(1), f"doc. {m.group(1)}", sz=17, color=GOLD))
+        pos = m.end()
+    if pos < len(rest):
+        runs.append(run(rest[pos:]))
+    return para(''.join(runs), after=80, jc="both")
 
 
 def p_source(url):
+    short = url.replace("https://", "")
     return para(run("Source · ", sz=15, color=GOLD, i=True) +
-                hyperlink(url, sz=15, color=GOLD, i=True), after=80)
+                hyperlink(url, short, sz=15, color=GOLD, i=True), after=80)
 
 
 def p_bignum(num):
     return (f'<w:p><w:pPr><w:jc w:val="center"/><w:rPr><w:lang w:val="en-US"/></w:rPr></w:pPr>'
             f'<w:r><w:rPr><w:rFonts w:ascii="{FONT_LT}" w:hAnsi="{FONT_LT}"/>'
-            f'<w:color w:val="B8B8B8"/>'
+            f'<w:color w:val="{NUM_BLUE}"/>'
             f'<w:sz w:val="56"/><w:szCs w:val="56"/><w:lang w:val="en-US"/></w:rPr>'
             f'<w:t>{num}</w:t></w:r></w:p>')
 
 
-def tc(width, content, *, span=None, valign=None, nowrap=False, vmerge=None):
+def borders_xml(borders):
+    """borders: dict side -> (sz_eighths_pt, color)"""
+    if not borders:
+        return ''
+    inner = ''.join(
+        f'<w:{side} w:val="single" w:sz="{sz}" w:space="0" w:color="{color}"/>'
+        for side, (sz, color) in borders.items())
+    return f'<w:tcBorders>{inner}</w:tcBorders>'
+
+
+def tc(width, content, *, span=None, valign=None, nowrap=False, vmerge=None,
+       fill=None, borders=None, pad=None):
     pr = f'<w:tcW w:w="{width}" w:type="dxa"/>'
     if span: pr += f'<w:gridSpan w:val="{span}"/>'
     if vmerge: pr += ('<w:vMerge w:val="restart"/>' if vmerge == "restart" else '<w:vMerge/>')
+    pr += borders_xml(borders)
+    if fill: pr += f'<w:shd w:val="clear" w:color="auto" w:fill="{fill}"/>'
     if nowrap: pr += '<w:noWrap/>'
+    if pad:
+        pr += (f'<w:tcMar><w:top w:w="{pad}" w:type="dxa"/><w:left w:w="{pad}" w:type="dxa"/>'
+               f'<w:bottom w:w="{pad}" w:type="dxa"/><w:right w:w="{pad}" w:type="dxa"/></w:tcMar>')
     if valign: pr += f'<w:vAlign w:val="{valign}"/>'
     return f'<w:tc><w:tcPr>{pr}</w:tcPr>{content or empty_para()}</w:tc>'
 
 
-def tr(cells, *, cant_split=False):
-    trpr = '<w:trPr><w:cantSplit/></w:trPr>' if cant_split else ''
+def tr(cells, *, cant_split=False, header=False, exact_h=None):
+    trpr = ''
+    if cant_split or header or exact_h:
+        trpr = '<w:trPr>'
+        if exact_h: trpr += f'<w:trHeight w:val="{exact_h}" w:hRule="exact"/>'
+        if cant_split: trpr += '<w:cantSplit/>'
+        if header: trpr += '<w:tblHeader/>'
+        trpr += '</w:trPr>'
     return f'<w:tr>{trpr}{cells}</w:tr>'
 
 
 GUTTER = tc(283, None)
+COL_RULE = {"left": (4, RULE)}          # vertical rule between the two columns
 
 
 def header_row(num_l, head_l, num_r, head_r):
-    """5-cell band header row: [num|kicker+headline] · gutter · [num|kicker+headline]."""
     return tr(
         tc(1097, p_bignum(num_l) if num_l else None, valign="center", nowrap=True) +
         tc(3962, head_l) + GUTTER +
-        tc(1104, p_bignum(num_r) if num_r else None, valign="center", nowrap=True) +
+        tc(1104, p_bignum(num_r) if num_r else None, valign="center", nowrap=True,
+           borders=COL_RULE) +
         tc(4010, head_r),
         cant_split=True
     )
@@ -316,7 +406,52 @@ def header_row(num_l, head_l, num_r, head_r):
 def body_row(left_paras, right_paras):
     return tr(
         tc(5059, left_paras, span=2) + GUTTER +
-        tc(5114, right_paras, span=2)
+        tc(5114, right_paras, span=2, borders=COL_RULE)
+    )
+
+
+def band_rule_row():
+    """Slim spacer row whose top edge draws a hairline across the page."""
+    return tr(
+        tc(FULL_W, empty_para(), span=5, borders={"top": (6, RULE)}),
+        exact_h=200
+    )
+
+
+def spacer_row(h=120):
+    return tr(tc(FULL_W, empty_para(), span=5), exact_h=h)
+
+
+# ───────────────────────── page-one furniture ───────────────────────
+
+def issue_strip_row():
+    """Folio line under the masthead: digest name left, issue + dates right."""
+    content = para(
+        run("WEEKLY LEGISLATIVE DIGEST · REPUBLIC OF AZERBAIJAN",
+            sz=15, color=NAVY, b=True, track=30) +
+        f'<w:r><w:rPr><w:lang w:val="en-US"/></w:rPr><w:tab/></w:r>' +
+        run(f"ISSUE No. {ISSUE_NUMBER}", sz=15, color=GOLD, b=True, track=30) +
+        run(f"  ·  {ISSUE_PERIOD}", sz=15, color=NAVY, b=True, track=30),
+        after=60, tabs=[("right", 10240)])
+    return tr(
+        tc(FULL_W, content, span=5, borders={"bottom": (12, NAVY)}),
+        cant_split=True
+    )
+
+
+def glance_box_row():
+    """Navy 'This Week' briefing box."""
+    inner = para(run("THIS WEEK", sz=15, color=GOLD_BRIGHT, b=True, track=40), after=60)
+    inner += para(run(GLANCE["title"], sz=26, color="FFFFFF", b=True), after=50)
+    inner += para(run(GLANCE["counts"], sz=17, color="D9E2EF"), after=90)
+    for num, text in GLANCE["takeaways"]:
+        inner += para(
+            run(num, sz=17, color=GOLD_BRIGHT, b=True) +
+            run("   " + text, sz=17, color="FFFFFF"),
+            after=40)
+    return tr(
+        tc(FULL_W, inner, span=5, fill=NAVY, pad=220),
+        cant_split=True
     )
 
 
@@ -327,7 +462,9 @@ def story_header(st):
 
 
 def story_body(st):
-    out = "".join(p_body(p) for p in st["paras"])
+    paras = st["paras"]
+    out = "".join(p_body(p) for p in paras[:-1])
+    out += p_body(paras[-1], keep=True)      # last para stays with its source line
     out += p_source(st["source"][1])
     return out
 
@@ -335,8 +472,14 @@ def story_body(st):
 def build_document_xml():
     rows = []
 
-    # Band 1 — lead story (left) | story 02 (right)
-    lead_header = p_kicker(LEAD["kicker"]) + p_headline(LEAD["headline"], 24)
+    # Page-one furniture
+    rows.append(issue_strip_row())
+    rows.append(spacer_row(140))
+    rows.append(glance_box_row())
+    rows.append(spacer_row(200))
+
+    # Band 1 — lead story (left, big headline) | story 02 (right)
+    lead_header = p_kicker(LEAD["kicker"]) + p_headline(LEAD["headline"], 30)
     lead_body = "".join(p_lead(p[1], p[2]) if p[0] == "lead" else p_body(p[1])
                         for p in LEAD["left"] + LEAD["right"])
     lead_body += p_source(LEAD["source"][1])
@@ -347,15 +490,39 @@ def build_document_xml():
     # Bands 2..6 — story pairs 03|04, 05|06, 07|08, 09|10, 11|12
     pairs = [(1, 2), (3, 4), (5, 6), (7, 8), (9, 10)]
     for li, ri in pairs:
-        L, R = STORIES[li], STORIES[ri]
-        rows.append(header_row(L["num"], story_header(L), R["num"], story_header(R)))
-        rows.append(body_row(story_body(L), story_body(R)))
+        rows.append(band_rule_row())
+        L, Rr = STORIES[li], STORIES[ri]
+        rows.append(header_row(L["num"], story_header(L), Rr["num"], story_header(Rr)))
+        rows.append(body_row(story_body(L), story_body(Rr)))
 
-    # Final band — IN BRIEF across the full page width
-    brief_head = p_kicker(IN_BRIEF["kicker"]) + p_headline(IN_BRIEF["headline"], 21)
-    brief_body = "".join(p_brief(t, r) for t, r in IN_BRIEF["paras"])
-    rows.append(tr(tc(10456, brief_head, span=5), cant_split=True))
-    rows.append(tr(tc(10456, brief_body, span=5)))
+    # IN BRIEF — shaded full-width box with a gold top rule
+    rows.append(spacer_row(140))
+    brief = p_kicker(IN_BRIEF["kicker"]) + p_headline(IN_BRIEF["headline"], 21)
+    brief += "".join(p_brief(t, r) for t, r in IN_BRIEF["paras"])
+    rows.append(tr(tc(FULL_W, brief, span=5, fill=IVORY,
+                      borders={"top": (12, GOLD)}, pad=200)))
+
+    # ON THE HORIZON — bills under discussion, two columns of trackers
+    def bill_line(title, bill_id):
+        return para(
+            run("›  ", sz=17, color=GOLD, b=True) +
+            run(title + "  ", sz=17, color=NAVY, b=True) +
+            hyperlink(MECLIS + bill_id + "&lang=az", f"meclis.gov.az · {bill_id}",
+                      sz=14, color=GOLD),
+            after=60)
+
+    rows.append(spacer_row(140))
+    horizon_head = (p_kicker(HORIZON["kicker"]) +
+                    p_headline(HORIZON["headline"], 21) +
+                    p_body(HORIZON["intro"]))
+    rows.append(tr(tc(FULL_W, horizon_head, span=5,
+                      borders={"top": (12, NAVY)}, pad=120), cant_split=True))
+    rows.append(tr(
+        tc(5059, "".join(bill_line(t, b) for t, b in HORIZON["left"]), span=2, pad=120) +
+        GUTTER +
+        tc(5114, "".join(bill_line(t, b) for t, b in HORIZON["right"]), span=2,
+           borders=COL_RULE, pad=120)
+    ))
 
     tblpr = ('<w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="0" w:type="auto"/>'
              '<w:tblBorders>'
@@ -372,22 +539,48 @@ def build_document_xml():
             '<w:gridCol w:w="283"/><w:gridCol w:w="1104"/><w:gridCol w:w="4010"/></w:tblGrid>')
     table = f'<w:tbl>{tblpr}{grid}{"".join(rows)}</w:tbl>'
 
-    # Index (final page)
+    # ── Index page: the week's register as a proper table ──
     index = ['<w:p><w:pPr><w:rPr><w:lang w:val="en-US"/></w:rPr></w:pPr>'
              '<w:r><w:br w:type="page"/></w:r></w:p>']
-    index.append(para(run(INDEX_TITLE, sz=34, color=NAVY, b=True), after=120))
-    index.append(para(run(INDEX_INTRO, sz=18), after=160))
-    for n, (title, note, doc_id) in enumerate(INDEX, 1):
-        index.append(para(
-            run(f"{n}. {title}", sz=18, color=NAVY, b=True) +
-            run(f"  ({note})", sz=17, color=GRAY),
-            after=10))
-        index.append(para(hyperlink(EQ + doc_id, sz=17, color=GOLD), after=100))
+    index.append(para(run(INDEX_TITLE, sz=34, color=NAVY, b=True), after=100))
+    index.append(para(run(INDEX_INTRO, sz=18), after=200))
+
+    cols = (560, 6100, 1080, 2716)            # № | instrument | date | source
+    idx_rows = [tr(
+        tc(cols[0], para(run("№", sz=15, color="FFFFFF", b=True, track=20), after=0),
+           fill=NAVY, pad=90) +
+        tc(cols[1], para(run("INSTRUMENT", sz=15, color="FFFFFF", b=True, track=20), after=0),
+           fill=NAVY, pad=90) +
+        tc(cols[2], para(run("DATE", sz=15, color="FFFFFF", b=True, track=20), after=0),
+           fill=NAVY, pad=90) +
+        tc(cols[3], para(run("SOURCE", sz=15, color="FFFFFF", b=True, track=20), after=0),
+           fill=NAVY, pad=90),
+        cant_split=True, header=True)]
+
+    for n, (title, date, ref, doc_id) in enumerate(INDEX, 1):
+        fill = IVORY_DEEP if n % 2 == 0 else None
+        sep = {"bottom": (4, RULE)}
+        idx_rows.append(tr(
+            tc(cols[0], para(run(str(n), sz=16, color=GRAY, b=True), after=0),
+               fill=fill, borders=sep, pad=90, valign="center") +
+            tc(cols[1], para(run(title, sz=17, color=NAVY, b=True) +
+                             run(f"   ({ref})", sz=15, color=GRAY), after=0),
+               fill=fill, borders=sep, pad=90, valign="center") +
+            tc(cols[2], para(run(date, sz=16, color=BODY), after=0),
+               fill=fill, borders=sep, pad=90, valign="center") +
+            tc(cols[3], para(hyperlink(EQ + doc_id, f"framework/{doc_id}",
+                                       sz=15, color=GOLD), after=0),
+               fill=fill, borders=sep, pad=90, valign="center"),
+            cant_split=True))
+
+    idx_grid = '<w:tblGrid>' + ''.join(f'<w:gridCol w:w="{w}"/>' for w in cols) + '</w:tblGrid>'
+    index.append(f'<w:tbl>{tblpr}{idx_grid}{"".join(idx_rows)}</w:tbl>')
+    index.append(empty_para())
 
     sectpr = ('<w:sectPr><w:headerReference w:type="default" r:id="rId31"/>'
               '<w:footerReference w:type="default" r:id="rId32"/>'
               '<w:pgSz w:w="11906" w:h="16838"/>'
-              '<w:pgMar w:top="2450" w:right="720" w:bottom="720" w:left="720" w:header="708" w:footer="708" w:gutter="0"/>'
+              '<w:pgMar w:top="2450" w:right="720" w:bottom="850" w:left="720" w:header="708" w:footer="420" w:gutter="0"/>'
               '<w:pgNumType w:start="1"/><w:cols w:space="708"/>'
               '<w:docGrid w:linePitch="360"/></w:sectPr>')
 
@@ -407,22 +600,50 @@ def build_document_xml():
             f'<w:document {ns}><w:body>{table}{"".join(index)}{sectpr}</w:body></w:document>')
 
 
+def build_footer_xml():
+    """Branded folio: issue identity left, 'Page X of Y' right."""
+    ns = ('xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" '
+          'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+          'xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" '
+          'xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" '
+          'mc:Ignorable="w14"')
+
+    def fld(instr):
+        return (f'<w:fldSimple w:instr=" {instr} \\* MERGEFORMAT ">'
+                f'{run("1", sz=14, color=GRAY)}</w:fldSimple>')
+
+    p = ('<w:p><w:pPr>'
+         '<w:pBdr><w:top w:val="single" w:sz="4" w:space="8" w:color="C9C2B2"/></w:pBdr>'
+         '<w:tabs><w:tab w:val="right" w:pos="10456"/></w:tabs>'
+         '<w:spacing w:before="0" w:after="0"/>'
+         '<w:rPr><w:lang w:val="en-US"/></w:rPr></w:pPr>'
+         + run(f"OMNI LAW GAZETTE · ISSUE No. {ISSUE_NUMBER} · {ISSUE_PERIOD}",
+               sz=14, color=GRAY, track=30)
+         + '<w:r><w:rPr><w:lang w:val="en-US"/></w:rPr><w:tab/></w:r>'
+         + run("Page ", sz=14, color=GRAY) + fld("PAGE")
+         + run(" of ", sz=14, color=GRAY) + fld("NUMPAGES")
+         + '</w:p>')
+
+    return ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\r\n'
+            f'<w:ftr {ns}>{p}</w:ftr>')
+
+
 def build_rels_xml():
     base = [
-        ('rId1', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles', 'styles.xml', None),
-        ('rId2', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings', 'settings.xml', None),
-        ('rId3', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/webSettings', 'webSettings.xml', None),
-        ('rId4', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/footnotes', 'footnotes.xml', None),
-        ('rId5', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/endnotes', 'endnotes.xml', None),
-        ('rId6', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/image', 'media/image1.jpeg', None),
-        ('rId31', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/header', 'header1.xml', None),
-        ('rId32', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer', 'footer1.xml', None),
-        ('rId33', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable', 'fontTable.xml', None),
-        ('rId34', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme', 'theme/theme1.xml', None),
+        ('rId1', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles', 'styles.xml'),
+        ('rId2', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings', 'settings.xml'),
+        ('rId3', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/webSettings', 'webSettings.xml'),
+        ('rId4', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/footnotes', 'footnotes.xml'),
+        ('rId5', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/endnotes', 'endnotes.xml'),
+        ('rId6', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/image', 'media/image1.jpeg'),
+        ('rId31', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/header', 'header1.xml'),
+        ('rId32', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer', 'footer1.xml'),
+        ('rId33', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable', 'fontTable.xml'),
+        ('rId34', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme', 'theme/theme1.xml'),
     ]
     rels = ['<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',
             '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">']
-    for rid, typ, target, _ in base:
+    for rid, typ, target in base:
         rels.append(f'<Relationship Id="{rid}" Type="{typ}" Target="{target}"/>')
     for n, url in enumerate(_hyperlinks):
         rels.append(f'<Relationship Id="rId{100 + n}" '
@@ -445,11 +666,14 @@ def main():
 
     doc_xml = build_document_xml()          # populates _hyperlinks
     rels_xml = build_rels_xml()
+    footer_xml = build_footer_xml()
 
     with open(os.path.join(WORK, "word", "document.xml"), "w", encoding="utf-8") as f:
         f.write(doc_xml)
     with open(os.path.join(WORK, "word", "_rels", "document.xml.rels"), "w", encoding="utf-8") as f:
         f.write(rels_xml)
+    with open(os.path.join(WORK, "word", "footer1.xml"), "w", encoding="utf-8") as f:
+        f.write(footer_xml)
 
     out = os.path.join(BUILD_DIR, f"OmniLawGazette_Issue{ISSUE_NUMBER}.docx")
     if os.path.exists(out):
