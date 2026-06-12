@@ -141,8 +141,11 @@ export default async function IssuePage({ params }: { params: Promise<Params> })
       {/* Reader */}
       <div className="rise" style={{ animationDelay: "90ms" }}>
         <PdfViewerShell fileUrl={pdfUrl} issueId={issue.id} issueNumber={issue.issue_number} />
-        <p className="text-[0.7rem] text-silver text-center mt-3">
+        <p className="hidden sm:block text-[0.7rem] text-silver text-center mt-3">
           Tip: click the viewer, then use ← → to flip pages and +/− to zoom.
+        </p>
+        <p className="sm:hidden text-[0.7rem] text-silver text-center mt-3">
+          Tip: pinch with two fingers to zoom.
         </p>
       </div>
 

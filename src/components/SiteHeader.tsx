@@ -26,7 +26,7 @@ export default function SiteHeader() {
           </Link>
           <Link
             href="/admin"
-            className="px-3.5 py-2 rounded-lg text-silver hover:text-white hover:bg-white/8 transition-colors inline-flex items-center gap-1.5"
+            className="hidden sm:inline-flex px-3.5 py-2 rounded-lg text-silver hover:text-white hover:bg-white/8 transition-colors items-center gap-1.5"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
               <path

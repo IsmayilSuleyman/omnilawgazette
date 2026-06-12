@@ -89,6 +89,9 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
   const [matchPages, setMatchPages] = useState<number[]>([]);
   const [matchTotal, setMatchTotal] = useState(0);
   const [activeMatch, setActiveMatch] = useState(0);
+  const [pinchScale, setPinchScale] = useState(1);
+  const pinchRef = useRef<{ startDist: number; startZoom: number; scale: number } | null>(null);
+  const effectiveZoomRef = useRef(1);
 
   /* ---------- measurements ----------
      Runs again once the document is ready (numPages > 0): react-pdf shows a
@@ -125,6 +128,7 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
         ? fitPageW
         : Math.round(fitWidthW * zoom);
   const zoomPercent = Math.round((pageWidth / fitWidthW) * 100);
+  effectiveZoomRef.current = pageWidth / fitWidthW;
 
   function zoomBy(factor: number) {
     const next = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, (pageWidth / fitWidthW) * factor));
@@ -201,15 +205,73 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
   /* keep position when zoom / rotation changes */
   const lastLayout = useRef({ pageWidth, rotation });
   useEffect(() => {
-    if (
-      lastLayout.current.pageWidth !== pageWidth ||
-      lastLayout.current.rotation !== rotation
-    ) {
-      lastLayout.current = { pageWidth, rotation };
+    const prev = lastLayout.current;
+    if (prev.pageWidth === pageWidth && prev.rotation === rotation) return;
+    lastLayout.current = { pageWidth, rotation };
+    const el = scrollRef.current;
+    if (prev.rotation !== rotation) {
       requestAnimationFrame(() => scrollToPage(currentPage, false));
+    } else if (el && prev.pageWidth > 0) {
+      // page heights scale linearly with width — keep the same content in view
+      const ratio = pageWidth / prev.pageWidth;
+      const top = el.scrollTop * ratio;
+      requestAnimationFrame(() => {
+        el.scrollTop = top;
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageWidth, rotation]);
+
+  /* ---------- two-finger pinch zoom ----------
+     During the gesture we scale with a cheap CSS transform; on release the
+     final zoom is committed and pdf.js re-renders sharply at the new width. */
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const dist = (t: TouchList) =>
+      Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+    const onStart = (e: TouchEvent) => {
+      if (e.touches.length !== 2) return;
+      e.preventDefault();
+      pinchRef.current = {
+        startDist: dist(e.touches),
+        startZoom: effectiveZoomRef.current,
+        scale: 1,
+      };
+    };
+    const onMove = (e: TouchEvent) => {
+      const p = pinchRef.current;
+      if (!p || e.touches.length !== 2) return;
+      e.preventDefault();
+      const raw = dist(e.touches) / p.startDist;
+      const clamped = Math.min(
+        MAX_ZOOM / p.startZoom,
+        Math.max(MIN_ZOOM / p.startZoom, raw)
+      );
+      p.scale = clamped;
+      setPinchScale(clamped);
+    };
+    const onEnd = () => {
+      const p = pinchRef.current;
+      if (!p) return;
+      pinchRef.current = null;
+      setPinchScale(1);
+      if (Math.abs(p.scale - 1) > 0.01) {
+        setMode("custom");
+        setZoom(Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, p.startZoom * p.scale)));
+      }
+    };
+    el.addEventListener("touchstart", onStart, { passive: false });
+    el.addEventListener("touchmove", onMove, { passive: false });
+    el.addEventListener("touchend", onEnd);
+    el.addEventListener("touchcancel", onEnd);
+    return () => {
+      el.removeEventListener("touchstart", onStart);
+      el.removeEventListener("touchmove", onMove);
+      el.removeEventListener("touchend", onEnd);
+      el.removeEventListener("touchcancel", onEnd);
+    };
+  }, [numPages]);
 
   /* ---------- fullscreen ---------- */
   useEffect(() => {
@@ -318,7 +380,7 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
       className="pdf-shell glass-deep rounded-2xl overflow-hidden flex flex-col h-[82vh] min-h-[480px] outline-none focus-visible:ring-2 focus-visible:ring-azure/40"
     >
       {/* Toolbar */}
-      <div className="flex items-center gap-1.5 flex-wrap px-3 py-2.5 border-b hairline bg-white/4 backdrop-blur-xl z-10">
+      <div className="flex items-center justify-center sm:justify-start gap-1.5 flex-wrap px-2.5 sm:px-3 py-2 sm:py-2.5 border-b hairline bg-white/4 backdrop-blur-xl z-10">
         <ToolButton
           title={thumbsOpen ? "Hide thumbnails" : "Show thumbnails"}
           onClick={() => setThumbsOpen((v) => !v)}
@@ -340,7 +402,7 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
             onKeyDown={(e) => e.key === "Enter" && commitPageInput()}
             inputMode="numeric"
             aria-label="Page number"
-            className="w-11 text-center field !py-1.5 !px-1 !rounded-md text-sm"
+            className="field !w-12 text-center !py-1.5 !px-1 !rounded-md text-sm"
           />
           <span className="text-silver text-xs whitespace-nowrap">/ {numPages || "–"}</span>
         </div>
@@ -393,7 +455,7 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
                 }}
                 placeholder="Search in document…"
                 aria-label="Search in document"
-                className="field !py-1.5 !px-3 !rounded-md text-sm w-40 sm:w-52"
+                className="field !w-36 sm:!w-52 !py-1.5 !px-3 !rounded-md text-sm"
               />
               {searching ? (
                 <span className="text-[0.68rem] text-silver animate-pulse whitespace-nowrap">searching…</span>
@@ -442,7 +504,7 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
             rel="noreferrer"
             title="Open raw PDF in new tab"
             aria-label="Open raw PDF in new tab"
-            className="inline-flex items-center justify-center w-8.5 h-8.5 rounded-lg border bg-white/5 border-white/10 text-foreground/85 hover:bg-white/12 hover:text-white transition-colors"
+            className="hidden sm:inline-flex items-center justify-center w-8.5 h-8.5 rounded-lg border bg-white/5 border-white/10 text-foreground/85 hover:bg-white/12 hover:text-white transition-colors"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
               <path d="M14 4h6v6M20 4l-9 9M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -523,9 +585,12 @@ export default function PdfViewer({ fileUrl, issueId, issueNumber }: Props) {
 
         <div
           ref={scrollRef}
-          className="flex-1 min-w-0 overflow-auto overscroll-contain px-3 sm:px-5 py-4 sm:py-5"
+          className="flex-1 min-w-0 overflow-auto overscroll-contain px-3 sm:px-5 py-4 sm:py-5 [touch-action:pan-x_pan-y]"
         >
-          <div className="flex flex-col items-center gap-5">
+          <div
+            className="flex flex-col items-center gap-4 sm:gap-5 origin-top"
+            style={pinchScale !== 1 ? { transform: `scale(${pinchScale})` } : undefined}
+          >
             {Array.from({ length: numPages }, (_, i) => i + 1).map((n) => (
               <div
                 key={`page-${n}`}
