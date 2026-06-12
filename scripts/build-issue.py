@@ -320,27 +320,6 @@ def body_row(left_paras, right_paras):
     )
 
 
-def hero_image_xml():
-    """Inline picture re-using the template's image rel (rId6, media/image1.jpeg)."""
-    cx, cy = 3032760, 3108937
-    return (
-        '<w:p><w:pPr><w:rPr><w:lang w:val="en-US"/></w:rPr></w:pPr>'
-        '<w:r><w:rPr><w:noProof/></w:rPr><w:drawing>'
-        f'<wp:inline distT="0" distB="0" distL="0" distR="0">'
-        f'<wp:extent cx="{cx}" cy="{cy}"/><wp:effectExtent l="0" t="0" r="0" b="0"/>'
-        '<wp:docPr id="1" name="Picture 1" descr="Government of Azerbaijan"/>'
-        '<wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/></wp:cNvGraphicFramePr>'
-        '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'
-        '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
-        '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
-        '<pic:nvPicPr><pic:cNvPr id="1" name="Picture 1"/><pic:cNvPicPr/></pic:nvPicPr>'
-        '<pic:blipFill><a:blip r:embed="rId6"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
-        '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="%d" cy="%d"/></a:xfrm>'
-        '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>'
-        '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>' % (cx, cy)
-    )
-
-
 # ───────────────────────── document assembly ────────────────────────
 
 def story_header(st):
@@ -356,41 +335,27 @@ def story_body(st):
 def build_document_xml():
     rows = []
 
-    # Band 1 — lead story (left) + hero image (right).
-    # The image cell vMerges over the header and body rows so the lead text
-    # flows beside it with no gap; the closing paragraph lands beneath it.
-    rows.append(tr(
-        tc(1097, p_bignum(LEAD["num"]), valign="center", nowrap=True) +
-        tc(3962, p_kicker(LEAD["kicker"]) + p_headline(LEAD["headline"], 24)) +
-        GUTTER +
-        tc(5114, hero_image_xml(), span=2, vmerge="restart")
-    ))
-    left = "".join(p_lead(p[1], p[2]) if p[0] == "lead" else p_body(p[1])
-                   for p in LEAD["left"])
-    rows.append(tr(
-        tc(5059, left, span=2) + GUTTER +
-        tc(5114, None, span=2, vmerge="cont")
-    ))
-    right = "".join(p_body(p[1]) for p in LEAD["right"])
-    right += p_source(LEAD["source"][1])
-    rows.append(tr(
-        tc(5059, None, span=2) + GUTTER +
-        tc(5114, right, span=2)
-    ))
+    # Band 1 — lead story (left) | story 02 (right)
+    lead_header = p_kicker(LEAD["kicker"]) + p_headline(LEAD["headline"], 24)
+    lead_body = "".join(p_lead(p[1], p[2]) if p[0] == "lead" else p_body(p[1])
+                        for p in LEAD["left"] + LEAD["right"])
+    lead_body += p_source(LEAD["source"][1])
+    R = STORIES[0]
+    rows.append(header_row(LEAD["num"], lead_header, R["num"], story_header(R)))
+    rows.append(body_row(lead_body, story_body(R)))
 
-    # Bands 2..6 — story pairs 02|03, 04|05, 06|07, 08|09, 10|11
-    pairs = [(0, 1), (2, 3), (4, 5), (6, 7), (8, 9)]
+    # Bands 2..6 — story pairs 03|04, 05|06, 07|08, 09|10, 11|12
+    pairs = [(1, 2), (3, 4), (5, 6), (7, 8), (9, 10)]
     for li, ri in pairs:
         L, R = STORIES[li], STORIES[ri]
         rows.append(header_row(L["num"], story_header(L), R["num"], story_header(R)))
         rows.append(body_row(story_body(L), story_body(R)))
 
-    # Band 7 — story 12 (left) | IN BRIEF (right)
-    L = STORIES[10]
+    # Final band — IN BRIEF across the full page width
     brief_head = p_kicker(IN_BRIEF["kicker"]) + p_headline(IN_BRIEF["headline"], 21)
-    rows.append(header_row(L["num"], story_header(L), None, brief_head))
     brief_body = "".join(p_brief(t, r) for t, r in IN_BRIEF["paras"])
-    rows.append(body_row(story_body(L), brief_body))
+    rows.append(tr(tc(10456, brief_head, span=5), cant_split=True))
+    rows.append(tr(tc(10456, brief_body, span=5)))
 
     tblpr = ('<w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="0" w:type="auto"/>'
              '<w:tblBorders>'
