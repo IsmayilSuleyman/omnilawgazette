@@ -103,7 +103,15 @@ Bill title — stage (first/second/third reading or committee), date of last mov
 - No invented facts: every claim traceable to a source document. If an instrument's full
   text is unavailable, say what is verifiable from the title/registry entry only.
 - Dates in running text: `9 June` (no ordinal suffix, no year when within the window).
-- Source URLs stripped of `https://www.` — e.g. `e-qanun.az/framework/62002`.
+- Source URLs stripped of `https://www.` — e.g. `president.az/az/articles/view/72714`.
+- **Every cited URL must be a full, working URL, verified with an HTTP check at
+  compilation time.** No shorthand citations (`nk.gov.az · order № 402s` is not a link).
+- **e-qanun.az caveat:** the site is a single-page app that returns HTTP 200 for *any*
+  framework ID, so a status check proves nothing. Cite an e-qanun framework link only
+  when the document content has been positively confirmed; otherwise cite the verified
+  president.az / nk.gov.az / meclis.gov.az page instead.
+- If a source site is down at compilation (e.g. constcourt.gov.az), say so explicitly in
+  a note — never imply "no updates" when the source simply could not be checked.
 - Middle dot `·` is the universal separator (kickers, source lines, masthead).
 
 ## 5. Design tokens (do not deviate)
@@ -119,6 +127,10 @@ Bill title — stage (first/second/third reading or committee), date of last mov
 | Number grey | `#3B3838` |
 | Body text | 9 pt justified |
 | Columns | 3, equal width, 708-twip spacing |
+| Kicker paragraph | spacing-after 0, trailing line break, 1 pt paragraph mark |
+| Headline paragraph | default (Normal) spacing — no overrides |
+| Source line | `Source · ` at 10 pt + URL at 8 pt, both TNR italic gold |
+| Story separator | one empty 9 pt body paragraph after the source line |
 
 ## 6. Workflow checklist (every week)
 
