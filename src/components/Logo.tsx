@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 /**
@@ -15,7 +15,15 @@ export default function Logo({
   href?: string | null;
 }) {
   const [missing, setMissing] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
   const heights = { sm: 44, md: 58, lg: 90 };
+
+  // If the image already failed before React hydrated, onError never fires —
+  // detect that case on mount so the styled fallback still takes over.
+  useEffect(() => {
+    const el = imgRef.current;
+    if (el && el.complete && el.naturalWidth === 0) setMissing(true);
+  }, []);
   const scale = { sm: "text-[15px]", md: "text-[19px]", lg: "text-[30px]" }[size];
 
   const mark = missing ? (
@@ -33,6 +41,7 @@ export default function Logo({
   ) : (
     // eslint-disable-next-line @next/next/no-img-element
     <img
+      ref={imgRef}
       src="/omni-logo.png"
       alt="Omni Law Firm"
       style={{ height: heights[size], width: "auto" }}
