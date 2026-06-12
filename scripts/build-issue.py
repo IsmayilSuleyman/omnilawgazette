@@ -93,6 +93,29 @@ def p_note(t):
             f'<w:t xml:space="preserve">{esc(t)}</w:t></w:r></w:p>')
 
 # ---------------- masthead + lead-story tweaks ----------------
+# Wrap-proof the masthead: with a substituted font (no Eloquia installed) the
+# wordmark cell breaks "omni" mid-word and the issue date wraps. <w:noWrap/>
+# lets the auto-layout table widen the cell instead of wrapping.
+xml = xml.replace('<w:vAlign w:val="center"/></w:tcPr>',
+                  '<w:noWrap/><w:vAlign w:val="center"/></w:tcPr>')
+xml = xml.replace('<w:vAlign w:val="bottom"/></w:tcPr>',
+                  '<w:noWrap/><w:vAlign w:val="bottom"/></w:tcPr>')
+xml = xml.replace('<w:tcW w:w="2801" w:type="dxa"/></w:tcPr>',
+                  '<w:tcW w:w="2801" w:type="dxa"/><w:noWrap/></w:tcPr>')
+# drop the strapline cell's trailing tabs/spaces so the date cell can take the width
+xml = xml.replace('<w:r><w:rPr><w:rFonts w:ascii="Eloquia Text ExtLt" w:hAnsi="Eloquia Text ExtLt"/>'
+                  '<w:sz w:val="18"/><w:szCs w:val="18"/><w:lang w:val="en-US"/></w:rPr><w:tab/></w:r>', '')
+xml = xml.replace('<w:t xml:space="preserve">           </w:t>', '<w:t xml:space="preserve"></w:t>')
+# Rebalance column widths: the tables span the full page, so noWrap alone cannot
+# expand a cell. Move width from the empty banner cell into the wordmark cell
+# (their shared boundary with the "law gazette" cell stays put), and from the
+# strapline cell into the issue-date cell.
+for old, new in [('w:w="2880"', 'w:w="2200"'), ('w:w="3045"', 'w:w="2200"'),
+                 ('w:w="3377"', 'w:w="4057"'), ('w:w="3046"', 'w:w="4057"'),
+                 ('w:w="7655"', 'w:w="6855"'), ('w:w="2801"', 'w:w="3601"')]:
+    assert old in xml, old
+    xml = xml.replace(old, new)
+
 xml = xml.replace('  5–12 JUNE 2026', '  1–12 JUNE 2026')
 xml = xml.replace('fourteen instruments', 'nineteen instruments')
 # e-qanun is a SPA returning 200 for any ID; cite the verified president.az page instead
