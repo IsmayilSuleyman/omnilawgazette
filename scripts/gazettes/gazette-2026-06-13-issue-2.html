@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 2 | 8–13 June 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+    .page { max-width: 900px; margin: 0 auto; background: #fff; padding: 36px 48px 60px; }
+
+    /* ── Masthead ── */
+    .masthead { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; text-align: center; padding: 18px 0 14px; }
+    .masthead-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 8pt; color: #555; letter-spacing: 0.03em; margin-bottom: 8px; font-family: 'Arial', sans-serif; }
+    .gazette-title { font-size: 42pt; font-weight: 900; letter-spacing: -0.02em; line-height: 1; font-family: 'Georgia', serif; text-transform: uppercase; }
+    .gazette-title span { font-weight: 300; font-style: italic; }
+    .masthead-sub { font-size: 9pt; letter-spacing: 0.25em; text-transform: uppercase; color: #444; margin-top: 6px; font-family: 'Arial', sans-serif; }
+    .masthead-rule { border: none; border-top: 1px solid #1a1a1a; margin: 10px 0 4px; }
+    .masthead-meta { display: flex; justify-content: space-between; font-size: 7.5pt; color: #555; font-family: 'Arial', sans-serif; padding-top: 4px; }
+
+    /* ── Week banner ── */
+    .week-banner { background: #1a1a1a; color: #fff; text-align: center; padding: 7px 0; font-family: 'Arial', sans-serif; font-size: 8.5pt; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 18px; }
+
+    /* ── Summary ── */
+    .summary-box { border: 1px solid #ccc; border-left: 4px solid #1a1a1a; padding: 12px 16px; margin-bottom: 22px; background: #fafafa; }
+    .summary-box h3 { font-family: 'Arial', sans-serif; font-size: 7.5pt; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-bottom: 8px; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .summary-item { text-align: center; }
+    .summary-count { font-size: 23pt; font-weight: 700; line-height: 1; color: #1a1a1a; }
+    .summary-label { font-size: 7pt; color: #555; font-family: 'Arial', sans-serif; margin-top: 3px; line-height: 1.25; }
+
+    /* ── Lead editorial ── */
+    .lead { margin-bottom: 22px; font-size: 9.5pt; color: #333; line-height: 1.6; }
+    .lead .dropcap { float: left; font-size: 40pt; line-height: 0.78; font-weight: 700; padding: 4px 8px 0 0; font-family: 'Georgia', serif; }
+
+    /* ── Section headers ── */
+    .section-header { border-top: 2px solid #1a1a1a; border-bottom: 1px solid #ccc; padding: 6px 0 4px; margin: 26px 0 14px; display: flex; align-items: baseline; gap: 10px; }
+    .section-institution { font-family: 'Arial', sans-serif; font-size: 7pt; letter-spacing: 0.2em; text-transform: uppercase; color: #777; }
+    .section-title { font-size: 15pt; font-weight: 700; line-height: 1.1; }
+    .section-en { font-size: 8pt; color: #888; font-style: italic; font-family: 'Arial', sans-serif; margin-left: auto; }
+    .subhead { font-family: 'Arial', sans-serif; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.15em; color: #555; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin: 16px 0 10px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+
+    /* ── Document entry ── */
+    .doc-entry { margin-bottom: 13px; padding-bottom: 12px; border-bottom: 1px dotted #d0d0d0; }
+    .doc-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .doc-tag { display: inline-block; font-size: 6.5pt; font-family: 'Arial', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; background: #1a1a1a; color: #fff; padding: 1px 5px; margin-bottom: 4px; }
+    .doc-tag.decree { background: #5a2c2c; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.cdecision { background: #2c3e50; }
+    .doc-tag.corder { background: #34495e; }
+    .doc-number { font-size: 7.5pt; font-family: 'Arial', sans-serif; color: #777; margin-left: 5px; }
+    .doc-date { font-size: 7.5pt; font-family: 'Arial', sans-serif; color: #888; float: right; }
+    .doc-title { font-size: 9.5pt; font-weight: 700; line-height: 1.32; margin-top: 2px; clear: right; }
+    .doc-body { font-size: 8.7pt; color: #333; margin-top: 4px; line-height: 1.5; }
+    .doc-ref { font-size: 7.5pt; color: #888; font-style: italic; font-family: 'Arial', sans-serif; margin-top: 3px; }
+
+    /* ── Spotlight ── */
+    .spotlight { background: #f0ede6; border: 1px solid #ccc; padding: 14px 16px; margin-top: 26px; }
+    .spotlight-header { font-family: 'Arial', sans-serif; font-size: 7.5pt; letter-spacing: 0.2em; text-transform: uppercase; color: #777; border-bottom: 1px solid #ccc; padding-bottom: 6px; margin-bottom: 12px; }
+    .spotlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .spotlight-item h4 { font-size: 9.5pt; font-weight: 700; margin-bottom: 4px; }
+    .spotlight-item p { font-size: 8.7pt; color: #444; line-height: 1.5; }
+
+    .notice { border: 1px dashed #aaa; padding: 10px 14px; margin: 14px 0; background: #f8f8f8; font-size: 8.5pt; color: #555; font-family: 'Arial', sans-serif; }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic table ── */
+    table.diplo { width: 100%; border-collapse: collapse; font-size: 8.3pt; }
+    table.diplo thead tr { background: #1a1a1a; color: #fff; font-family: 'Arial', sans-serif; font-size: 7pt; letter-spacing: 0.1em; text-transform: uppercase; }
+    table.diplo thead th { padding: 5px 8px; text-align: left; }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td { padding: 5px 8px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #5a1a1a; font-weight: 600; }
+
+    /* ── Bills ── */
+    .bill-list { list-style: none; padding: 0; }
+    .bill-list li { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; border-bottom: 1px dotted #d0d0d0; font-size: 9.3pt; }
+    .bill-list li:last-child { border-bottom: none; }
+    .bill-num { flex-shrink: 0; width: 20px; height: 20px; background: #1a1a1a; color: #fff; font-family: 'Arial', sans-serif; font-size: 7pt; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .bill-text { flex: 1; }
+    .bill-status { flex-shrink: 0; font-size: 7pt; font-family: 'Arial', sans-serif; color: #888; font-style: italic; margin-top: 3px; }
+
+    .unavailable { background: #fff8e1; border: 1px solid #e0c060; border-left: 4px solid #c0a000; padding: 10px 14px; font-family: 'Arial', sans-serif; font-size: 8.5pt; color: #6b5900; }
+
+    .footer { border-top: 2px solid #1a1a1a; margin-top: 36px; padding-top: 10px; display: flex; justify-content: space-between; align-items: flex-start; font-size: 7.5pt; font-family: 'Arial', sans-serif; color: #777; }
+    .footer-disclaimer { max-width: 60%; line-height: 1.4; }
+    .footer-issue { text-align: right; }
+
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ════ MASTHEAD ════ -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 2</span>
+      <span>REPORTING PERIOD: 8 JUNE – 13 JUNE 2026</span>
+      <span>PUBLISHED: SATURDAY, 13 JUNE 2026</span>
+    </div>
+  </header>
+
+  <div class="week-banner">
+    Week 24, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <!-- ════ AT A GLANCE ════ -->
+  <div class="summary-box">
+    <h3>This Week at a Glance — 8 to 13 June 2026</h3>
+    <div class="summary-grid">
+      <div class="summary-item"><div class="summary-count">6</div><div class="summary-label">Presidential<br>Decrees</div></div>
+      <div class="summary-item"><div class="summary-count">1</div><div class="summary-label">Presidential<br>Order</div></div>
+      <div class="summary-item"><div class="summary-count">11</div><div class="summary-label">Cabinet<br>Decisions</div></div>
+      <div class="summary-item"><div class="summary-count">4</div><div class="summary-label">Cabinet<br>Orders</div></div>
+      <div class="summary-item"><div class="summary-count">10</div><div class="summary-label">Bills in<br>Parliament</div></div>
+      <div class="summary-item"><div class="summary-count">11</div><div class="summary-label">Diplomatic<br>Letters</div></div>
+    </div>
+  </div>
+
+  <!-- ════ LEAD ════ -->
+  <p class="lead">
+    <span class="dropcap">A</span> busy legislative week saw the President of the Republic sign <strong>six decrees</strong> spanning civil-aviation governance, citizens' rights, the capital's administration, and a pronounced economic-stimulus thrust — new mechanisms for entrepreneur credit guarantees, non-oil export support, and agrarian finance. The Cabinet of Ministers issued <strong>eleven decisions and four orders</strong>, advancing the renewable-energy land programme and adopting major sectoral rules for railways and gas supply. Parliament placed a wide-ranging package of bills — headlined by a Land Code overhaul — before its members on 12 June. Below, Omni Law's editorial desk distils the week's instruments by issuing institution, with practitioner notes in the Regulatory Spotlight.
+  </p>
+
+  <!-- ══════════════════════════════════
+       SECTION 1: PRESIDENTIAL OFFICE
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Administration of the President</span>
+    <span class="section-title">Presidential Office</span>
+    <span class="section-en">Decrees, Orders &amp; Correspondence — 8–12 June 2026</span>
+  </div>
+
+  <p class="subhead">Decrees (Fərmanlar)</p>
+
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">12 Jun 2026</span>
+        <div class="doc-title">Approval of the Rules on the Management of Airports (Aerodromes)</div>
+        <div class="doc-body">Adopts a comprehensive regulatory framework for the management and operation of the country's airports, issued under "measures to improve management in the field of civil aviation." Establishes governance, operational standards, and responsibilities for airport operators.</div>
+        <div class="doc-ref">Constitution, Art. 109(32) · Cabinet directed to implement</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">10 Jun 2026</span>
+        <div class="doc-title">Application of the Law on Citizens' Appeals (No. 415-VIIQD) &amp; Amendment to Decree No. 950 (2016)</div>
+        <div class="doc-body">Brings into force the 26 May 2026 amendments to the Law on Citizens' Appeals and correspondingly amends the 2016 Rules on the handling of citizens' appeals in state and municipal bodies, state-controlled legal entities, and budget organisations.</div>
+        <div class="doc-ref">Constitution, Art. 109(19), (32) · Implements Law 415-VIIQD</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">10 Jun 2026</span>
+        <div class="doc-title">Improvement of the Structure and Management of the Baku City Executive Authority</div>
+        <div class="doc-body">Restructures the administration of the capital, adjusting the organisational framework and management arrangements of the Baku City Executive Authority. A significant governance reform for the country's largest municipality.</div>
+        <div class="doc-ref">president.az/az/articles/view/72724 (full text + PDF)</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Additional Measures to Improve Guarantee &amp; Interest-Subsidy Mechanisms for Credits to Entrepreneurs</div>
+        <div class="doc-body">Enhances the State's instruments for guaranteeing, and subsidising the interest on, loans extended to business entities, and amends a series of related presidential decrees. A substantive measure for private-sector access to finance.</div>
+        <div class="doc-ref">Amends several earlier presidential decrees</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Additional Measures to Stimulate Non-Oil-and-Gas Exports &amp; Support Transport Costs</div>
+        <div class="doc-body">Introduces further incentives for exporters of non-oil-and-gas goods, including support for transport/logistics costs, in furtherance of economic diversification and resilience. Of direct interest to export-oriented clients.</div>
+        <div class="doc-ref">Economic diversification / non-oil sector</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">8 Jun 2026</span>
+        <div class="doc-title">Amendments to Decrees on the Agrarian Credit &amp; Development Agency and State Support to Agriculture</div>
+        <div class="doc-body">Amends the 2015 statute (Decree No. 571) of the Agrarian Credit and Development Agency under the Ministry of Agriculture and related instruments governing state support to the agricultural sector.</div>
+        <div class="doc-ref">Amends Decree No. 571 (23 Jul 2015)</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="subhead">Orders (Sərəncamlar)</p>
+  <div class="doc-entry">
+    <span class="doc-tag order">Order</span>
+    <span class="doc-date">8 Jun 2026</span>
+    <div class="doc-title">Award of the "Honorary Diploma of the President of the Republic of Azerbaijan" to R. M. Fataliyev</div>
+    <div class="doc-body">Confers the Presidential Honorary Diploma in recognition of services. Issued under the President's constitutional honours power.</div>
+    <div class="doc-ref">Constitution, Art. 109(23)</div>
+  </div>
+
+  <div class="notice">
+    <strong>Editor's note on numbering:</strong> The President's web register (president.az) publishes decree and order texts and dates but does not display the official sequential document number on the HTML view; numbers are assigned upon publication in the consolidated register (e-qanun.az). Where a number is not shown above, practitioners should confirm it against the official text before citation.
+  </div>
+
+  <p class="subhead">Diplomatic Correspondence (Məktublar)</p>
+  <p style="font-size:8.7pt; color:#555; margin-bottom:10px; font-family:'Arial',sans-serif;">
+    Eleven letters were exchanged during the period, clustered around Azerbaijan's <strong>National Salvation Day (15 June)</strong>. Direction indicates whether the letter was received by (IN) or sent by (OUT) the President of Azerbaijan.
+  </p>
+  <table class="diplo">
+    <thead>
+      <tr><th>Date</th><th>Dir.</th><th>Counterpart</th><th>Country / Office</th><th>Context</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>12 Jun</td><td><span class="dir-in">IN</span></td><td>Fuat Oktay</td><td>Chair, Foreign Relations Cttee., Grand National Assembly of Türkiye</td><td>National Salvation Day greeting</td></tr>
+      <tr><td>12 Jun</td><td><span class="dir-in">IN</span></td><td>Benjamin Netanyahu</td><td>Prime Minister of Israel</td><td>National Salvation Day greeting</td></tr>
+      <tr><td>12 Jun</td><td><span class="dir-out">OUT</span></td><td>Ferdinand R. Marcos</td><td>President of the Philippines</td><td>Bilateral / Independence Day</td></tr>
+      <tr><td>12 Jun</td><td><span class="dir-out">OUT</span></td><td>Vladimir Putin</td><td>President of the Russian Federation</td><td>Bilateral relations</td></tr>
+      <tr><td>11 Jun</td><td><span class="dir-in">IN</span></td><td>Edi Rama</td><td>Prime Minister of Albania</td><td>National Salvation Day greeting</td></tr>
+      <tr><td>11 Jun</td><td><span class="dir-in">IN</span></td><td>Adama Barrow</td><td>President of The Gambia</td><td>National Salvation Day greeting</td></tr>
+      <tr><td>11 Jun</td><td><span class="dir-in">IN</span></td><td>Haji Hassanal Bolkiah</td><td>Sultan of Brunei Darussalam</td><td>National Salvation Day greeting</td></tr>
+      <tr><td>10 Jun</td><td><span class="dir-in">IN</span></td><td>Bajram Begaj</td><td>President of Albania</td><td>National Salvation Day greeting</td></tr>
+      <tr><td>10 Jun</td><td><span class="dir-out">OUT</span></td><td>António José Seguro</td><td>President of Portugal</td><td>Bilateral relations</td></tr>
+      <tr><td>9 Jun</td><td><span class="dir-in">IN</span></td><td>Nataša Pirc Musar</td><td>President of Slovenia</td><td>National Salvation Day greeting</td></tr>
+      <tr><td>8 Jun</td><td><span class="dir-in">IN</span></td><td>José Raúl Mulino Quintero</td><td>President of Panama</td><td>National Salvation Day greeting</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══════════════════════════════════
+       SECTION 2: CABINET OF MINISTERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">Decisions &amp; Orders — 9–12 June 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    The Cabinet issued <strong>eleven Decisions (Qərarlar)</strong> and <strong>four Orders (Sərəncamlar)</strong> in the window — all on 9, 10 and 12 June (no instruments dated 8, 11 or 13 June). Several orders give effect to recent presidential decrees; several decisions adopt or amend significant sectoral rules.
+  </p>
+
+  <p class="subhead">Decisions (Qərarlar)</p>
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 178</span>
+        <span class="doc-date">12 Jun 2026</span>
+        <div class="doc-title">Renewable Energy Land Designation — Hacıqabul District (Parcel I)</div>
+        <div class="doc-body">Designates a state-owned land parcel in Hacıqabul district as a renewable energy source area.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 177</span>
+        <span class="doc-date">12 Jun 2026</span>
+        <div class="doc-title">Renewable Energy Land Designation — Hacıqabul District (Parcel II)</div>
+        <div class="doc-body">Designates a second state-owned land parcel in Hacıqabul district as a renewable energy source area.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 176</span>
+        <span class="doc-date">12 Jun 2026</span>
+        <div class="doc-title">Amendment — Jabrayil District Renewable Energy Land (Decision No. 466 of 2024)</div>
+        <div class="doc-body">Amends CoM Decision No. 466 (29 Oct 2024) on designating state land in Jabrayil district as a renewable energy area.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 175</span>
+        <span class="doc-date">10 Jun 2026</span>
+        <div class="doc-title">Amendment to the List of Entities Outside the Ministry of Economy Structure</div>
+        <div class="doc-body">Amends the list of subordinate bodies not forming part of the Ministry of Economy's structure (approved by CoM Decision No. 228, 30 Nov 2010).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 174</span>
+        <span class="doc-date">10 Jun 2026</span>
+        <div class="doc-title">Government Guarantees — SOCAR / Gran Tierra Energy Production Sharing Agreement</div>
+        <div class="doc-body">Approves the Government's guarantees and obligations under the PSA between SOCAR and Gran Tierra Energy (Azerbaijan) GmbH for exploration, development and production across parts of the Quba, Qusar, Shabran, Siyazan and Khizi districts.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 172</span>
+        <span class="doc-date">10 Jun 2026</span>
+        <div class="doc-title">Approval of the List of State Bodies with Designated Official Parking</div>
+        <div class="doc-body">Approves the list of state bodies provided with official parking, the number of allocated spaces, and the addresses of the relevant parking facilities.</div>
+      </div>
+    </div>
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 173</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Gas Supply — Implementing Amendments &amp; Repeals (Law No. 233-VIIQ)</div>
+        <div class="doc-body">Amends several CoM decisions to implement the Law on Gas Supply (No. 233-VIIQ, 8 Jul 2025) and repeals older rules (No. 87/1999 and Nos. 36 &amp; 37/2023) on gas distribution and gas-installation requirements.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 171</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Rules on the Maintenance &amp; Use of General-Use Railway Transport Infrastructure</div>
+        <div class="doc-body">Adopts comprehensive rules governing the maintenance, operation and use of general-purpose railway infrastructure — a key sectoral regulation for rail transport.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 170</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Amendment to the Mandatory Health Insurance Services Package</div>
+        <div class="doc-body">Modifies the Mandatory Health Insurance Services Package approved by CoM Decision No. 5 (10 Jan 2020), adjusting the scope of covered services.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 169</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Implementation of the State Security Service Centralized Information &amp; Digital Analytics System</div>
+        <div class="doc-body">Amends CoM decisions to implement Presidential Decree No. 533 (21 Nov 2025) on the creation of the Centralized Information and Digital Analytics System of the State Security Service (DTX).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag cdecision">Decision</span><span class="doc-number">№ 168</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Regulation on the Energy Efficiency Information System</div>
+        <div class="doc-body">Approves the Regulation establishing the framework for the State's Energy Efficiency Information System (data collection, monitoring and reporting).</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="subhead">Orders (Sərəncamlar)</p>
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag corder">Order</span><span class="doc-number">№ 403s</span>
+        <span class="doc-date">10 Jun 2026</span>
+        <div class="doc-title">Execution of Presidential Decree No. 678 — ASAN / State Agency for Service to Citizens</div>
+        <div class="doc-body">Gives effect to Presidential Decree No. 678 (2 Jun 2026), which amended Decree No. 706 (5 Sep 2012) on the State Agency for Service to Citizens and Social Innovations (ASAN xidmət).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag corder">Order</span><span class="doc-number">№ 402s</span>
+        <span class="doc-date">10 Jun 2026</span>
+        <div class="doc-title">Execution of Presidential Decree No. 675 — Finance Ministry Board Representation</div>
+        <div class="doc-body">Implements Presidential Decree No. 675 (26 May 2026) on the representation of the Ministry of Finance on the supervisory / oversight boards of state-owned legal entities and public legal entities.</div>
+      </div>
+    </div>
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag corder">Order</span><span class="doc-number">№ 400s</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Execution of Presidential Order No. 1053 — Quba District Renaming (Law No. 404-VIIQ)</div>
+        <div class="doc-body">Implements Presidential Order No. 1053 (1 Jun 2026) applying Law No. 404-VIIQ (12 May 2026) on the renaming of certain territorial units of the Quba district.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag corder">Order</span><span class="doc-number">№ 389s</span>
+        <span class="doc-date">9 Jun 2026</span>
+        <div class="doc-title">Execution of Presidential Decree No. 672 — State Agency for Protection of Strategic Facilities</div>
+        <div class="doc-body">Implements Presidential Decree No. 672 (25 May 2026), which amended Decree No. 1510 (22 Dec 2021) on the statute, structure and staffing of the State Agency for the Protection of Strategic Facilities.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 3: MILLI MAJLIS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Bills on the Agenda — 12 June 2026 Session</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    The National Assembly placed the following bills before its members at the <strong>12 June 2026</strong> session for discussion. No new laws or parliamentary decrees were <em>enacted</em> within the 8–13 June window (the most recent law, No. 415-VIIQD on Citizens' Appeals, dates to 26 May and was brought into force by presidential decree on 10 June — see Presidential Office above).
+  </p>
+
+  <ul class="bill-list">
+    <li><div class="bill-num">1</div><div class="bill-text"><strong>2025 State Budget Execution Report</strong> — annual accountability report on implementation of the 2025 state budget.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">2</div><div class="bill-text"><strong>Land Code Amendments</strong> — reform package touching land lease, the land market, privatization and municipal land management. The week's most commercially significant bill.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">3</div><div class="bill-text"><strong>Accession — International Convention on Harmful Anti-Fouling Systems on Ships (AFS)</strong> — marine-environment protection instrument.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">4</div><div class="bill-text"><strong>Establishment of the Azerbaijani Embassy in Lisbon, Portugal</strong> — authorisation of a resident diplomatic mission.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">5</div><div class="bill-text"><strong>Shushi Cultural Capital Status Amendment</strong> — elaborates the cultural-capital status of Shushi.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">6</div><div class="bill-text"><strong>Green Space Protection Law Amendment</strong> — changes to legislation on green zones and urban forestry.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">7</div><div class="bill-text"><strong>Administrative Offenses Code Amendment</strong> — adjustments to sanctions, procedures or definitions.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">8</div><div class="bill-text"><strong>Public Service Law Amendment</strong> — civil-servant duties, restrictions or career regulation.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">9</div><div class="bill-text"><strong>Omnibus — Administrative Offenses, Information Protection &amp; Child Safety Laws</strong> — multi-law amendment package.</div><div class="bill-status">Under Discussion</div></li>
+    <li><div class="bill-num">10</div><div class="bill-text"><strong>Housing &amp; Refugee Status Laws Amendment</strong> — housing rights and refugee status; potentially tied to resettlement in liberated territories.</div><div class="bill-status">Under Discussion</div></li>
+  </ul>
+
+  <!-- ══════════════════════════════════
+       SECTION 4 & 5: COURT + E-QANUN
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Judicial / Official Database</span>
+    <span class="section-title">Constitutional Court &amp; e-Qanun</span>
+    <span class="section-en">Source Status</span>
+  </div>
+
+  <div class="unavailable" style="margin-bottom:12px;">
+    <strong>⚠ Constitutional Court (constcourt.gov.az) — Unavailable.</strong> The decisions portal returned HTTP 503 (Service Unavailable) on repeated attempts via two methods at the time of compilation (13 June 2026). No decisions from the reporting period could be retrieved. Please consult the portal directly for any decisions issued 8–13 June 2026.
+  </div>
+  <div class="unavailable">
+    <strong>⚠ e-Qanun (e-qanun.az) — Not Machine-Readable.</strong> The official legislative database serves an empty client-rendered (JavaScript) application shell with no static document listing, so its consolidated register could not be enumerated automatically. The full, authoritative texts of all instruments above are nonetheless published there; practitioners should rely on e-qanun.az for citation-grade text.
+  </div>
+
+  <!-- ══════════════════════════════════
+       REGULATORY SPOTLIGHT
+  ══════════════════════════════════ -->
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Key Themes, Week 24 / 2026</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>1. Economic-Stimulus Trio (9 June)</h4>
+        <p>Three presidential decrees in two days target private-sector finance: enhanced credit guarantees and interest subsidies for entrepreneurs, new non-oil export incentives with transport-cost support, and a recapitalised agrarian-credit framework. Together they signal an active diversification agenda. Clients in export, agribusiness and SME finance should review eligibility criteria once the implementing rules are gazetted.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>2. Civil Aviation Governance</h4>
+        <p>The 12 June decree adopting Rules on the Management of Airports introduces a dedicated governance regime for airport operators. Parties to airport concession, ground-handling or infrastructure contracts should assess alignment with the new Rules and any transition provisions.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>3. Energy &amp; Infrastructure Rulemaking</h4>
+        <p>The Cabinet adopted railway-infrastructure maintenance/use Rules (No. 171), restructured the gas-supply regime (No. 173, repealing legacy 1999/2023 rules), advanced the renewable-energy land bank in Hacıqabul/Jabrayil (Nos. 176–178), and confirmed Government guarantees for the SOCAR–Gran Tierra PSA (No. 174). Energy, projects and land-rights teams should treat this as a high-activity quarter.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>4. Capital Governance &amp; Citizens' Rights</h4>
+        <p>Two 10 June decrees reshape administration: a restructuring of the Baku City Executive Authority, and the entry into force of the amended Law on Citizens' Appeals with conforming changes to the 2016 appeals-handling Rules. Public-law and administrative-litigation practitioners should note revised procedural touchpoints for dealings with state and municipal bodies.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ FOOTER ════ -->
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled by Omni Law Firm for informational purposes only. It does not constitute legal advice. Descriptions are derived from official government portals and translated/summarised by the editorial desk; readers should consult primary sources and the consolidated texts on e-qanun.az before relying on any item. Sources: president.az · nk.gov.az · meclis.gov.az · e-qanun.az · constcourt.gov.az
+    </div>
+    <div class="footer-issue">
+      <strong>Issue No. 2</strong><br>
+      Reporting period: 8–13 June 2026<br>
+      Compiled: 13 June 2026<br>
+      © 2026 Omni Law Firm
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

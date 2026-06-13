@@ -1,0 +1,207 @@
+{
+  "issue": 2,
+  "reporting_period": {
+    "from": "2026-06-08",
+    "to": "2026-06-13"
+  },
+  "compiled": "2026-06-13",
+  "sources": {
+    "president.az": "ok",
+    "nk.gov.az": "ok",
+    "meclis.gov.az": "ok",
+    "constcourt.gov.az": "unavailable_http_503",
+    "e-qanun.az": "unavailable_js_spa_shell"
+  },
+  "presidential_decrees": [
+    {
+      "date": "2026-06-12",
+      "title_az": "“Hava limanlarının (aeroportların) idarə edilməsi Qaydası”nın təsdiq edilməsi haqqında",
+      "title_en": "Approval of the Rules on the Management of Airports (Aerodromes)",
+      "href": "/az/articles/view/72735",
+      "constitution": "109(32)"
+    },
+    {
+      "date": "2026-06-10",
+      "title_en": "Application of Law No. 415-VIIQD (Citizens' Appeals) & amendment to Decree No. 950 (2016)",
+      "href": "/az/articles/view/72722",
+      "constitution": "109(19),(32)"
+    },
+    {
+      "date": "2026-06-10",
+      "title_en": "Improvement of the structure and management of the Baku City Executive Authority",
+      "href": "/az/articles/view/72724"
+    },
+    {
+      "date": "2026-06-09",
+      "title_en": "Additional measures to improve guarantee & interest-subsidy mechanisms for credits to entrepreneurs",
+      "href": "/az/articles/view/72714"
+    },
+    {
+      "date": "2026-06-09",
+      "title_en": "Additional measures to stimulate non-oil-and-gas exports & support transport costs",
+      "href": "/az/articles/view/72713"
+    },
+    {
+      "date": "2026-06-08",
+      "title_en": "Amendments to decrees on the Agrarian Credit & Development Agency (Decree 571/2015) and state support to agriculture",
+      "href": "/az/articles/view/72706"
+    }
+  ],
+  "presidential_orders": [
+    {
+      "date": "2026-06-08",
+      "title_en": "Award of the President's Honorary Diploma to R. M. Fataliyev",
+      "href": "/az/articles/view/72705",
+      "constitution": "109(23)"
+    }
+  ],
+  "presidential_letters": [
+    {
+      "date": "2026-06-12",
+      "dir": "in",
+      "party": "Fuat Oktay (Chair, Foreign Relations Cttee, GNA of Türkiye)"
+    },
+    {
+      "date": "2026-06-12",
+      "dir": "in",
+      "party": "Benjamin Netanyahu (PM of Israel)"
+    },
+    {
+      "date": "2026-06-12",
+      "dir": "out",
+      "party": "Ferdinand R. Marcos (President of Philippines)"
+    },
+    {
+      "date": "2026-06-12",
+      "dir": "out",
+      "party": "Vladimir Putin (President of Russia)"
+    },
+    {
+      "date": "2026-06-11",
+      "dir": "in",
+      "party": "Edi Rama (PM of Albania)"
+    },
+    {
+      "date": "2026-06-11",
+      "dir": "in",
+      "party": "Adama Barrow (President of The Gambia)"
+    },
+    {
+      "date": "2026-06-11",
+      "dir": "in",
+      "party": "Hassanal Bolkiah (Sultan of Brunei)"
+    },
+    {
+      "date": "2026-06-10",
+      "dir": "in",
+      "party": "Bajram Begaj (President of Albania)"
+    },
+    {
+      "date": "2026-06-10",
+      "dir": "out",
+      "party": "António José Seguro (President of Portugal)"
+    },
+    {
+      "date": "2026-06-09",
+      "dir": "in",
+      "party": "Nataša Pirc Musar (President of Slovenia)"
+    },
+    {
+      "date": "2026-06-08",
+      "dir": "in",
+      "party": "José Raúl Mulino Quintero (President of Panama)"
+    }
+  ],
+  "cabinet_decisions": [
+    {
+      "num": "178",
+      "date": "2026-06-12",
+      "title_en": "Renewable energy land designation — Haciqabul district (parcel I)"
+    },
+    {
+      "num": "177",
+      "date": "2026-06-12",
+      "title_en": "Renewable energy land designation — Haciqabul district (parcel II)"
+    },
+    {
+      "num": "176",
+      "date": "2026-06-12",
+      "title_en": "Amendment to Decision 466/2024 — Jabrayil district renewable energy land"
+    },
+    {
+      "num": "175",
+      "date": "2026-06-10",
+      "title_en": "Amendment to list of entities outside Ministry of Economy structure (Decision 228/2010)"
+    },
+    {
+      "num": "174",
+      "date": "2026-06-10",
+      "title_en": "Government guarantees — SOCAR/Gran Tierra Energy PSA (Quba, Qusar, Shabran, Siyazan, Khizi)"
+    },
+    {
+      "num": "172",
+      "date": "2026-06-10",
+      "title_en": "Approval of list of state bodies with designated official parking"
+    },
+    {
+      "num": "173",
+      "date": "2026-06-09",
+      "title_en": "Gas supply — implementing amendments & repeals (Law 233-VIIQ)"
+    },
+    {
+      "num": "171",
+      "date": "2026-06-09",
+      "title_en": "Rules on maintenance & use of general-use railway transport infrastructure"
+    },
+    {
+      "num": "170",
+      "date": "2026-06-09",
+      "title_en": "Amendment to Mandatory Health Insurance Services Package (Decision 5/2020)"
+    },
+    {
+      "num": "169",
+      "date": "2026-06-09",
+      "title_en": "Implementation of State Security Service Centralized Information & Digital Analytics System (Decree 533/2025)"
+    },
+    {
+      "num": "168",
+      "date": "2026-06-09",
+      "title_en": "Regulation on the Energy Efficiency Information System"
+    }
+  ],
+  "cabinet_orders": [
+    {
+      "num": "403s",
+      "date": "2026-06-10",
+      "title_en": "Execution of Presidential Decree 678 (ASAN/State Agency for Service to Citizens)"
+    },
+    {
+      "num": "402s",
+      "date": "2026-06-10",
+      "title_en": "Execution of Presidential Decree 675 (Finance Ministry board representation)"
+    },
+    {
+      "num": "400s",
+      "date": "2026-06-09",
+      "title_en": "Execution of Presidential Order 1053 (Quba district renaming, Law 404-VIIQ)"
+    },
+    {
+      "num": "389s",
+      "date": "2026-06-09",
+      "title_en": "Execution of Presidential Decree 672 (State Agency for Protection of Strategic Facilities)"
+    }
+  ],
+  "milli_majlis_bills_2026_06_12": [
+    "2025 State Budget Execution Report",
+    "Land Code Amendments",
+    "AFS Convention accession",
+    "Embassy in Lisbon",
+    "Shushi Cultural Capital amendment",
+    "Green Space Protection amendment",
+    "Administrative Offenses Code amendment",
+    "Public Service Law amendment",
+    "Omnibus: Administrative Offenses/Information Protection/Child Safety",
+    "Housing & Refugee Status amendment"
+  ],
+  "milli_majlis_enacted_laws_in_window": []
+}
