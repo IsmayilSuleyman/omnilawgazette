@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "node scripts/copy-pdf-worker.mjs"
+    "postinstall": "node scripts/copy-pdf-worker.mjs",
+    "gazette:scrape": "node scripts/scrape-gazette.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.1",
