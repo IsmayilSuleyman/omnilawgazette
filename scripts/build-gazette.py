@@ -90,8 +90,7 @@ LEAD = {
             "doğru qətiyyətli istiqaməti göstərir.",
         ],
     },
-    'source': {'EN': 'Source · e-qanun.az/framework/62002',
-               'AZ': 'Mənbə · e-qanun.az/framework/62002'},
+            'eqanun': [61987],
 }
 
 ARTICLES = [
@@ -123,8 +122,7 @@ ARTICLES = [
                 "göndəriş üzrə yuxarı limitlər olacaq.",
             ],
         },
-        'source': {'EN': 'Source · president.az/az/articles/view/72713',
-                   'AZ': 'Mənbə · president.az/az/articles/view/72713'},
+                'eqanun': [61986],
     },
     {
         'n': '03',
@@ -152,8 +150,7 @@ ARTICLES = [
                 "gözləməlidirlər.",
             ],
         },
-        'source': {'EN': 'Source · president.az/az/articles/view/72706',
-                   'AZ': 'Mənbə · president.az/az/articles/view/72706'},
+                'eqanun': [61985],
     },
     {
         'n': '04',
@@ -180,8 +177,10 @@ ARTICLES = [
                 "nəzərdən keçirilməli və hər hansı keçid müddəaları qeydə alınmalıdır.",
             ],
         },
-        'source': {'EN': 'Source · president.az/az/articles/view/72735',
-                   'AZ': 'Mənbə · president.az/az/articles/view/72735'},
+                'source': {
+            'AZ': {'prefix': 'Mənbə · ', 'links': [('president.az/articles/view/72735', 'https://president.az/az/articles/view/72735')], 'note': ' (e-qanun-da hələ qeydiyyatda deyil)'},
+            'EN': {'prefix': 'Source · ', 'links': [('president.az/articles/view/72735', 'https://president.az/az/articles/view/72735')], 'note': ' (not yet registered on e-qanun)'},
+        },
     },
     {
         'n': '05',
@@ -206,8 +205,7 @@ ARTICLES = [
                 "müştərilər səlahiyyətlərdə və əlaqə nöqtələrində mümkün dəyişiklikləri izləməlidirlər.",
             ],
         },
-        'source': {'EN': 'Source · president.az/az/articles/view/72724',
-                   'AZ': 'Mənbə · president.az/az/articles/view/72724'},
+                'eqanun': [62002],
     },
     {
         'n': '06',
@@ -234,8 +232,7 @@ ARTICLES = [
                 "öhdəliklərini nəzərə almalıdırlar.",
             ],
         },
-        'source': {'EN': 'Source · president.az/az/articles/view/72722',
-                   'AZ': 'Mənbə · president.az/az/articles/view/72722'},
+                'eqanun': [62000],
     },
     {
         'n': '07',
@@ -262,8 +259,7 @@ ARTICLES = [
                 "bir qərarından struktur baxımından ən əhəmiyyətlisidir.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Decision No. 171',
-                   'AZ': 'Mənbə · nk.gov.az · Qərar № 171'},
+                'eqanun': [61993],
     },
     {
         'n': '08',
@@ -289,8 +285,7 @@ ARTICLES = [
                 "təsdiqləmək üçün ləğv edilmiş qaydaları yeni çərçivə ilə tutuşdurmalıdırlar.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Decision No. 173',
-                   'AZ': 'Mənbə · nk.gov.az · Qərar № 173'},
+                'eqanun': [61994],
     },
     {
         'n': '09',
@@ -316,8 +311,7 @@ ARTICLES = [
                 "pay bölgüsü sazişlərinin müqavilə strukturu üçün nümunə təqdim edir.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Decision No. 174',
-                   'AZ': 'Mənbə · nk.gov.az · Qərar № 174'},
+                'eqanun': [62004],
     },
     {
         'n': '10',
@@ -345,8 +339,10 @@ ARTICLES = [
                 "dəyişən sahə parametrlərini izləməlidirlər.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Decisions No. 176–178',
-                   'AZ': 'Mənbə · nk.gov.az · Qərarlar № 176–178'},
+                'source': {
+            'AZ': {'prefix': 'Mənbə · ', 'links': [('nk.gov.az · Qərar 178', 'https://nk.gov.az/az/senedler/qerarlar/haciqabul-rayonunun-inzibati-erazisinde-dovlet-mul-9551')], 'note': ' (e-qanun-da hələ qeydiyyatda deyil)'},
+            'EN': {'prefix': 'Source · ', 'links': [('nk.gov.az · Qərar 178', 'https://nk.gov.az/az/senedler/qerarlar/haciqabul-rayonunun-inzibati-erazisinde-dovlet-mul-9551')], 'note': ' (not yet registered on e-qanun)'},
+        },
     },
     {
         'n': '11',
@@ -371,8 +367,7 @@ ARTICLES = [
                 "bir hissəsidir və tənzimlənən qurumlara qoyulan məlumat mübadiləsi öhdəliklərinə təsir göstərə bilər.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Decision No. 169',
-                   'AZ': 'Mənbə · nk.gov.az · Qərar № 169'},
+                'eqanun': [61988],
     },
     {
         'n': '12',
@@ -397,8 +392,7 @@ ARTICLES = [
                 "əhatəyə və ödənişlərə necə təsir etdiyini dəqiqləşdirməlidirlər.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Decision No. 170',
-                   'AZ': 'Mənbə · nk.gov.az · Qərar № 170'},
+                'eqanun': [61990],
     },
     {
         'n': '13',
@@ -420,8 +414,7 @@ ARTICLES = [
                 "Enerji tutumlu müəssisələr sistem işə düşdükdən sonra hesabat öhdəliklərini gözləməlidirlər.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Decision No. 168',
-                   'AZ': 'Mənbə · nk.gov.az · Qərar № 168'},
+                'eqanun': [61995],
     },
     {
         'n': '14',
@@ -449,8 +442,10 @@ ARTICLES = [
                 "sonra inzibati praktikaya necə çevrildiyi mexanizmini göstərir.",
             ],
         },
-        'source': {'EN': 'Source · nk.gov.az · Orders No. 389s, 400s, 402s, 403s',
-                   'AZ': 'Mənbə · nk.gov.az · Sərəncamlar № 389s, 400s, 402s, 403s'},
+                'source': {
+            'AZ': {'prefix': 'Mənbə · ', 'links': [('nk.gov.az · Sərəncam 403s', 'https://nk.gov.az/az/senedler/serencamlar/azerbaycan-respublikasinin-prezidenti-yaninda-vete-9547')], 'note': ' (e-qanun-da hələ qeydiyyatda deyil)'},
+            'EN': {'prefix': 'Source · ', 'links': [('nk.gov.az · Sərəncam 403s', 'https://nk.gov.az/az/senedler/serencamlar/azerbaycan-respublikasinin-prezidenti-yaninda-vete-9547')], 'note': ' (not yet registered on e-qanun)'},
+        },
     },
 ]
 

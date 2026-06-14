@@ -88,17 +88,20 @@ def _bottom_border(el, color='1F3864', sz='4'):
 
 
 def _source_segments(item, lang):
-    """Return (prefix_text, [(id_str, url), ...]).
+    """Return (prefix_text, [(label, url), ...], note_text).
 
-    If the article carries e-qanun framework ids, the source is rendered as
-    'Mənbə/Source · e-qanun.az/framework/<id>' with each id hyperlinked. If it
-    only carries plain 'source' text (legacy), that text is returned with no
-    links."""
+    Preferred: article carries 'eqanun': [id, ...] → 'Mənbə/Source ·
+    e-qanun.az/framework/<id>' with each id hyperlinked. Fallback for acts not
+    yet on e-qanun: 'source': {lang: {'prefix','links':[(label,url)],'note'}}.
+    Legacy plain-string 'source' is rendered as unlinked text."""
     ids = item.get('eqanun')
     if ids:
         prefix = f"{SOURCE_WORD[lang]} · e-qanun.az/framework/"
-        return prefix, [(str(i), EQANUN_BASE + str(i)) for i in ids]
-    return item['source'][lang], []
+        return prefix, [(str(i), EQANUN_BASE + str(i)) for i in ids], ''
+    src = item['source'][lang]
+    if isinstance(src, dict):
+        return src.get('prefix', ''), list(src.get('links', [])), src.get('note', '')
+    return src, [], ''
 
 
 def _add_hyperlink(paragraph, url, text):
@@ -153,12 +156,14 @@ def build_docx(lang, basename, chrome, lead, articles, outdir):
             p = _para(doc, align=WD_ALIGN_PARAGRAPH.JUSTIFY, before=0, after=4, line=1.05)
             _run(p, par, size=9, color=BLACK)
         p = _para(doc, align=WD_ALIGN_PARAGRAPH.JUSTIFY, before=0, after=6)
-        prefix, links = _source_segments(item, lang)
+        prefix, links, note = _source_segments(item, lang)
         _run(p, prefix, font=SER_FONT, size=8, italic=True, color=GOLD2)
-        for k, (id_str, url) in enumerate(links):
+        for k, (label, url) in enumerate(links):
             if k:
                 _run(p, ' · ', font=SER_FONT, size=8, italic=True, color=GOLD2)
-            _add_hyperlink(p, url, id_str)
+            _add_hyperlink(p, url, label)
+        if note:
+            _run(p, note, font=SER_FONT, size=8, italic=True, color=GOLD2)
 
     render(lead, lead=True)
     doc.add_section(WD_SECTION.CONTINUOUS); _set_cols(doc.sections[0], 1)
@@ -185,11 +190,9 @@ def build_docx(lang, basename, chrome, lead, articles, outdir):
 
 # ── HTML twin (for high-fidelity PDF rendering via Chromium) ──────────────────
 def _source_html(item, lang):
-    prefix, links = _source_segments(item, lang)
-    if not links:
-        return _html.escape(prefix)
-    return _html.escape(prefix) + ' · '.join(
-        f'<a href="{u}">{_html.escape(s)}</a>' for s, u in links)
+    prefix, links, note = _source_segments(item, lang)
+    body = ' · '.join(f'<a href="{u}">{_html.escape(s)}</a>' for s, u in links)
+    return _html.escape(prefix) + body + _html.escape(note)
 
 
 def _article_html(item, lang, lead=False):
