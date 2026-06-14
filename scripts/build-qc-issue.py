@@ -61,8 +61,7 @@ LEAD = {
             "and their entry-into-force conditions carefully.",
         ],
     },
-    'source': {'AZ': 'Mənbə · president.az · 394-VIIQD nömrəli Qanun',
-               'EN': 'Source · president.az · Law No. 394-VIIQD'},
+            'eqanun': [61868],
 }
 
 ARTICLES = [
@@ -90,8 +89,7 @@ ARTICLES = [
                 "enforcement of judgments.",
             ],
         },
-        'source': {'AZ': 'Mənbə · president.az/az/articles/view/72427, 72426, 72425',
-                   'EN': 'Source · president.az/az/articles/view/72427, 72426, 72425'},
+                'eqanun': [61863, 61860, 61864],
     },
     {
         'n': '03',
@@ -115,8 +113,7 @@ ARTICLES = [
                 "Bodies operating in, or relying on, this sector should take account of the new tariff rules.",
             ],
         },
-        'source': {'AZ': 'Mənbə · president.az/az/articles/view/72439',
-                   'EN': 'Source · president.az/az/articles/view/72439'},
+                'eqanun': [61871],
     },
     {
         'n': '04',
@@ -139,8 +136,7 @@ ARTICLES = [
                 "the representation of Shusha’s cultural heritage abroad.",
             ],
         },
-        'source': {'AZ': 'Mənbə · president.az/az/articles/view/72430',
-                   'EN': 'Source · president.az/az/articles/view/72430'},
+                'eqanun': [61862],
     },
     {
         'n': '05',
@@ -163,8 +159,7 @@ ARTICLES = [
                 "their employers should take note of the relevant dates.",
             ],
         },
-        'source': {'AZ': 'Mənbə · president.az/az/articles/view/72441',
-                   'EN': 'Source · president.az/az/articles/view/72441'},
+                'eqanun': [61870],
     },
     {
         'n': '06',
@@ -188,7 +183,7 @@ ARTICLES = [
                 "treasury operations.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Qərar № 159', 'EN': 'Source · nk.gov.az · Decision No. 159'},
+                'eqanun': [61887],
     },
     {
         'n': '07',
@@ -212,7 +207,7 @@ ARTICLES = [
                 "contractual relations with the company should monitor the changes.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Sərəncam № 326s', 'EN': 'Source · nk.gov.az · Order No. 326s'},
+                'eqanun': [61942],
     },
     {
         'n': '08',
@@ -235,7 +230,7 @@ ARTICLES = [
                 "the social protection of employees.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Qərar № 158', 'EN': 'Source · nk.gov.az · Decision No. 158'},
+                'eqanun': [61888],
     },
     {
         'n': '09',
@@ -257,7 +252,7 @@ ARTICLES = [
                 "of social-security entitlements.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Qərar № 160', 'EN': 'Source · nk.gov.az · Decision No. 160'},
+                'eqanun': [61889],
     },
     {
         'n': '10',
@@ -279,7 +274,7 @@ ARTICLES = [
                 "The decision is directed at staffing the reconstruction and rehabilitation effort.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Qərar № 157', 'EN': 'Source · nk.gov.az · Decision No. 157'},
+                'eqanun': [61898],
     },
     {
         'n': '11',
@@ -299,7 +294,7 @@ ARTICLES = [
                 "The decision is of relevance to border crossing and to international rail passenger transport.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Qərar № 154', 'EN': 'Source · nk.gov.az · Decision No. 154'},
+                'eqanun': [61878],
     },
     {
         'n': '12',
@@ -321,7 +316,7 @@ ARTICLES = [
                 "the waste sector.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Sərəncam № 349s', 'EN': 'Source · nk.gov.az · Order No. 349s'},
+                'eqanun': [61976],
     },
     {
         'n': '13',
@@ -347,7 +342,7 @@ ARTICLES = [
                 "regulation.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Qərar № 149', 'EN': 'Source · nk.gov.az · Decision No. 149'},
+                'eqanun': [61859],
     },
     {
         'n': '14',
@@ -373,8 +368,7 @@ ARTICLES = [
                 "recently adopted.",
             ],
         },
-        'source': {'AZ': 'Mənbə · nk.gov.az · Sərəncamlar № 330s, 331s, 338s, 339s, 340s',
-                   'EN': 'Source · nk.gov.az · Orders No. 330s, 331s, 338s, 339s, 340s'},
+                'eqanun': [61947, 61943, 61944, 61974, 61975],
     },
 ]
 

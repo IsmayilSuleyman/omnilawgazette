@@ -26,8 +26,14 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT
 from docx.enum.section import WD_SECTION
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
+from docx.opc.constants import RELATIONSHIP_TYPE as _RT
 import os
 import html as _html
+
+# e-qanun.az is the official consolidated register; sources link to the
+# framework page of each instrument: https://e-qanun.az/framework/<id>
+EQANUN_BASE = 'https://e-qanun.az/framework/'
+SOURCE_WORD = {'AZ': 'Mənbə', 'EN': 'Source'}
 
 NAVY  = RGBColor(0x1F, 0x38, 0x64)
 GREY  = RGBColor(0x3B, 0x38, 0x38)
@@ -81,6 +87,38 @@ def _bottom_border(el, color='1F3864', sz='4'):
     pbdr.append(b)
 
 
+def _source_segments(item, lang):
+    """Return (prefix_text, [(id_str, url), ...]).
+
+    If the article carries e-qanun framework ids, the source is rendered as
+    'Mənbə/Source · e-qanun.az/framework/<id>' with each id hyperlinked. If it
+    only carries plain 'source' text (legacy), that text is returned with no
+    links."""
+    ids = item.get('eqanun')
+    if ids:
+        prefix = f"{SOURCE_WORD[lang]} · e-qanun.az/framework/"
+        return prefix, [(str(i), EQANUN_BASE + str(i)) for i in ids]
+    return item['source'][lang], []
+
+
+def _add_hyperlink(paragraph, url, text):
+    r_id = paragraph.part.relate_to(url, _RT.HYPERLINK, is_external=True)
+    hyperlink = OxmlElement('w:hyperlink'); hyperlink.set(qn('r:id'), r_id)
+    r = OxmlElement('w:r'); rPr = OxmlElement('w:rPr')
+    rFonts = OxmlElement('w:rFonts')
+    for a in ('w:ascii', 'w:hAnsi', 'w:cs'):
+        rFonts.set(qn(a), SER_FONT)
+    rPr.append(rFonts)
+    sz = OxmlElement('w:sz'); sz.set(qn('w:val'), '16'); rPr.append(sz)   # 8pt
+    rPr.append(OxmlElement('w:i'))
+    col = OxmlElement('w:color'); col.set(qn('w:val'), '8A6D1E'); rPr.append(col)
+    u = OxmlElement('w:u'); u.set(qn('w:val'), 'single'); rPr.append(u)
+    r.append(rPr)
+    t = OxmlElement('w:t'); t.set(qn('xml:space'), 'preserve'); t.text = text
+    r.append(t); hyperlink.append(r)
+    paragraph._p.append(hyperlink)
+
+
 def build_docx(lang, basename, chrome, lead, articles, outdir):
     doc = Document()
     st = doc.styles['Normal']
@@ -115,7 +153,12 @@ def build_docx(lang, basename, chrome, lead, articles, outdir):
             p = _para(doc, align=WD_ALIGN_PARAGRAPH.JUSTIFY, before=0, after=4, line=1.05)
             _run(p, par, size=9, color=BLACK)
         p = _para(doc, align=WD_ALIGN_PARAGRAPH.JUSTIFY, before=0, after=6)
-        _run(p, item['source'][lang], font=SER_FONT, size=8, italic=True, color=GOLD2)
+        prefix, links = _source_segments(item, lang)
+        _run(p, prefix, font=SER_FONT, size=8, italic=True, color=GOLD2)
+        for k, (id_str, url) in enumerate(links):
+            if k:
+                _run(p, ' · ', font=SER_FONT, size=8, italic=True, color=GOLD2)
+            _add_hyperlink(p, url, id_str)
 
     render(lead, lead=True)
     doc.add_section(WD_SECTION.CONTINUOUS); _set_cols(doc.sections[0], 1)
@@ -141,6 +184,14 @@ def build_docx(lang, basename, chrome, lead, articles, outdir):
 
 
 # ── HTML twin (for high-fidelity PDF rendering via Chromium) ──────────────────
+def _source_html(item, lang):
+    prefix, links = _source_segments(item, lang)
+    if not links:
+        return _html.escape(prefix)
+    return _html.escape(prefix) + ' · '.join(
+        f'<a href="{u}">{_html.escape(s)}</a>' for s, u in links)
+
+
 def _article_html(item, lang, lead=False):
     paras = ''.join(f'<p class="body">{_html.escape(b)}</p>' for b in item['body'][lang])
     return f'''<article class="{'lead' if lead else 'item'}">
@@ -148,7 +199,7 @@ def _article_html(item, lang, lead=False):
       <div class="kicker">{_html.escape(item['kicker'][lang])}</div>
       <h2 class="headline">{_html.escape(item['headline'][lang])}</h2>
       {paras}
-      <p class="source">{_html.escape(item['source'][lang])}</p>
+      <p class="source">{_source_html(item, lang)}</p>
     </article>'''
 
 
@@ -181,6 +232,7 @@ def build_html(lang, basename, chrome, lead, articles, outdir):
   .body {{ text-align: justify; font-size: 9pt; line-height: 1.45; margin: 0 0 6px; }}
   .source {{ text-align: justify; font-family: "Times New Roman", Georgia, serif;
     font-size: 8pt; font-style: italic; color: #8A6D1E; margin: 0 0 4px; }}
+  .source a {{ color: #8A6D1E; text-decoration: underline; }}
   .lead {{ margin-bottom: 6px; }}
   .columns {{ column-count: 3; column-gap: 14px; column-rule: 0.5px solid #d9d9d9; }}
   .columns .item {{ break-inside: avoid-column; -webkit-column-break-inside: avoid; }}
