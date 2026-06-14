@@ -2,8 +2,14 @@
 """Build the Omni Law Gazette as two separate, mirror-image editions.
 
 Per the firm's editorial rule (see AGENTS.md), every issue is produced as two
-distinct documents — one entirely in English, one entirely in Azerbaijani —
+distinct documents — one entirely in Azerbaijani, one entirely in English —
 identical in layout, item order and content; only the language differs.
+
+AUTHORING ORDER (important): Azerbaijani is the source-of-truth edition. The
+official portal material (e-qanun.az, etc.) is already in Azerbaijani, so each
+article's 'AZ' text is authored FIRST, faithful to the source legal wording;
+the 'EN' text is a translation of the finished Azerbaijani. In the per-article
+data below, treat 'AZ' as canonical and 'EN' as its translation.
 
 For each language this script emits:
   * a native, editable .docx (Eloquia Text ExtLt typography)
