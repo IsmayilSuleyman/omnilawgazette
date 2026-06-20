@@ -163,7 +163,7 @@ stats = [
     ("10", "Bills under\nParliamentary Review"),
     ("6",  "Cabinet of Ministers\nDecisions"),
     ("2",  "Cabinet of Ministers\nOrders"),
-    ("4",  "Presidential\nDocuments & Addresses"),
+    ("7",  "Presidential Acts,\nAddresses & Letters"),
 ]
 for i, (num, label) in enumerate(stats):
     cell = stats_tbl.cell(0, i)
@@ -390,19 +390,46 @@ for num, date, title, body in orders:
 # ════════════════════════════════════════════════════════════════════════════════
 
 section_header("Administration of the President", "Presidential Office",
-               "Addresses & Diplomatic Correspondence — 13–18 June 2026")
+               "Decrees, Orders, Addresses & Correspondence — 13–18 June 2026")
 
 pres_intro = doc.add_paragraph()
 set_para_spacing(pres_intro, before=40, after=80)
 normal_run(pres_intro,
-           "No presidential decrees (fərmanlar) or orders (sərəncamlar) were published in the publicly "
-           "accessible document register for the week under review. The presidential record for this period "
-           "consists of two substantive addresses at international forums hosted in Azerbaijan, and two "
-           "diplomatic letters to foreign heads of state. The two summit addresses — on artificial "
+           "Direct extraction of the e-Qanun official register this week surfaced presidential acts not "
+           "visible on the president.az portal: one Decree (fərman) and two Orders (sərəncamlar) bearing "
+           "adoption dates within the reporting period. The Decree of 16 June introduces additional measures "
+           "to support non-oil/gas exports — a substantive economic-policy instrument. The presidential "
+           "record also includes two substantive addresses at international forums hosted in Azerbaijan and "
+           "two diplomatic letters to foreign heads of state. The two summit addresses — on artificial "
            "intelligence and human rights, and on South Caucasus peacebuilding — are of particular geopolitical significance.",
            size=9, color=GREY)
 
+# Decrees & Orders (via e-Qanun register)
+do_hdr = doc.add_paragraph()
+set_para_spacing(do_hdr, before=60, after=40)
+add_border_bottom(do_hdr, color="cccccc", size=4)
+normal_run(do_hdr, "DECREES & ORDERS  — via e-Qanun register (e-qanun.az)", size=8, color=GREY)
+
+doc_entry("DECREE", "framework/62008", "16 Jun 2026",
+          "Additional Measures to Support the Export of Non-Oil/Gas Goods",
+          "A presidential decree introducing further measures to promote and support the export of "
+          "non-oil-and-gas products — central to Azerbaijan's economic diversification agenda. "
+          "In force from 16 June 2026.",
+          tag_color=RGBColor(0x2c,0x3e,0x50))
+doc_entry("ORDER", "framework/62010", "17 Jun 2026",
+          "Conferral of the \"Dostluq\" (Friendship) Order on Mohammed Suleyman Al-Jasir",
+          "Presidential order awarding the \"Dostluq\" Order to Mohammed Suleyman Al-Jasir, in recognition "
+          "of contributions to bilateral / multilateral cooperation.",
+          tag_color=RGBColor(0x4a,0x4a,0x4a))
+doc_entry("ORDER", "framework/62009", "17 Jun 2026",
+          "State Decorations for Azerbaijani Healthcare Workers",
+          "Presidential order conferring state awards on healthcare workers of the Republic of Azerbaijan, "
+          "customarily issued around Medical Workers' Day.",
+          tag_color=RGBColor(0x4a,0x4a,0x4a))
+
 # Summit addresses
+sa_intro = doc.add_paragraph()
+set_para_spacing(sa_intro, before=80, after=0)
 sa_hdr = doc.add_paragraph()
 set_para_spacing(sa_hdr, before=60, after=40)
 add_border_bottom(sa_hdr, color="cccccc", size=4)
@@ -459,11 +486,11 @@ for i, row in enumerate(rows_data, 1):
 
 doc.add_paragraph()
 
-notice_box("NOTE ON DECREES & ORDERS: Presidential decrees and orders were not retrievable from the "
-           "president.az documents portal for the current reporting period. Readers should verify "
-           "directly via the president.az documents register for any decrees or orders issued between "
-           "13–20 June. Cabinet Orders 419s and 420s reference implementing prior presidential directives, "
-           "confirming regulatory activity at the executive level.")
+notice_box("SOURCING NOTE: The president.az documents portal did not surface these decrees and orders "
+           "during compilation; they were instead recovered directly from the e-Qanun official register "
+           "API (see Section 5). Diplomatic letters and summit addresses are drawn from president.az. "
+           "Cabinet Orders 419s and 420s reference implementing prior presidential directives, confirming "
+           "continued regulatory activity at the executive level.")
 
 # ════════════════════════════════════════════════════════════════════════════════
 # SECTION 4 — CONSTITUTIONAL COURT
@@ -494,20 +521,55 @@ doc.add_paragraph()
 section_header("Official Legislative Database", "e-Qanun",
                "Normative Acts Register — e-qanun.az")
 
-eq_tbl = doc.add_table(rows=1, cols=1)
-eq_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-eq_cell = eq_tbl.cell(0, 0)
-set_cell_bg(eq_cell, "fff8e1")
-eq_p = eq_cell.paragraphs[0]
-set_para_spacing(eq_p, before=60, after=60)
-bold_run(eq_p, "⚠ Data Not Extractable.  ", size=8.5, color=AMBER, font="Arial")
-normal_run(eq_p,
-           "The e-Qanun portal (e-qanun.az) renders its content dynamically via JavaScript and does "
-           "not expose a static listing accessible to automated retrieval. No enacted normative acts "
-           "could be extracted for automated review this week. Readers should consult the portal "
-           "directly for the consolidated texts of any legislation enacted or amended during the reporting period.",
-           size=8.5, color=AMBER)
-doc.add_paragraph()
+eq_intro = doc.add_paragraph()
+set_para_spacing(eq_intro, before=40, after=80)
+normal_run(eq_intro,
+           "The e-Qanun consolidated register was successfully queried this week via its backend API "
+           "(api.e-qanun.az), replacing the previously unavailable automated feed. The following acts "
+           "carry an adoption date within the reporting period and have been entered into the official "
+           "register as of compilation. The register is the authoritative source of consolidated, "
+           "in-force texts and serves here to confirm formal publication of the instruments reported above.",
+           size=9, color=GREY)
+
+eq_hdr = doc.add_paragraph()
+set_para_spacing(eq_hdr, before=40, after=40)
+add_border_bottom(eq_hdr, color="cccccc", size=4)
+normal_run(eq_hdr, "REGISTERED ACTS — 16–17 JUNE 2026", size=8, color=GREY)
+
+doc_entry("DECREE", "framework/62008", "16 Jun 2026",
+          "Presidential Decree — Non-Oil/Gas Export Support",
+          "Additional measures to support the export of non-oil-and-gas goods. Status: in force.",
+          tag_color=RGBColor(0x2c,0x3e,0x50))
+doc_entry("ORDERS", "framework/62010, /62009", "17 Jun 2026",
+          "Presidential Orders — State Decorations (×2)",
+          "Conferral of the \"Dostluq\" Order on M. S. Al-Jasir, and state awards for Azerbaijani "
+          "healthcare workers. Status: in force.",
+          tag_color=RGBColor(0x4a,0x4a,0x4a))
+doc_entry("DECISIONS", "framework/62027, /62025, /62026", "16 Jun 2026",
+          "Cabinet of Ministers Decisions Nos. 181–183",
+          "No. 181 (amends Cabinet Decision No. 315 of 25 Jun 2024); No. 182 (Rules for the Electronic "
+          "Registry of State Services); No. 183 (Rules on civil defence in railway transport). Status: in force.",
+          tag_color=RGBColor(0x2c,0x3e,0x50))
+
+# Register cross-check box
+xc_hdr = doc.add_paragraph()
+set_para_spacing(xc_hdr, before=80, after=40)
+shade_paragraph(xc_hdr, "f0ede6")
+bold_run(xc_hdr, "Register Cross-Check — No New Primary Legislation", size=9, color=BLACK, font="Georgia")
+xc_body = doc.add_paragraph()
+set_para_spacing(xc_body, before=0, after=60)
+shade_paragraph(xc_body, "f0ede6")
+normal_run(xc_body,
+           "The most recent enacted instruments confirm no new acts were adopted in these categories "
+           "during the reporting week:  Laws — latest No. 415-VIIQD (26 May 2026);  Milli Majlis "
+           "Decisions — latest No. 405-VIIQR (26 May 2026);  Cabinet Orders — latest No. 363s "
+           "(26 May 2026);  Constitutional Court — latest decision 25 May 2026.",
+           size=8.5, color=RGBColor(0x44,0x44,0x44))
+
+notice_box("REGISTER-LAG NOTE: The e-Qanun register reflects formal publication and may lag a government "
+           "body's own portal by several days. The Cabinet instruments of 19 June (Decisions 184–186 and "
+           "Orders 419s–420s reported above from nk.gov.az) had not yet been entered into the e-Qanun "
+           "register at the time of compilation and should be re-verified there once published.")
 
 # ════════════════════════════════════════════════════════════════════════════════
 # REGULATORY SPOTLIGHT
