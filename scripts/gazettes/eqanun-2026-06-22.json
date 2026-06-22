@@ -6,7 +6,7 @@
   "Presidential Decrees": {
    "typeId": 31,
    "coverageComplete": true,
-   "newestRegistered": "25.05.2026",
+   "newestRegistered": "19.06.2026",
    "items": [
     {
      "id": 62008,
@@ -16,6 +16,15 @@
      "classCode": "2026-06-16",
      "status": "Qüvvədədir",
      "url": "https://e-qanun.az/framework/62008"
+    },
+    {
+     "id": 62031,
+     "citation": null,
+     "title": "Məktəbəqədər təhsil sahəsində valideyn-dövlət-özəl əməkdaşlığına əsaslanan maliyyələşmə modelinin tətbiq edilməsi haqqında",
+     "acceptDate": "19.06.2026",
+     "classCode": "2026-06-19",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62031"
     }
    ]
   },
@@ -24,6 +33,15 @@
    "coverageComplete": true,
    "newestRegistered": "17.06.2026",
    "items": [
+    {
+     "id": 62032,
+     "citation": null,
+     "title": "Azərbaycan Respublikasının Portuqaliya Respublikasında (Lissabon şəhərində) Səfirliyinin fəaliyyətinin təmin edilməsi haqqında",
+     "acceptDate": "17.06.2026",
+     "classCode": "2026-06-17",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62032"
+    },
     {
      "id": 62010,
      "citation": null,
@@ -99,7 +117,7 @@
   "Laws": {
    "typeId": 30,
    "coverageComplete": true,
-   "newestRegistered": "26.05.2026",
+   "newestRegistered": "12.06.2026",
    "items": []
   },
   "Constitutional Laws": {

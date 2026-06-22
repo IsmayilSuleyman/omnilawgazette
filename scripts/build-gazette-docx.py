@@ -266,7 +266,7 @@ entry("Decree", "", "19 Jun 2026, 14:37",
       "Fərman sənaye və kənd təsərrüfatı təyinatlı tikinti obyektlərinin elektrik şəbəkəsinə qoşulması üçün ödənilən haqqın dövlət hesabına qismən və ya tam subsidiyalaşdırılmasını nəzərdə tutur. Tədbir investisiya layihələrinin başlanğıc xərclərini azaltmaq, regionlarda emal və istehsal müəssisələrinin yaradılmasını stimullaşdırmaq məqsədi daşıyır. Subsidiyanın həcmi, şərtləri və müraciət qaydası Nazirlər Kabineti tərəfindən müəyyən ediləcəkdir.",
       "The decree provides for partial or full state subsidisation of the fee paid to connect industrial- and agricultural-purpose construction facilities to the electricity grid. The measure is designed to reduce the up-front cost of investment projects and to encourage the establishment of processing and manufacturing enterprises in the regions. The amount, conditions and application procedure for the subsidy are to be set by the Cabinet of Ministers.")
 
-entry("Decree", "", "19 Jun 2026, 14:31",
+entry("Decree", "e-Qanun id 62031", "19 Jun 2026, 14:31",
       "Məktəbəqədər təhsil sahəsində valideyn–dövlət–özəl əməkdaşlığına (PPP) əsaslanan maliyyələşmə modelinin tətbiq edilməsi haqqında",
       "On Introducing a Parent–State–Private Partnership (PPP) Financing Model in Preschool Education",
       "Sənəd məktəbəqədər təhsilin maliyyələşdirilməsində valideyn, dövlət və özəl sektorun birgə iştirakına əsaslanan yeni modelin tətbiqini müəyyən edir. Model bağça xidmətlərinə əlçatanlığı artırmaq, özəl məktəbəqədər müəssisələrin şəbəkəsini genişləndirmək və dövlət subsidiyalarının daha ünvanlı paylanmasını təmin etmək məqsədi daşıyır. Pilot tətbiq, maliyyələşmə normativləri və tərəflərin öhdəlikləri müvafiq icra hakimiyyəti orqanı tərəfindən tənzimlənəcəkdir.",
@@ -296,7 +296,7 @@ entry("Decree", "", "19 Jun 2026, 13:05",
       "Sənəd Vergi Məcəlləsinə və investisiyaların təşviqinə dair qanunvericiliyə dəyişiklikləri əhatə edir. Dəyişikliklərin investisiya təşviqi sənədi, güzəştlər və vergi rejimləri ilə bağlı müddəaları aktuallaşdırması gözlənilir. Bu, biznes və vergi məsləhəti üzrə komandalar üçün həftənin ən diqqətçəkən sənədlərindəndir.",
       "The instrument introduces amendments to the Tax Code and to legislation on the promotion of investments. The changes are expected to update provisions on investment-promotion certificates, incentives and tax regimes. This is among the week's most noteworthy instruments for business- and tax-advisory teams.")
 
-entry("Order", "", "19 Jun 2026, 13:04",
+entry("Order", "e-Qanun id 62032", "19 Jun 2026, 13:04",
       "Azərbaycan Respublikasının Portuqaliya Respublikasında (Lissabon şəhərində) Səfirliyinin fəaliyyətinin təmin edilməsi haqqında",
       "On Ensuring the Operation of the Embassy of the Republic of Azerbaijan in the Portuguese Republic (Lisbon)",
       "Sərəncam Azərbaycanın Lissabon şəhərində fəaliyyət göstərəcək Səfirliyinin maddi-texniki və maliyyə təminatı ilə bağlı tədbirləri müəyyən edir. Sənəd il ərzində Milli Məclisdə müzakirə edilən Lissabonda səfirliyin açılması təşəbbüsünün icra mərhələsini əks etdirir. Tədbir Azərbaycan–Portuqaliya ikitərəfli münasibətlərinin genişlənməsinə xidmət edir.",
@@ -433,11 +433,13 @@ notice('info',
 # ── SECTION 5: E-QANUN ────────────────────────────────────────────────────────
 section_header("Rəsmi Qanunvericilik Reyestri · Official Legislative Register",
                "e-Qanun", "e-Qanun", "api.e-qanun.az · 15–22 June 2026")
-lead("Aşağıdakı sənədlər tərtibat tarixinə (22 iyun) e-Qanun rəsmi reyestrində qeydiyyata alınmış və bu həftəyə (qəbul tarixi 15–22 iyun) aiddir. Qeyd: 19 iyun tarixli Prezident Fərmanları/Sərəncamı və Nazirlər Kabinetinin 184–186 saylı qərarları ilə icra sərəncamları hələ reyestrə daxil edilməmişdir — adətən bir neçə günlük qeydiyyat gecikməsi olur.",
-     "The documents below were registered in the official e-Qanun register as of the compilation date (22 June) and fall within this week (accept date 15–22 June). Note: the 19 June presidential instruments and Cabinet decisions 184–186 with their implementing orders had not yet been entered in the register — a registration lag of a few days is normal.")
+lead("Aşağıdakı sənədlər tərtibat tarixinə e-Qanun rəsmi reyestrində qeydiyyata alınmışdır (13–14 iyun tarixlərində reyestrdə heç bir sənəd yoxdur). Reyestr mütəmadi yenilənir: 19 iyun tarixli məktəbəqədər təhsil Fərmanı (62031) və Lissabon Səfirliyi Sərəncamı (62032) artıq daxil edilmişdir; qalan beş 19 iyun Fərmanı, Nazirlər Kabinetinin 184–186 saylı qərarları və icra sərəncamları isə hələ qeydiyyatdadır (adətən bir neçə günlük gecikmə).",
+     "The documents below are registered in the official e-Qanun register as of compilation (the register holds nothing for 13–14 June). The register updates continuously: the 19 June preschool Decree (62031) and the Lisbon embassy Order (62032) have now been entered; the remaining five 19 June Decrees, Cabinet decisions 184–186 and the implementing orders are still pending registration (a normal few-day lag).")
 
 reg_rows = [
  ("Decree",   "16 Jun 2026", "62008", "Qeyri-neft-qaz malları üzrə ixracın dəstəklənməsi ilə bağlı əlavə tədbirlər", "Non-oil-and-gas export support — additional measures"),
+ ("Decree",   "19 Jun 2026", "62031", "Məktəbəqədər təhsildə valideyn–dövlət–özəl maliyyələşmə modeli (PPP)", "Preschool parent–state–private (PPP) financing model"),
+ ("Order",    "17 Jun 2026", "62032", "Portuqaliyada (Lissabon) Səfirliyin fəaliyyətinin təmin edilməsi", "Operation of the Embassy in Portugal (Lisbon)"),
  ("Order",    "17 Jun 2026", "62010", "Məhəmməd Süleyman Əl-Casirin “Dostluq” ordeni ilə təltif edilməsi", "Award of 'Dostluq' Order to Mohammed Al-Jasser"),
  ("Order",    "17 Jun 2026", "62009", "Azərbaycan Respublikasının səhiyyə işçilərinin təltif edilməsi", "Award of state honours to healthcare workers"),
  ("Decision", "16 Jun 2026", "62027", "Elektrik şəbəkəsinə dair Qaydalarda dəyişiklik (NK Qərarı №181)", "Electricity-grid rules amendment (CoM Decision No. 181)"),
