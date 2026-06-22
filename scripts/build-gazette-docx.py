@@ -169,8 +169,8 @@ def glance():
     shade_paragraph(h, 'fafafa')
     run(h, "BU HƏFTƏ BİR BAXIŞDA  /  THIS WEEK AT A GLANCE", size=8, color=GREY, font=SANS, caps=True, spacing=20)
     data = [("10", "Bills before\nParliament"),
-            ("6",  "Presidential\nDecrees"),
-            ("1",  "Presidential\nOrder"),
+            ("7",  "Presidential\nDecrees"),
+            ("3",  "Presidential\nOrders"),
             ("6",  "Cabinet\nDecisions"),
             ("4",  "Cabinet\nOrders")]
     tbl = doc.add_table(rows=2, cols=len(data))
@@ -229,18 +229,36 @@ glance()
 
 intro = doc.add_paragraph(); no_space(intro, 2, 8, line=1.35)
 run(intro, "REDAKTORDAN. ", size=9, bold=True, font=SANS, color=INK)
-run(intro, "19 iyun bu həftənin qanunvericilik baxımından ən sıx günü oldu: Prezident eyni gündə altı Fərman və bir Sərəncam imzaladı, Nazirlər Kabineti bir sıra qərar və icra sərəncamları verdi, Milli Məclis isə plenar iclasında on layihəni müzakirəyə çıxardı. Diqqət mərkəzində diplomatik xidmət islahatı, vergi və investisiya təşviqi, enerji və rəqəmsal idarəetmə dayanır.",
+run(intro, "Həftə boyu fəaliyyət 16–19 iyun aralığında cəmləndi. 16 iyunda qeyri-neft ixracının dəstəklənməsinə dair Fərman və üç Nazirlər Kabineti qərarı, 17 iyunda iki təltif Sərəncamı, 19 iyunda isə altı Fərman, bir Sərəncam və Milli Məclisin on qanun layihəsi gündəmə gəldi. Diqqət mərkəzində diplomatik xidmət islahatı, vergi və investisiya təşviqi, qeyri-neft ixracı, enerji və rəqəmsal idarəetmə dayanır.",
     size=9, color=RGBColor(0x33,0x33,0x33))
 intro2 = doc.add_paragraph(); no_space(intro2, 0, 6, line=1.35)
 run(intro2, "FROM THE EDITORS. ", size=9, bold=True, font=SANS, color=INK)
-run(intro2, "19 June was the legislatively busiest day of the week: the President signed six Decrees and one Order, the Cabinet of Ministers issued a cluster of decisions and implementing orders, and the Milli Majlis tabled ten bills at its plenary sitting. The dominant themes are diplomatic-service reform, tax and investment promotion, energy, and digital governance.",
+run(intro2, "Activity clustered between 16 and 19 June. The 16th brought a Decree on non-oil export support and three Cabinet decisions; the 17th, two award Orders; and the 19th, six Decrees, one Order and ten bills tabled in the Milli Majlis. Dominant themes: diplomatic-service reform, tax and investment promotion, non-oil exports, energy, and digital governance. Items dated 16–17 June are drawn from the e-Qanun official register (with framework links below); the 19 June instruments are taken from president.az and nk.gov.az and had not yet been entered in the e-Qanun register at the time of compilation.",
     size=9, italic=True, color=GREY)
 
 # ── SECTION 1: PRESIDENT ──────────────────────────────────────────────────────
 section_header("Administration of the President · Azərbaycan Prezidentinin Administrasiyası",
                "Presidential Office", "Prezident İqamətgahı", "Decrees & Orders — 19 June 2026")
-lead("19 iyun 2026-cı il tarixində Prezident tərəfindən altı Fərman və bir Sərəncam dərc edilmişdir. Sənədlər diplomatik xidmət, vergi-investisiya, təhsil maliyyələşməsi və enerji infrastrukturu sahələrini əhatə edir.",
-     "Six Decrees and one Order were published by the President on 19 June 2026, spanning the diplomatic service, tax and investment, education financing, and energy infrastructure.")
+lead("Hesabat dövründə Prezident tərəfindən yeddi Fərman və üç Sərəncam dərc edilmişdir: 16 iyunda qeyri-neft ixracının dəstəklənməsi haqqında Fərman, 17 iyunda iki təltif Sərəncamı, 19 iyunda isə altı Fərman və bir Sərəncam. Sənədlər iqtisadiyyat, diplomatik xidmət, vergi-investisiya, təhsil maliyyələşməsi və enerji infrastrukturu sahələrini əhatə edir.",
+     "Seven Decrees and three Orders were published by the President during the reporting period: a non-oil export-support Decree on 16 June, two award Orders on 17 June, and six Decrees and one Order on 19 June — spanning the economy, the diplomatic service, tax and investment, education financing, and energy infrastructure.")
+
+entry("Decree", "e-Qanun id 62008", "16 Jun 2026",
+      "Qeyri-neft-qaz malları üzrə ixracın dəstəklənməsi ilə bağlı əlavə tədbirlər haqqında",
+      "On Additional Measures to Support the Export of Non-Oil-and-Gas Goods",
+      "Fərman qeyri-neft-qaz sektorunda istehsal olunan malların ixracının stimullaşdırılması üçün əlavə dövlət dəstəyi tədbirlərini müəyyən edir. Tədbirlər ixrac təşviqi, qeyri-neft sahibkarlığının genişləndirilməsi və ixrac bazarlarının şaxələndirilməsi istiqamətində iqtisadi siyasətin davamıdır. Tam mətn e-Qanun rəsmi reyestrində dərc edilmişdir (e-qanun.az/framework/62008).",
+      "The decree sets out additional state-support measures to stimulate the export of goods produced outside the oil-and-gas sector. The measures continue the economic-diversification policy of promoting exports, expanding non-oil entrepreneurship and broadening export markets. The full text is published in the official e-Qanun register (e-qanun.az/framework/62008).")
+
+entry("Order", "e-Qanun id 62010", "17 Jun 2026",
+      "Məhəmməd Süleyman Əl-Casirin “Dostluq” ordeni ilə təltif edilməsi haqqında",
+      "On Awarding Mohammed bin Sulaiman Al-Jasser the 'Dostluq' (Friendship) Order",
+      "Sərəncamla Azərbaycan–İslam İnkişaf Bankı əməkdaşlığının inkişafındakı xidmətlərinə görə Məhəmməd Süleyman Əl-Casir “Dostluq” ordeni ilə təltif edilir. Təltif ikitərəfli və çoxtərəfli iqtisadi əməkdaşlığa verilən əhəmiyyəti əks etdirir. (e-qanun.az/framework/62010).",
+      "The order confers the 'Dostluq' (Friendship) Order on Mohammed bin Sulaiman Al-Jasser — associated with the Islamic Development Bank — for services to bilateral and multilateral economic cooperation with Azerbaijan. The award reflects the importance attached to that partnership. (e-qanun.az/framework/62010).")
+
+entry("Order", "e-Qanun id 62009", "17 Jun 2026",
+      "Azərbaycan Respublikasının səhiyyə işçilərinin təltif edilməsi haqqında",
+      "On Awarding Healthcare Workers of the Republic of Azerbaijan",
+      "Sərəncamla bir qrup səhiyyə işçisi peşəkar fəaliyyətlərinə və xidmətlərinə görə dövlət təltifləri ilə mükafatlandırılır. Təltif ənənəvi olaraq Tibb İşçiləri gününə təsadüf edir və səhiyyə sahəsinin əməyinin dövlət tərəfindən qiymətləndirilməsini ifadə edir. (e-qanun.az/framework/62009).",
+      "The order grants state awards to a group of healthcare workers in recognition of their professional service. The awards traditionally coincide with Medical Workers' Day and express the state's recognition of the health sector. (e-qanun.az/framework/62009).")
 
 entry("Decree", "", "19 Jun 2026, 14:37",
       "Sənaye və kənd təsərrüfatı üzrə tikinti obyektlərinin elektrik şəbəkəsinə qoşulma xidmətinə görə ödənişin subsidiyalaşdırılması haqqında",
@@ -295,21 +313,21 @@ lead("Hesabat dövründə Nazirlər Kabineti altı Qərar (№181–186) və dö
      "During the reporting period the Cabinet adopted six Decisions (Nos. 181–186) and four implementing Orders (Nos. 408s, 409s, 419s, 420s). The Orders give effect to Presidential Decrees 676, 679, 682 and 684 signed in the preceding weeks.")
 
 decisions = [
- ("Decision", "No. 181", "16 Jun 2026",
+ ("Decision", "No. 181 · e-Qanun id 62027", "16 Jun 2026",
   "“Elektrik şəbəkəsinə dair Qaydalar”da (Nazirlər Kabinetinin 2024-cü il 25 iyun tarixli 315 nömrəli Qərarı) dəyişiklik edilməsi haqqında",
   "On Amendments to the 'Rules on the Electricity Grid' (CoM Decision No. 315 of 25 June 2024)",
-  "Qərar 2024-cü ildə təsdiq edilmiş elektrik şəbəkəsi qaydalarına dəyişiklik edir; şəbəkəyə qoşulma, texniki tələblər və ya tənzimləmə prosedurları yenilənir. Dəyişiklik eyni həftə imzalanan elektrik qoşulması subsidiyası Fərmanı ilə uzlaşır.",
-  "The decision amends the 2024 electricity-grid rules, updating grid-connection, technical-requirement or regulatory procedures. The change dovetails with the grid-connection subsidy decree signed the same week."),
- ("Decision", "No. 182", "16 Jun 2026",
-  "“Dövlət Xidmətlərinin Elektron Reyestrinin aparılması Qaydaları” (2015-ci il 9 fevral tarixli 32 nömrəli Qərar) və digər qərarlarda dəyişiklik edilməsi barədə",
-  "On Amendments to the 'Rules for Maintaining the Electronic Registry of State Services' (CoM Decision No. 32 of 9 Feb 2015) and Other Decisions",
-  "Qərar dövlət xidmətlərinin elektron reyestrinin aparılması qaydalarını və əlaqədar normativ aktları yeniləyir. Tədbir rəqəmsal dövlət xidmətlərinin idarə olunmasının təkmilləşdirilməsinə yönəlib.",
-  "The decision updates the rules for maintaining the electronic registry of state services and related normative acts. The measure is aimed at improving the management of digital public services."),
- ("Decision", "No. 183", "16 Jun 2026",
+  "Qərar 2024-cü ildə təsdiq edilmiş elektrik şəbəkəsi qaydalarına dəyişiklik edir; şəbəkəyə qoşulma, texniki tələblər və ya tənzimləmə prosedurları yenilənir. Dəyişiklik eyni həftə imzalanan elektrik qoşulması subsidiyası Fərmanı ilə uzlaşır. Tam mətn: e-qanun.az/framework/62027.",
+  "The decision amends the 2024 electricity-grid rules, updating grid-connection, technical-requirement or regulatory procedures. The change dovetails with the grid-connection subsidy decree signed the same week. Full text: e-qanun.az/framework/62027."),
+ ("Decision", "No. 182 · e-Qanun id 62025", "16 Jun 2026",
+  "“Dövlət Xidmətlərinin Elektron Reyestrinin aparılması Qaydaları”nın (2015-ci il 9 fevral tarixli 32 nömrəli Qərar) və “Elektron xidmətlərin təşkili və göstərilməsi qaydaları”nın (2025-ci il 4 avqust tarixli 241 nömrəli Qərar) dəyişdirilməsi barədə",
+  "On Amendments to the 'Rules for Maintaining the Electronic Registry of State Services' (CoM Decision No. 32 of 9 Feb 2015) and the 'Rules for Organising and Providing Electronic Services' (CoM Decision No. 241 of 4 Aug 2025)",
+  "Qərar həm dövlət xidmətlərinin elektron reyestrinin aparılması qaydalarını, həm də 2025-ci il avqustda təsdiq edilmiş elektron xidmətlərin təşkili qaydalarını yeniləyir. Tədbir rəqəmsal dövlət xidmətlərinin idarə olunmasının təkmilləşdirilməsinə yönəlib. Tam mətn: e-qanun.az/framework/62025.",
+  "The decision updates both the rules for maintaining the electronic registry of state services and the August-2025 rules for organising electronic services. The measure improves the management of digital public services. Full text: e-qanun.az/framework/62025."),
+ ("Decision", "No. 183 · e-Qanun id 62026", "16 Jun 2026",
   "“Dəmiryol nəqliyyatında mülki müdafiənin təşkili Qaydaları”nın təsdiq edilməsi haqqında",
   "On Approval of the 'Rules for the Organisation of Civil Defence in Railway Transport'",
-  "Qərarla dəmiryol nəqliyyatı sahəsində mülki müdafiənin təşkilinə dair yeni Qaydalar təsdiq edilir. Sənəd fövqəladə hallarda hazırlıq, xəbərdarlıq və mühafizə tədbirlərini tənzimləyir.",
-  "The decision approves new Rules for organising civil defence in the railway-transport sector. The instrument governs emergency preparedness, warning and protection measures."),
+  "Qərarla dəmiryol nəqliyyatı sahəsində mülki müdafiənin təşkilinə dair yeni Qaydalar təsdiq edilir. Sənəd fövqəladə hallarda hazırlıq, xəbərdarlıq və mühafizə tədbirlərini tənzimləyir. Tam mətn: e-qanun.az/framework/62026.",
+  "The decision approves new Rules for organising civil defence in the railway-transport sector. The instrument governs emergency preparedness, warning and protection measures. Full text: e-qanun.az/framework/62026."),
  ("Decision", "No. 184", "19 Jun 2026",
   "Azərbaycan Dövlət Su Ehtiyatları Agentliyinin tabeliyində olan qapalı səhmdar cəmiyyətlərinin nizamnamələrinin təsdiq edilməsi haqqında",
   "On Approval of the Charters of the Closed Joint-Stock Companies Subordinate to the Azerbaijan State Water Resources Agency",
@@ -408,16 +426,44 @@ for i, (az_t, en_t, az_b, en_b) in enumerate(bills, 1):
 # ── SECTION 4: CONSTITUTIONAL COURT ───────────────────────────────────────────
 section_header("Konstitusiya Məhkəməsi · Constitutional Court",
                "Constitutional Court", "Konstitusiya Məhkəməsi", "constcourt.gov.az")
-notice('warn',
-       "⚠ Mənbə müvəqqəti əlçatmaz. Konstitusiya Məhkəməsinin qərarlar portalı tərtibat zamanı (22 iyun 2026) HTTP 503 xətası verdi. Açıq mənbələrə görə ən son qərarlar 3–10 iyun tarixlidir; 15–22 iyun dövründə yeni qərar aşkar edilməmişdir.",
-       "⚠ Source temporarily unavailable. The Court's decisions portal returned HTTP 503 at compilation (22 June 2026). Per public sources the latest decisions date to 3–10 June; no new decision was identified for 15–22 June. Verify directly at constcourt.gov.az.")
+notice('info',
+       "Bu həftə yeni qərar YOXDUR. Konstitusiya Məhkəməsinin öz portalı tərtibat zamanı (22 iyun) HTTP 503 xətası versə də, e-Qanun rəsmi reyestri üzrə çarpaz yoxlama göstərir ki, Məhkəmənin ən son qərarı 25.05.2026 tarixlidir — 15–22 iyun dövründə yeni qərar qəbul edilməmişdir.",
+       "No new decisions this week. Although the Court's own portal returned HTTP 503 at compilation (22 June), a cross-check against the official e-Qanun register confirms the Court's most recent decision is dated 25.05.2026 — none were issued in the 15–22 June window.")
 
 # ── SECTION 5: E-QANUN ────────────────────────────────────────────────────────
-section_header("Rəsmi Qanunvericilik Bazası · Official Legislative Database",
-               "e-Qanun", "e-Qanun", "e-qanun.az")
-notice('info',
-       "e-qanun.az konsolidasiya edilmiş normativ akt reyestridir və yuxarıda göstərilən bütün Fərman, Qərar və Sərəncamların tam mətnləri dərc olunduqca burada əks olunur. Portalın ana səhifəsi məzmunu dinamik (JavaScript) yüklədiyindən avtomatik siyahı çıxarışına imkan vermir; tam mətnlər üçün sənədin fərdi səhifəsinə (e-qanun.az/framework/...) müraciət edilməlidir.",
-       "e-qanun.az is the consolidated register of normative acts; the full texts of all Decrees, Decisions and Orders above appear there as they are published. The portal's home page loads content dynamically (JavaScript) and is not list-scrapable; for full texts, consult the individual document pages (e-qanun.az/framework/...).")
+section_header("Rəsmi Qanunvericilik Reyestri · Official Legislative Register",
+               "e-Qanun", "e-Qanun", "api.e-qanun.az · 15–22 June 2026")
+lead("Aşağıdakı sənədlər tərtibat tarixinə (22 iyun) e-Qanun rəsmi reyestrində qeydiyyata alınmış və bu həftəyə (qəbul tarixi 15–22 iyun) aiddir. Qeyd: 19 iyun tarixli Prezident Fərmanları/Sərəncamı və Nazirlər Kabinetinin 184–186 saylı qərarları ilə icra sərəncamları hələ reyestrə daxil edilməmişdir — adətən bir neçə günlük qeydiyyat gecikməsi olur.",
+     "The documents below were registered in the official e-Qanun register as of the compilation date (22 June) and fall within this week (accept date 15–22 June). Note: the 19 June presidential instruments and Cabinet decisions 184–186 with their implementing orders had not yet been entered in the register — a registration lag of a few days is normal.")
+
+reg_rows = [
+ ("Decree",   "16 Jun 2026", "62008", "Qeyri-neft-qaz malları üzrə ixracın dəstəklənməsi ilə bağlı əlavə tədbirlər", "Non-oil-and-gas export support — additional measures"),
+ ("Order",    "17 Jun 2026", "62010", "Məhəmməd Süleyman Əl-Casirin “Dostluq” ordeni ilə təltif edilməsi", "Award of 'Dostluq' Order to Mohammed Al-Jasser"),
+ ("Order",    "17 Jun 2026", "62009", "Azərbaycan Respublikasının səhiyyə işçilərinin təltif edilməsi", "Award of state honours to healthcare workers"),
+ ("Decision", "16 Jun 2026", "62027", "Elektrik şəbəkəsinə dair Qaydalarda dəyişiklik (NK Qərarı №181)", "Electricity-grid rules amendment (CoM Decision No. 181)"),
+ ("Decision", "16 Jun 2026", "62025", "Dövlət xidmətlərinin elektron reyestri və e-xidmət qaydalarında dəyişiklik (№182)", "Electronic registry & e-services rules amendment (No. 182)"),
+ ("Decision", "16 Jun 2026", "62026", "Dəmiryol nəqliyyatında mülki müdafiə Qaydaları (№183)", "Railway-transport civil-defence rules (No. 183)"),
+]
+rt = doc.add_table(rows=1, cols=4)
+rt.style = 'Table Grid'
+hdr = rt.rows[0].cells
+for c, label in zip(hdr, ["Type", "Date", "Framework", "Document (AZ) / Translation (EN)"]):
+    p = c.paragraphs[0]; no_space(p); shade_cell(c, '1a1a1a')
+    run(p, label, size=7.5, bold=True, color=WHITE, font=SANS, caps=True)
+for typ, dt, fid, az, en in reg_rows:
+    cells = rt.add_row().cells
+    p0 = cells[0].paragraphs[0]; no_space(p0); run(p0, typ, size=8, bold=True, font=SANS)
+    p1 = cells[1].paragraphs[0]; no_space(p1); run(p1, dt, size=8, font=SANS)
+    p2 = cells[2].paragraphs[0]; no_space(p2)
+    run(p2, "/framework/" + fid, size=8, color=RGBColor(0x1a,0x3a,0x5a), font=SANS)
+    p3 = cells[3].paragraphs[0]; no_space(p3, 0, 1, line=1.2); run(p3, az, size=8.5, bold=True)
+    p3b = cells[3].add_paragraph(); no_space(p3b, 0, 0, line=1.2); run(p3b, en, size=8, italic=True, color=GREY)
+
+m = doc.add_paragraph(); no_space(m, 4, 4, line=1.3)
+run(m, "Metod: e-qanun.az JavaScript ilə işləyən tətbiqdir; məlumat api.e-qanun.az daxili API-si (getDetailSearch, reyestr tipi üzrə) vasitəsilə birbaşa əldə edilmişdir. ",
+    size=8, italic=True, color=LGREY, font=SANS)
+run(m, "Method: e-qanun.az is a JavaScript app; data was retrieved directly from its api.e-qanun.az backend (getDetailSearch, scoped per register type). Full texts at the framework links above.",
+    size=8, italic=True, color=LGREY, font=SANS)
 
 # ── REGULATORY SPOTLIGHT ──────────────────────────────────────────────────────
 section_header("Təhlil · Analysis", "Regulatory Spotlight", "Tənzimləyici Diqqət", "Week 25 / 2026")

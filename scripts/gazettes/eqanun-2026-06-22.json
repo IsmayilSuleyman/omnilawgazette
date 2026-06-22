@@ -1,0 +1,118 @@
+{
+ "from": "2026-06-15",
+ "to": "2026-06-22",
+ "source": "api.e-qanun.az",
+ "registers": {
+  "Presidential Decrees": {
+   "typeId": 31,
+   "coverageComplete": true,
+   "newestRegistered": "25.05.2026",
+   "items": [
+    {
+     "id": 62008,
+     "citation": null,
+     "title": "Qeyri-neft-qaz malları üzrə ixracın dəstəklənməsi ilə bağlı əlavə tədbirlər haqqında",
+     "acceptDate": "16.06.2026",
+     "classCode": "2026-06-16",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62008"
+    }
+   ]
+  },
+  "Presidential Orders": {
+   "typeId": 84,
+   "coverageComplete": true,
+   "newestRegistered": "17.06.2026",
+   "items": [
+    {
+     "id": 62010,
+     "citation": null,
+     "title": "Məhəmməd Süleyman Əl-Casirin “Dostluq” ordeni ilə təltif edilməsi haqqında",
+     "acceptDate": "17.06.2026",
+     "classCode": "2026-06-17",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62010"
+    },
+    {
+     "id": 62009,
+     "citation": null,
+     "title": "Azərbaycan Respublikasının səhiyyə işçilərinin təltif edilməsi haqqında",
+     "acceptDate": "17.06.2026",
+     "classCode": "2026-06-17",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62009"
+    }
+   ]
+  },
+  "Cabinet Decisions": {
+   "typeId": 32,
+   "coverageComplete": true,
+   "newestRegistered": "16.06.2026",
+   "items": [
+    {
+     "id": 62027,
+     "citation": "181",
+     "title": "Azərbaycan Respublikası Nazirlər Kabinetinin 2024-cü il 25 iyun tarixli 315 nömrəli Qərarı ilə təsdiq edilmiş “Elektrik şəbəkəsinə dair Qaydalar”da dəyişiklik edilməsi haqqında",
+     "acceptDate": "16.06.2026",
+     "classCode": "2026-06-16",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62027"
+    },
+    {
+     "id": 62025,
+     "citation": "182",
+     "title": "“Dövlət Xidmətlərinin Elektron Reyestrinin aparılması Qaydaları”nın təsdiq edilməsi haqqında” Azərbaycan Respublikası Nazirlər Kabinetinin 2015-ci il 9 fevral tarixli 32 nömrəli Qərarında və Azərbaycan Respublikası Nazirlər Kabinetinin 2025-ci il 4 avqust tarixli 241 nömrəli Qərarı ilə təsdiq edilmiş “Elektron xidmətlərin təşkili və göstərilməsi qaydaları”nda dəyişiklik edilməsi barədə",
+     "acceptDate": "16.06.2026",
+     "classCode": "2026-06-16",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62025"
+    },
+    {
+     "id": 62026,
+     "citation": "183",
+     "title": "“Dəmiryol nəqliyyatında mülki müdafiənin təşkili Qaydaları”nın təsdiq edilməsi haqqında",
+     "acceptDate": "16.06.2026",
+     "classCode": "2026-06-16",
+     "status": "Qüvvədədir",
+     "url": "https://e-qanun.az/framework/62026"
+    }
+   ]
+  },
+  "Cabinet Orders": {
+   "typeId": 85,
+   "coverageComplete": true,
+   "newestRegistered": "21.05.2026",
+   "items": []
+  },
+  "Milli Majlis Decrees": {
+   "typeId": 83,
+   "coverageComplete": true,
+   "newestRegistered": "26.05.2026",
+   "items": []
+  },
+  "Constitutional Court": {
+   "typeId": 73,
+   "coverageComplete": true,
+   "newestRegistered": "25.05.2026",
+   "items": []
+  },
+  "Laws": {
+   "typeId": 30,
+   "coverageComplete": true,
+   "newestRegistered": "26.05.2026",
+   "items": []
+  },
+  "Constitutional Laws": {
+   "typeId": 28,
+   "coverageComplete": true,
+   "newestRegistered": "02.02.2026",
+   "items": []
+  },
+  "Codes": {
+   "typeId": 107,
+   "coverageComplete": true,
+   "newestRegistered": "08.12.2023",
+   "items": []
+  }
+ }
+}
