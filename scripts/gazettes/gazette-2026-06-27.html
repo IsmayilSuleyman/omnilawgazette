@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 3 | June 27, 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree  { background: #2c3e50; }
+    .doc-tag.order   { background: #4a4a4a; }
+    .doc-tag.bill    { background: #6b6b6b; }
+    .doc-tag.law     { background: #1a3a1a; }
+    .doc-tag.charter { background: #5a3a00; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-az {
+      font-size: 8pt;
+      color: #666;
+      font-style: italic;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Col sub-header ── */
+    .col-subhead {
+      font-family: 'Arial', sans-serif;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #555;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Regulatory focus inline box ── */
+    .reg-focus {
+      margin-top: 16px;
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 12px;
+    }
+    .reg-focus-head {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col, .three-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════
+       MASTHEAD
+  ══════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 3</span>
+      <span>REPORTING PERIOD: 20 JUNE – 27 JUNE 2026</span>
+      <span>PUBLISHED: FRIDAY, 27 JUNE 2026</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════
+       WEEK BANNER
+  ══════════════════════════════════ -->
+  <div class="week-banner">
+    Week 26, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <!-- ══════════════════════════════════
+       AT A GLANCE
+  ══════════════════════════════════ -->
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-count">1</div>
+        <div class="summary-label">New Law<br>Enacted</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">6</div>
+        <div class="summary-label">Presidential<br>Decrees</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">3</div>
+        <div class="summary-label">Presidential<br>Orders</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">10</div>
+        <div class="summary-label">Cabinet of Ministers<br>Decisions</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">4</div>
+        <div class="summary-label">Cabinet of Ministers<br>Orders</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 1: PRESIDENTIAL OFFICE
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Administration of the President</span>
+    <span class="section-title">Presidential Office</span>
+    <span class="section-en">Decrees &amp; Orders — 25 June 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    President Ilham Aliyev issued a substantial legislative package on <strong>25 June 2026</strong>, comprising six presidential decrees (<em>fərmanlar</em>) and three orders (<em>sərəncamlar</em>). The decrees are clustered around two key reform priorities: the digitalisation of customs and state finance infrastructure, and the restructuring of the mandatory health insurance regime, including the creation of a new agency. The orders focus on military recognition and promotions.
+  </p>
+
+  <div class="two-col">
+    <!-- LEFT: Decrees -->
+    <div>
+      <p class="col-subhead">Decrees — Fərmanlar (25 June 2026)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Fərman</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">State Medical Insurance and Expertise Agency — Establishment</div>
+        <div class="doc-az">"Dövlət Tibbi Sığorta və Ekspertiza Agentliyi" publik hüquqi şəxsin Nizamnaməsinin təsdiq edilməsi haqqında</div>
+        <div class="doc-body">Formally establishes the "State Medical Insurance and Expertise Agency" as a public legal entity and approves its founding charter (<em>nizamnamə</em>). Centralises oversight of mandatory medical insurance administration under a single new state body, replacing the previous fragmented institutional arrangement.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Fərman</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Mandatory Medical Insurance — Amendments to Presidential Decrees</div>
+        <div class="doc-az">Əhalinin icbari tibbi sığortası sahəsində idarəetmənin təkmilləşdirilməsi ilə bağlı bir sıra tədbirlər haqqında Fərmanın icrası ilə əlaqədar bəzi fərmanlarda dəyişiklik edilməsi barədə</div>
+        <div class="doc-body">Consequential amendments to a number of existing presidential decrees arising from reforms to mandatory medical insurance governance. Aligns earlier instruments with the newly established agency structure.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Fərman</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">"Intellectual Customs" Information System — Creation &amp; Regulation</div>
+        <div class="doc-az">"İntellektual gömrük" informasiya sisteminin yaradılması və bununla əlaqədar bir sıra məsələlərin tənzimlənməsi haqqında</div>
+        <div class="doc-body">Establishes the "Intellectual Customs" (<em>İntellektual Gömrük</em>) information system and adopts its founding charter. Introduces AI-assisted customs processing and digital risk profiling. Practitioners advising on cross-border trade, customs compliance, and logistics should note this as a significant procedural reform.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Fərman</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Reorganisation of State Public Legal Entities</div>
+        <div class="doc-az">Dövlət adından yaradılan bir sıra publik hüquqi şəxslərin fəaliyyətinin yenidən təşkili ilə bağlı tədbirlər haqqında</div>
+        <div class="doc-body">Orders the reorganisation of a number of state-created public legal entities. This institutional consolidation reform may affect entities operating under the aegis of specific ministries. Full details of which entities are affected will be published in the official gazette.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Fərman</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">"Digital State Finance" System — Amendment to Charter</div>
+        <div class="doc-az">Azərbaycan Respublikası Prezidentinin 2026-cı il 26 yanvar tarixli 590 nömrəli Fərmanı ilə təsdiq edilmiş "Rəqəmsal dövlət maliyyəsi" informasiya sistemi haqqında Əsasnamədə dəyişiklik edilməsi barədə</div>
+        <div class="doc-body">Amends the charter of the "Digital State Finance" information system originally established by Decree No. 590 (26 January 2026). Refines the system's scope, governance structure, or operating procedures in light of initial implementation experience.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Fərman</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Ratification of Protocol Amending 1994 Workplace Accident Investigation Agreement</div>
+        <div class="doc-az">"Yaşadıqları dövlətdən kənarda olarkən işçilərlə istehsalatda baş vermiş bədbəxt hadisələrin təhqiqatı qaydası haqqında" 1994-cü il 9 dekabr tarixli Sazişə dəyişikliklərin edilməsi haqqında Protokolun təsdiq edilməsi barədə</div>
+        <div class="doc-body">Approves Azerbaijan's accession to the Protocol amending the 9 December 1994 CIS Agreement on the investigation of workplace accidents occurring outside a worker's home state. Relevant for employers with cross-border operations and labour law practitioners.</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Orders + Law -->
+    <div>
+      <p class="col-subhead">Orders — Sərəncamlar (25 June 2026)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Sərəncam</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Posthumous Decorations — Military &amp; Civilian Personnel (Territorial Integrity Operations)</div>
+        <div class="doc-az">Azərbaycan Respublikasının ərazi bütövlüyünün bərpa edilməsi uğrunda gedən döyüş əməliyyatlarında şəhid olmuş hərbi qulluqçularının və mülki işçilərinin təltif edilməsi haqqında</div>
+        <div class="doc-body">Awards posthumous state decorations to military servicemen and civilian employees who fell during combat operations for the restoration of Azerbaijan's territorial integrity. Issued under Article 109(23) of the Constitution.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Sərəncam</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Decorations — Ministry of Defence Military Personnel</div>
+        <div class="doc-az">Azərbaycan Respublikası Müdafiə Nazirliyinin hərbi qulluqçularının təltif edilməsi haqqında</div>
+        <div class="doc-body">Confers state decorations on serving members of the Azerbaijani Armed Forces in recognition of distinguished service in maintaining the country's independence and territorial integrity.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Sərəncam</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Promotion to General-Major — Defence Ministry Personnel</div>
+        <div class="doc-az">Azərbaycan Respublikası Müdafiə Nazirliyinin hərbi qulluqçularına "general-mayor" ali hərbi rütbəsinin verilməsi haqqında</div>
+        <div class="doc-body">Confers the senior military rank of General-Major (<em>general-mayor</em>) on designated Ministry of Defence officers. Issued under Article 109(24) of the Constitution.</div>
+      </div>
+
+      <hr style="border:none; border-top:1px solid #ddd; margin: 14px 0;" />
+
+      <p class="col-subhead">New Law Enacted — Qanun (25 June 2026)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Accession to the International Convention on the Control of Harmful Anti-Fouling Systems on Ships (AFS Convention)</div>
+        <div class="doc-az">"Gəmilərdə zərərli çirklənmə əleyhinə sistemlərə nəzarət haqqında beynəlxalq Konvensiya"ya qoşulmaq barədə Azərbaycan Respublikasının Qanunu</div>
+        <div class="doc-body">Azerbaijan formally accedes to the IMO's AFS Convention, which bans the use of harmful anti-fouling paints and coatings on ships. Enacted under Article 95(I)(4) of the Constitution. Practitioners advising on maritime law, shipping operations, or environmental compliance should note the new obligations this introduces for vessels flying the Azerbaijani flag.</div>
+      </div>
+
+      <div class="reg-focus">
+        <p class="reg-focus-head">Institutional Watch</p>
+        <p style="font-size:8.5pt; line-height:1.5;"><strong>New State Medical Insurance Agency:</strong> The creation of the "State Medical Insurance and Expertise Agency" (Dövlət Tibbi Sığorta və Ekspertiza Agentliyi) represents the most significant institutional development of the week. Healthcare providers, insurers, and employers subject to mandatory health insurance obligations should monitor the agency's implementing regulations, which the Cabinet of Ministers is expected to issue in the coming weeks. See also Cabinet Decision No. 170 (9 June 2026) on amendments to the mandatory health insurance services basket.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 2: CABINET OF MINISTERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">İqtisadi Kabinet / Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">Decisions &amp; Orders — 20–25 June 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    The Cabinet of Ministers was highly active during this reporting period, issuing <strong>ten Decisions</strong> (<em>qərarlar</em>) and <strong>four Orders</strong> (<em>sərəncamlar</em>) between 22 and 25 June 2026. The week's output spans gas supply reform, business environment improvements, tax monitoring rules, public finance management, NGO funding reform, tourism investment, military service, anti-monopoly implementation, and the extension of the special quarantine regime.
+  </p>
+
+  <div class="two-col">
+    <!-- LEFT: Decisions -->
+    <div>
+      <p class="col-subhead">Decisions — Qərarlar</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 199</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Automobile Transport — Amendments to Cabinet Decisions</div>
+        <div class="doc-az">"Avtomobil nəqliyyatı haqqında" Qanununun tətbiqi ilə əlaqədar Prezidentin 539 nömrəli Fərmanının icrası üzrə Nazirlər Kabinetinin bəzi qərarlarında dəyişiklik edilməsi barədə</div>
+        <div class="doc-body">Consequential amendments to Cabinet decisions implementing Presidential Decree No. 539 (28 November 2025), which applied the Law on Automobile Transport (Law No. 280-VIIQD, 31 October 2025). Aligns subsidiary regulations with the new statutory framework for road freight and passenger transport.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 198</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">Horizontal Tax Monitoring — Internal Control &amp; Risk Reporting Rules</div>
+        <div class="doc-az">"Üfüqi monitorinqə qəbul edilən vergi ödəyiciləri tərəfindən daxili nəzarət sisteminin qurulması və mümkün vergi riskləri barədə məlumatın, həmin risklərə nəzarət prosedurunun vergi orqanına təqdim edilməsi Qaydaları"nın təsdiq edilməsi haqqında</div>
+        <div class="doc-body">Approves detailed rules governing the internal control systems that taxpayers admitted to the horizontal monitoring programme must establish, along with the format and procedure for disclosing potential tax risks to the tax authority. Tax practitioners advising large corporate clients should closely analyse the compliance obligations established by this Decision.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 196</span>
+        <span class="doc-date">25 Jun 2026</span>
+        <div class="doc-title">SME State Support — Assessment Rules</div>
+        <div class="doc-az">"Dövlət orqanları (qurumları) tərəfindən mikro, kiçik və orta sahibkarlıq subyektlərinə … dəstək göstərilməsinin qiymətləndirilməsi Qaydaları"nın təsdiq edilməsi haqqında</div>
+        <div class="doc-body">Adopts rules for assessing the effectiveness of state support provided to micro, small and medium-sized enterprises (MSMEs) by state bodies, state-funded institutions, and MSME support infrastructure bodies. Introduces a performance measurement framework for state-backed MSME programmes.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 195</span>
+        <span class="doc-date">24 Jun 2026</span>
+        <div class="doc-title">Special Quarantine Regime — Extension</div>
+        <div class="doc-az">Azərbaycan Respublikasının ərazisində xüsusi karantin rejiminin müddətinin uzadılması haqqında</div>
+        <div class="doc-body">Extends the duration of the special quarantine regime in force on the territory of Azerbaijan. Practitioners and clients in sectors subject to quarantine-related restrictions should verify the new end date and any updated operational requirements.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 192</span>
+        <span class="doc-date">23 Jun 2026</span>
+        <div class="doc-title">Anti-Monopoly Reform — Amendments to Cabinet Decisions</div>
+        <div class="doc-az">"Antiinhisar və istehlak bazarına nəzarət sahələrində idarəetmənin təkmilləşdirilməsi" üzrə Prezidentin 520 nömrəli Fərmanının icrası ilə əlaqədar Nazirlər Kabinetinin bəzi qərarlarında dəyişiklik edilməsi haqqında</div>
+        <div class="doc-body">Amends and repeals certain Cabinet decisions in implementation of Presidential Decree No. 520 (6 November 2025) on improving the governance of anti-monopoly regulation and consumer market oversight. Part of the broader reform of Azerbaijan's competition law enforcement architecture.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 191</span>
+        <span class="doc-date">23 Jun 2026</span>
+        <div class="doc-title">Active Military Service (Contract) — Admission Rules Amendment</div>
+        <div class="doc-az">Nazirlər Kabinetinin 2015-ci il 2 fevral tarixli 21 nömrəli Qərarı ilə təsdiq edilmiş "Bağlaşma əsasında həqiqi hərbi xidmətə daxilolmanın halları və Qaydası"nda dəyişiklik edilməsi haqqında</div>
+        <div class="doc-body">Amends the rules on the conditions and procedures for admission to active military service on a contract basis, originally established by Cabinet Decision No. 21 (2 February 2015). Adjusts eligibility criteria or administrative procedures for contract military recruitment.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 189</span>
+        <span class="doc-date">23 Jun 2026</span>
+        <div class="doc-title">Gas Supply System Rules — New Framework &amp; Revocation of 2023 Decisions</div>
+        <div class="doc-az">"Qaz təchizatı sisteminə dair Qaydalar"ın təsdiq edilməsi və Nazirlər Kabinetinin 2023-cü il 30 avqust tarixli 297 nömrəli Qərarının ləğv edilməsi barədə</div>
+        <div class="doc-body">Adopts comprehensive new Gas Supply System Rules, replacing and revoking Cabinet Decision No. 297 (30 August 2023). This is a significant regulatory reset for the gas sector, consolidating rules on gas distribution, connection procedures, quality standards, and supplier obligations into a single new regulatory instrument. Energy law practitioners should treat this as priority reading.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 190</span>
+        <span class="doc-date">22 Jun 2026</span>
+        <div class="doc-title">Mid-Term Target Indicators — Approval of Setting Rules</div>
+        <div class="doc-az">"Ortamüddətli dövr üçün hədəf göstəricilərinin müəyyən edilməsi Qaydası"nın təsdiq edilməsi haqqında</div>
+        <div class="doc-body">Establishes the procedural rules for setting mid-term fiscal and macroeconomic target indicators. Relevant for state budget planning, public sector contracting, and any regulated sector whose performance benchmarks are linked to government medium-term planning targets.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 188</span>
+        <span class="doc-date">22 Jun 2026</span>
+        <div class="doc-title">NGO Funding via "Single Window" — State-Financed Bodies &amp; NADAG</div>
+        <div class="doc-az">"Dövlət büdcəsindən maliyyələşdirilən qurumların qeyri-hökumət təşkilatlarının bütün növ maliyyələşdirilməsinin "bir pəncərə" prinsipi əsasında NADAG ilə birlikdə həyata keçirməsi Qaydası"nın təsdiq edilməsi haqqında</div>
+        <div class="doc-body">Approves rules requiring all state budget-funded bodies (including the Youth Fund, SMBDA, and the Social Services Agency) to channel all forms of financing to NGOs — competitions, direct awards, state orders, subsidies — through a "single window" administered jointly with the Agency for State Support of NGOs (NADAG). Significant for NGOs and for state entities that currently run their own grant programmes.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 187</span>
+        <span class="doc-date">22 Jun 2026</span>
+        <div class="doc-title">State Property in Tourism Centres — Lease, Use &amp; Investment Rules</div>
+        <div class="doc-az">"Turizm mərkəzlərində dövlətə məxsus daşınmaz əmlakın icarəyə və istifadəyə verilməsi və investisiya layihələrinin icra edilməsi Qaydaları"nın təsdiq edilməsi haqqında</div>
+        <div class="doc-body">Establishes rules governing the lease, use, and investment development of state-owned immovable property in designated tourism centres. Of direct relevance to hospitality, real estate, and investment practitioners advising on development projects in Azerbaijan's tourism priority zones.</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Orders + Focus -->
+    <div>
+      <p class="col-subhead">Orders — Sərəncamlar</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 436s</span>
+        <span class="doc-date">24 Jun 2026</span>
+        <div class="doc-title">Entrepreneurial Credit Support — Implementation of Presidential Decree No. 680</div>
+        <div class="doc-az">"Sahibkarlıq subyektlərinə verilən kreditlər üzrə təminat və faiz subsidiyası mexanizmlərinin təkmilləşdirilməsi haqqında" Prezidentin 680 nömrəli Fərmanının icrasının təmin edilməsi barədə</div>
+        <div class="doc-body">Directs government bodies to implement Presidential Decree No. 680 (9 June 2026), which improves the mechanisms for credit guarantees and interest subsidies for businesses. This Order sets timelines and responsibilities for operationalising the new subsidy framework for lending to SMEs and entrepreneurs.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 430s</span>
+        <span class="doc-date">24 Jun 2026</span>
+        <div class="doc-title">Diplomatic Service Law — Implementation of Presidential Decree No. 688</div>
+        <div class="doc-az">"Diplomatik xidmət haqqında" Qanununda dəyişiklik barədə Prezidentin 688 nömrəli Fərmanının icrasının təmin edilməsi haqqında</div>
+        <div class="doc-body">Implements Presidential Decree No. 688 (19 June 2026) applying the amendments to the Law on Diplomatic Service (Law No. 416-VIIQD, 5 June 2026). Also makes consequential amendments to Presidential Decree No. 331 (17 February 2025). Of interest to practitioners advising on foreign service, diplomatic status, and international protocol.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 424s</span>
+        <span class="doc-date">22 Jun 2026</span>
+        <div class="doc-title">Non-Oil Export Stimulation &amp; Transport Cost Support — Implementation</div>
+        <div class="doc-az">"Qeyri-neft-qaz mallarının ixracının stimullaşdırılması və daşıma xərclərinin dəstəklənməsi ilə bağlı əlavə tədbirlər haqqında" Prezidentin 681 nömrəli Fərmanının icrasının təmin edilməsi barədə</div>
+        <div class="doc-body">Gives effect to Presidential Decree No. 681 (9 June 2026) on additional measures to stimulate the export of non-oil and gas goods and to support transportation costs. Part of the government's economic diversification agenda. Relevant to export-oriented businesses and trade finance practitioners.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 423s</span>
+        <span class="doc-date">22 Jun 2026</span>
+        <div class="doc-title">Baku City Executive Power — Restructuring Implementation</div>
+        <div class="doc-az">"Bakı Şəhər İcra Hakimiyyətinin strukturunun və idarə edilməsinin təkmilləşdirilməsi haqqında" Prezidentin 683 nömrəli Fərmanının icrasının təmin edilməsi barədə</div>
+        <div class="doc-body">Implements Presidential Decree No. 683 (10 June 2026) on improving the structure and management of the Baku City Executive Authority. Practitioners advising on municipal licensing, city planning, and public procurement in Baku should monitor how this restructuring affects permitting and contracting procedures.</div>
+      </div>
+
+      <div class="reg-focus">
+        <p class="reg-focus-head">Regulatory Focus — Week's Key Themes</p>
+        <p style="font-size:8.5pt; line-height:1.5; margin-bottom:8px;"><strong>Gas Sector Reset:</strong> Decision No. 189 effectively consolidates and replaces the gas supply regulatory framework. Clients with gas supply agreements, distribution licences, or infrastructure projects should verify their contractual and regulatory positions against the new Rules once the full text is gazetted.</p>
+        <p style="font-size:8.5pt; line-height:1.5; margin-bottom:8px;"><strong>Tax Monitoring Compliance:</strong> Decision No. 198 establishes substantive obligations for large taxpayers in the horizontal monitoring programme. Expect guidance from the State Tax Service on implementation timelines.</p>
+        <p style="font-size:8.5pt; line-height:1.5;"><strong>Business Support Cascade:</strong> Decisions No. 196 (SME assessment), Order No. 436s (credit subsidies) and Order No. 424s (export stimulation) together form a policy cluster aimed at improving Azerbaijan's non-oil business environment. Collectively relevant to MSME advisory, trade finance, and export-related legal work.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 3: MILLI MAJLIS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Laws, Decrees, Bills &amp; Reports</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    The Milli Majlis (National Assembly) did not publish new laws, parliamentary decrees, reports, or bills during the week of 20–27 June 2026. The most recent enacted law (No. 419-VIIQ, establishing Azerbaijan's Embassy in Lisbon, Portugal) dates to <strong>12 June 2026</strong>. The most recent batch of bills placed on the parliamentary agenda was submitted on <strong>19 June 2026</strong> — immediately preceding this reporting period.
+  </p>
+
+  <div class="notice">
+    <strong>For reference — most recent Milli Majlis activity (immediately prior to this period):</strong> Seven bills were placed on the legislative agenda on <strong>19 June 2026</strong>. These are currently at the discussion stage and will be tracked in subsequent issues of this Gazette as they progress through readings. Watch for bills on Land Code reform, Tourism Centre investment rules, and the Administrative Offenses Code in the coming weeks.
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 4: CONSTITUTIONAL COURT
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Ali Məhkəmə Orqanı</span>
+    <span class="section-title">Constitutional Court</span>
+    <span class="section-en">Decisions — constcourt.gov.az</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>⚠ Source Temporarily Unavailable.</strong> The Constitutional Court's decisions portal (<em>constcourt.gov.az</em>) returned an HTTP 503 Service Unavailable error at the time of compilation (27 June 2026). No decisions from the reporting period could be retrieved. Readers are advised to consult the portal directly for any decisions issued during the week of 20–27 June 2026. This is the second consecutive week in which the portal has been inaccessible; the Gazette will continue to monitor and will report decisions as soon as they become accessible.
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 5: E-QANUN
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Official Legislative Database</span>
+    <span class="section-title">e-Qanun</span>
+    <span class="section-en">Normative Acts Register — e-qanun.az</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>⚠ Data Not Extractable.</strong> The e-Qanun portal (<em>e-qanun.az</em>) continues to render its document catalogue dynamically via JavaScript and does not expose a static listing accessible to automated retrieval. Readers should consult the portal directly to access the full consolidated texts of legislation enacted during this reporting period. The primary sources reproduced in this Gazette (president.az, nk.gov.az, meclis.gov.az) provide authoritative notice of new instruments; e-Qanun provides their consolidated and official text once gazetted.
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       REGULATORY SPOTLIGHT
+  ══════════════════════════════════ -->
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Key Themes, Week 26 / 2026</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>1. Mandatory Health Insurance Overhaul</h4>
+        <p>The creation of the State Medical Insurance and Expertise Agency, together with consequential amendments across multiple presidential decrees, signals a structural reform of how mandatory health insurance is administered in Azerbaijan. The new agency absorbs functions that were previously distributed across several bodies. Employers, healthcare providers, and private insurers should prepare for updated compliance obligations as the agency's implementing regulations emerge. Monitor for Cabinet decisions from the new entity in Q3 2026.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>2. Digital Customs &amp; State Finance Infrastructure</h4>
+        <p>Two of this week's presidential decrees — the "Intellectual Customs" system and the amendment to the "Digital State Finance" charter — represent continued investment in Azerbaijan's digital governance architecture. The AI-assisted customs system in particular has direct implications for import/export clearance timelines, risk-based inspections, and trade documentation. Logistics, customs, and international trade practitioners should note this as a significant procedural shift for cross-border transactions.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>3. Gas Supply Reform — Full Regulatory Reset</h4>
+        <p>Cabinet Decision No. 189 replaces the gas distribution rulebook. The revocation of the 2023 framework and adoption of new comprehensive Rules signals a deliberate consolidation effort. Agreements referencing the previous regulatory regime may require review. This is consistent with the broader pattern of gas sector reform since the enactment of the Law on Gas Supply (Law No. 233-VIIQ, 8 July 2025). Legal teams advising energy clients should flag the need for a regulatory impact assessment.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>4. Export Diversification &amp; SME Finance</h4>
+        <p>Three instruments this week form a coherent policy cluster on economic diversification: Order No. 436s (credit subsidies for entrepreneurs), Order No. 424s (non-oil export stimulation and transport cost support), and Decision No. 196 (SME support effectiveness assessment). Together these implement a suite of presidential decrees from 9 June 2026 (Decrees 680 and 681). Firms advising SME clients or export-oriented businesses should flag the availability of new subsidy instruments and assess their clients' eligibility under the new frameworks once implementing rules are published.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       FOOTER
+  ══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled by Omni Law Firm for informational purposes only. It does not constitute legal advice. Document descriptions are derived from official government portals; readers should consult primary sources and full texts before relying on any item. Sources: president.az &middot; nk.gov.az &middot; meclis.gov.az &middot; e-qanun.az &middot; constcourt.gov.az
+    </div>
+    <div class="footer-issue">
+      <strong>Issue No. 3</strong><br>
+      Week of 20–27 June 2026<br>
+      Compiled: 27 June 2026<br>
+      &copy; 2026 Omni Law Firm
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
