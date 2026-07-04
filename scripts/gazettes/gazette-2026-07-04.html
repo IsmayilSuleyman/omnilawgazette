@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 2 | July 4, 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree { background: #2c3e50; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.bill   { background: #6b6b6b; }
+    .doc-tag.law    { background: #1a3a1a; }
+    .doc-tag.letter { background: #3a3a3a; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic letters table ── */
+    table.diplo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    table.diplo thead tr {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    table.diplo thead th {
+      padding: 5px 8px;
+      text-align: left;
+    }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #4a1a1a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Bill list ── */
+    .bill-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bill-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px dotted #d0d0d0;
+      font-size: 9.5pt;
+    }
+    .bill-list li:last-child { border-bottom: none; }
+    .bill-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .bill-text { flex: 1; }
+    .bill-status {
+      flex-shrink: 0;
+      font-size: 7pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col, .three-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════
+       MASTHEAD
+  ══════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 2</span>
+      <span>REPORTING PERIOD: 27 JUNE – 4 JULY 2026</span>
+      <span>PUBLISHED: SATURDAY, 4 JULY 2026</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════
+       WEEK BANNER
+  ══════════════════════════════════ -->
+  <div class="week-banner">
+    Week 27, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <!-- ══════════════════════════════════
+       AT A GLANCE
+  ══════════════════════════════════ -->
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-count">8</div>
+        <div class="summary-label">Bills placed on<br>Parliamentary Agenda</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">6</div>
+        <div class="summary-label">Cabinet of Ministers<br>Decisions</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">4</div>
+        <div class="summary-label">Cabinet of Ministers<br>Orders</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">5</div>
+        <div class="summary-label">Presidential<br>Letters &amp; Addresses</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 1: MILLI MAJLIS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Bills &amp; Legislation — 30 June 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    The Milli Majlis placed <strong>eight bills</strong> on the legislative agenda on <strong>30 June 2026</strong>. No new laws were enacted during the reporting period — the most recent law remains <strong>No. 426-VIIQ</strong> (19 June 2026, visa-exemption agreement with Ecuador for diplomatic/official passport holders).
+  </p>
+
+  <ul class="bill-list">
+    <li>
+      <div class="bill-num">1</div>
+      <div class="bill-text"><strong>Parliamentary Procedure &amp; Citizen Legislative Initiative</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Amendments concerning parliamentary rules of procedure and the right of citizens to propose legislation.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">2</div>
+      <div class="bill-text"><strong>General Education Law Amendments</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Proposed changes to the framework governing general (secondary) education.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">3</div>
+      <div class="bill-text"><strong>Housing, Refugee &amp; Displaced Persons Protections</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Amendments to housing rights and the legal status of refugees and internally displaced persons.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">4</div>
+      <div class="bill-text"><strong>Criminal Procedure Modifications</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Standalone amendments to the Criminal Procedure Code.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">5</div>
+      <div class="bill-text"><strong>Execution &amp; Prosecution Law Changes</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Amendments to legislation on enforcement of judicial acts and the prosecutor's office.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">6</div>
+      <div class="bill-text"><strong>Metric Convention Accession</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Bill authorising Azerbaijan's accession to the Metre Convention on international standards of measurement.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">7</div>
+      <div class="bill-text"><strong>Psychiatric Services Law Updates</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Amendments to legislation governing the provision of psychiatric care.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">8</div>
+      <div class="bill-text"><strong>2025 State Budget Execution Report</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Annual accountability report on implementation of the 2025 state budget.</span>
+      </div>
+      <div class="bill-status">Under Discussion</div>
+    </li>
+  </ul>
+
+  <div class="notice" style="margin-top:14px;">
+    <strong>Preview — Next Session (7 July 2026):</strong> The Majlis's published agenda for the following week already lists an unusually large package of eleven bills, including new <strong>crowdfunding legislation</strong>, a <strong>Tax Code</strong> revision, a <strong>Customs Code</strong> revision, and coordinated amendments to the <strong>Civil, Criminal, Administrative, Banking and Securities</strong> laws. This is flagged here as an early signal for practitioners in financial regulation, tax, and customs — expect a substantive write-up in next week's issue once the readings occur.
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 2: CABINET OF MINISTERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">İqtisadi Kabinet / Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">Decisions &amp; Orders — 29–30 June 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    The Cabinet of Ministers issued <strong>six Decisions</strong> and <strong>four Orders</strong> during the reporting period, clustered on 29–30 June. Two of the Orders implement newly issued Presidential Decrees (see Regulatory Focus below).
+  </p>
+
+  <div class="two-col">
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decisions (Qərarlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 204</span>
+        <span class="doc-date">30 Jun 2026</span>
+        <div class="doc-title">Grant Financing Competitions in Culture</div>
+        <div class="doc-body">Approves the procedure for conducting grant financing competitions in the field of culture, establishing eligibility, evaluation, and disbursement rules.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 203</span>
+        <span class="doc-date">30 Jun 2026</span>
+        <div class="doc-title">Vocational Education Funding — Amendment to Decision No. 192 (2023)</div>
+        <div class="doc-body">Modifies per-student annual cost calculations and funding mechanisms for vocational education institutions.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 202</span>
+        <span class="doc-date">30 Jun 2026</span>
+        <div class="doc-title">Professional Education Specialties Classification — Amendment</div>
+        <div class="doc-body">Updates the 2011 classification of professional education specialties.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 201</span>
+        <span class="doc-date">30 Jun 2026</span>
+        <div class="doc-title">"E-Governance" Information System — Amendment</div>
+        <div class="doc-body">Amends the October 2021 regulation governing the "E-Governance" state information system.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 200</span>
+        <span class="doc-date">29 Jun 2026</span>
+        <div class="doc-title">Cross-Code Implementation — Labor, Social Protection, Family &amp; Criminal Enforcement</div>
+        <div class="doc-body">Implements recent legislative amendments across the Labor Code, social protection rules, family law, and criminal enforcement provisions.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 197</span>
+        <span class="doc-date">29 Jun 2026</span>
+        <div class="doc-title">Road Transport Service Contract Terms</div>
+        <div class="doc-body">Approves terms for road transport service contracts covering regular passenger transportation.</div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders (Sərəncamlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 454s</span>
+        <span class="doc-date">30 Jun 2026</span>
+        <div class="doc-title">Investment Incentives &amp; Tax — Implementation of Presidential Decree No. 689</div>
+        <div class="doc-body">Implements Presidential Decree No. 689, modifying investment incentive and tax provisions.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 453s</span>
+        <span class="doc-date">30 Jun 2026</span>
+        <div class="doc-title">Administrative Violation Authority — Implementation of Presidential Decree No. 686</div>
+        <div class="doc-body">Updates administrative-violation enforcement authority pursuant to Presidential Decree No. 686.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 450s</span>
+        <span class="doc-date">30 Jun 2026</span>
+        <div class="doc-title">Non-Oil Export Support Measures</div>
+        <div class="doc-body">Implements measures supporting non-oil sector exports.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 447s</span>
+        <span class="doc-date">29 Jun 2026</span>
+        <div class="doc-title">Public-Private Partnership Financing — Preschool Education</div>
+        <div class="doc-body">Establishes a PPP financing model for preschool education infrastructure.</div>
+      </div>
+
+      <!-- Regulatory spotlight within column -->
+      <div style="margin-top:16px; background:#f0ede6; border:1px solid #ccc; padding:12px;">
+        <p style="font-family:'Arial',sans-serif; font-size:7.5pt; text-transform:uppercase; letter-spacing:0.15em; color:#777; border-bottom:1px solid #ccc; padding-bottom:5px; margin-bottom:8px;">Regulatory Focus</p>
+        <p style="font-size:8.5pt; line-height:1.5;"><strong>Untracked Presidential Decrees 686 &amp; 689:</strong> Cabinet Orders 453s and 454s cite Presidential Decrees No. 686 and No. 689 as their legal basis, yet neither decree appears in the English-language president.az documents list, which showed only letters and addresses this week. Full decree texts should be confirmed directly against the Azerbaijani-language decree register (<em>president.az</em> / <em>e-qanun.az</em>) — likely subjects: administrative-violation enforcement authority and investment/tax incentives.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 3: PRESIDENTIAL OFFICE
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Administration of the President</span>
+    <span class="section-title">Presidential Office</span>
+    <span class="section-en">Diplomatic Correspondence — 29 June – 4 July 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    No presidential decrees or orders were listed among public-facing communications for the week under review — the president.az English documents feed showed only outbound diplomatic letters and one commemorative address, concentrated around national-day observances of Azerbaijan's partner states.
+  </p>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Direction</th>
+        <th>Counterpart</th>
+        <th>Country / Title</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>4 Jul</td>
+        <td><span class="dir-out">OUTBOUND</span></td>
+        <td>Donald J. Trump</td>
+        <td>President of the United States</td>
+        <td>250th anniversary of US Independence</td>
+      </tr>
+      <tr>
+        <td>1 Jul</td>
+        <td><span class="dir-out">OUTBOUND</span></td>
+        <td>Louise Arbour</td>
+        <td>Governor General of Canada</td>
+        <td>Canada Day greeting</td>
+      </tr>
+      <tr>
+        <td>1 Jul</td>
+        <td><span class="dir-out">OUTBOUND</span></td>
+        <td>Hassan Sheikh Mohamud</td>
+        <td>President of Somalia</td>
+        <td>Somali National Day greeting</td>
+      </tr>
+      <tr>
+        <td>30 Jun</td>
+        <td><span class="dir-out">OUTBOUND</span></td>
+        <td>Delcy Rodríguez</td>
+        <td>Acting President of Venezuela</td>
+        <td>Condolences — earthquake damage</td>
+      </tr>
+      <tr>
+        <td>29 Jun</td>
+        <td><span class="dir-out">OUTBOUND</span></td>
+        <td>Turkic World Week participants</td>
+        <td>Address</td>
+        <td>100th anniversary of the First Turkological Congress</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notice" style="margin-top:12px;">
+    <strong>Note on Decrees &amp; Orders:</strong> As flagged in the Cabinet section above, Presidential Decrees No. 686 and No. 689 were referenced by implementing Cabinet Orders this week but were not independently visible on the president.az English documents feed. Readers should verify directly via the Azerbaijani-language <em>president.az</em> decree register for full texts.
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 4: CONSTITUTIONAL COURT
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Ali Məhkəmə Orqanı</span>
+    <span class="section-title">Constitutional Court</span>
+    <span class="section-en">Decisions — constcourt.gov.az</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:8px; font-family:'Arial',sans-serif;">
+    No new decisions were published during the reporting period. The most recent decision on record remains <strong>24 June 2026</strong> (interpretation of Article 420 of the Criminal Procedure Code). The portal was reachable this week (unlike the prior reporting period), so this reflects an actual pause in publication rather than a data-access issue.
+  </p>
+
+
+  <!-- ══════════════════════════════════
+       SECTION 5: E-QANUN
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Official Legislative Database</span>
+    <span class="section-title">e-Qanun</span>
+    <span class="section-en">Normative Acts Register — e-qanun.az</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>⚠ Data Not Extractable.</strong> The e-Qanun landing page continues to render its content dynamically via JavaScript and exposed no static listing this week (the page returned only an embedded traffic-counter widget). Readers should consult the portal directly, or the consolidated Cabinet/Majlis listings above, for full statutory texts.
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       REGULATORY SPOTLIGHT
+  ══════════════════════════════════ -->
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Key Themes, Week 27 / 2026</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>1. Untracked Presidential Decrees on Investment &amp; Enforcement</h4>
+        <p>Cabinet Orders 453s and 454s implement Presidential Decrees No. 686 and No. 689 — on administrative-violation enforcement authority and investment/tax incentives, respectively — neither of which surfaced in the public English decree feed this week. Firms advising on investment structuring or regulatory enforcement exposure should request the full decree texts directly rather than relying on secondary references.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>2. Large Financial-Regulation Package Incoming</h4>
+        <p>The Majlis's agenda for its 7 July session lists eleven bills touching crowdfunding, the Tax Code, the Customs Code, banking, securities, and the Audit Chamber in a single coordinated package. This is the most significant forward-looking signal of the week for financial-services and tax practices — worth pre-briefing clients ahead of first readings.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>3. Education &amp; Culture Financing Reforms</h4>
+        <p>Decisions 202–204 collectively touch vocational and professional education funding and specialties classification, alongside a new grant-competition procedure for culture-sector financing. Institutions receiving state education or culture funding should review per-student cost formulas and new competition eligibility criteria once gazetted.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>4. Cross-Code Enforcement Implementation</h4>
+        <p>Decision No. 200 implements recent amendments spanning the Labor Code, social protection rules, family law, and criminal enforcement in a single instrument — a sign of coordinated rollout across previously separate legislative amendments. Compliance and employment teams should map which of their existing obligations are affected once full text is available on e-qanun.az.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       FOOTER
+  ══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled by Omni Law Firm for informational purposes only. It does not constitute legal advice. Document descriptions are derived from official government portals; readers should consult primary sources and full texts before relying on any item. Sources: president.az · nk.gov.az · meclis.gov.az · e-qanun.az · constcourt.gov.az
+    </div>
+    <div class="footer-issue">
+      <strong>Issue No. 2</strong><br>
+      Week of 27 June – 4 July 2026<br>
+      Compiled: 4 July 2026<br>
+      © 2026 Omni Law Firm
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
