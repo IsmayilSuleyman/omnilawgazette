@@ -10,7 +10,7 @@
  *   node scripts/scrape-gazette.mjs --from 2026-06-06 --to 2026-06-13
  *
  * Sources (Tier 1):
- *   1. e-qanun.az              — normative acts register (JS-rendered, limited)
+ *   1. e-qanun.az              — normative acts register (hidden JSON API; see EQANUN-EXTRACTION.md)
  *   2. president.az/en/documents — presidential decrees, orders, letters
  *   3. nk.gov.az/az/senedler  — Cabinet of Ministers
  *   4. constcourt.gov.az/az/decisions — Constitutional Court
@@ -166,17 +166,64 @@ async function scrapeConstCourt() {
   return { ok: true, status, items };
 }
 
+// ── e-Qanun: the official consolidated register via its hidden JSON API ─────────
+//
+// e-qanun.az is a Next.js SPA whose HTML is empty — this used to be logged as
+// "data not extractable". It is NOT: the site is backed by a plain JSON REST
+// API. Full recipe (hosts, params, gotchas) in scripts/EQANUN-EXTRACTION.md.
+//
+// Key facts, so nobody has to rediscover them:
+//   • Host api.e-qanun.az  = Republic of Azerbaijan DB (Laws, Presidential
+//     Fərman/Sərəncam, Cabinet Qərar/Sərəncam). napi.e-qanun.az = Nakhchivan.
+//   • orderColumn MUST be 1 (0 → HTTP 500). Dates MUST be DD.MM.YYYY (ISO → 500).
+//   • All the params below are required together or the server 500s.
+async function scrapeEQanun() {
+  const dmy = (d) => d.toLocaleDateString('en-GB').replaceAll('/', '.'); // DD.MM.YYYY
+  const params = new URLSearchParams({
+    start: '0', length: '500', orderColumn: '1', orderDirection: 'desc',
+    title: 'true', codeType: '1', dateType: '1', statusId: '1', secondType: '2',
+    array: '', specialDate: 'false',
+    beginDate: dmy(fromDate), endDate: dmy(toDate), dateRange: 'true',
+  });
+  const url = `https://api.e-qanun.az/getDetailSearch?${params}`;
+  console.log(`   Fetching e-qanun.az/Republic (JSON API) …`);
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30_000);
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: { 'Accept-Language': 'AZ', 'Referer': 'https://e-qanun.az/' },
+    });
+    clearTimeout(timeout);
+    if (!res.ok) return { ok: false, status: res.status, items: [] };
+    const json = await res.json();
+    const items = (json.data ?? []).map((r) => ({
+      id: r.id,
+      number: r.citation || '—',
+      type: r.typeName,
+      status: r.statusName,
+      date: r.acceptDate,           // DD.MM.YYYY
+      title: r.title,
+      url: `https://e-qanun.az/framework/${r.id}`,
+    }));
+    return { ok: true, status: res.status, items };
+  } catch (e) {
+    return { ok: false, status: 0, error: e.message, items: [] };
+  }
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 async function main() {
-  const [letters, cabinet, bills, laws, court] = await Promise.all([
+  const [letters, cabinet, bills, laws, court, eqanun] = await Promise.all([
     scrapePresidentLetters(),
     scrapeCabinet(),
     scrapeMajlisBills(),
     scrapeMajlisLaws(),
     scrapeConstCourt(),
+    scrapeEQanun(),
   ]);
 
-  const results = { letters, cabinet, bills, laws, court };
+  const results = { letters, cabinet, bills, laws, court, eqanun };
 
   // Write raw JSON for debugging
   const jsonPath = join(outDir, `scrape-${fmt(toDate)}.json`);
@@ -188,6 +235,7 @@ async function main() {
   console.log(`   Bills             : ${bills.ok   ? bills.items.length   : `ERROR ${bills.status}`}`);
   console.log(`   Laws              : ${laws.ok    ? laws.items.length    : `ERROR ${laws.status}`}`);
   console.log(`   Const. Court      : ${court.ok   ? court.items.length   : `ERROR ${court.status}`}`);
+  console.log(`   e-Qanun (Republic): ${eqanun.ok  ? eqanun.items.length  : `ERROR ${eqanun.status}`}`);
   console.log(`\n💡 Use the scraped JSON to update the HTML gazette template in scripts/gazettes/`);
   console.log(`   Or run with --from YYYY-MM-DD --to YYYY-MM-DD to customise the date range.\n`);
 }
