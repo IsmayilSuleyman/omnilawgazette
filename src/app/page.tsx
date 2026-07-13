@@ -26,6 +26,7 @@ async function getIssues(): Promise<IssueWithUrls[]> {
 export default async function LibraryPage() {
   const issues = await getIssues();
   const latest = issues[0];
+  const totalReads = issues.reduce((sum, i) => sum + i.read_count, 0);
   const totalDownloads = issues.reduce((sum, i) => sum + i.download_count, 0);
   const firstYear = issues.length
     ? Math.min(...issues.map((i) => Number(i.published_at.slice(0, 4))))
@@ -50,6 +51,9 @@ export default async function LibraryPage() {
             </span>
             <span className="chip">Since {firstYear}</span>
             {latest && <span className="chip">Latest · {formatDate(latest.published_at)}</span>}
+            {totalReads > 0 && (
+              <span className="chip">{totalReads.toLocaleString()} reads</span>
+            )}
             {totalDownloads > 0 && <span className="chip">{totalDownloads} downloads</span>}
           </div>
         )}

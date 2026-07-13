@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Comments from "@/components/Comments";
 import DownloadButton from "@/components/DownloadButton";
 import PdfViewerShell from "@/components/PdfViewerShell";
+import RegisterRead from "@/components/RegisterRead";
 import { formatBytes, formatDate, weekOf } from "@/lib/format";
 import { getServerSupabase, publicUrl } from "@/lib/supabase";
 import type { Issue } from "@/lib/types";
@@ -72,6 +73,9 @@ export default async function IssuePage({ params }: { params: Promise<Params> })
 
   return (
     <div className="py-8 sm:py-10">
+      {/* Counts one read each time the reading room opens */}
+      <RegisterRead issueId={issue.id} />
+
       {/* Breadcrumb */}
       <nav className="mb-6 text-sm">
         <Link
@@ -109,6 +113,7 @@ export default async function IssuePage({ params }: { params: Promise<Params> })
               <span>Published {formatDate(issue.published_at)}</span>
               {issue.page_count && <span>· {issue.page_count} pages</span>}
               {issue.file_size_bytes && <span>· {formatBytes(issue.file_size_bytes)}</span>}
+              <span>· {issue.read_count.toLocaleString()} {issue.read_count === 1 ? "read" : "reads"}</span>
               {issue.download_count > 0 && <span>· {issue.download_count} downloads</span>}
               {issue.tags.map((t) => (
                 <span key={t} className="chip !py-0.5">
