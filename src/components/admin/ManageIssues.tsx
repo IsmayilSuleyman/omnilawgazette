@@ -128,7 +128,7 @@ export default function ManageIssues() {
               </p>
               <p className="text-xs text-silver mt-0.5">
                 {formatDate(issue.published_at)} · {issue.page_count ?? "?"} pages ·{" "}
-                {issue.download_count} downloads
+                {issue.read_count.toLocaleString()} reads · {issue.download_count} downloads
               </p>
             </div>
             <div className="flex items-center gap-2 shrink-0">

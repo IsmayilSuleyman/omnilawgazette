@@ -57,7 +57,7 @@ export default function IssueCard({ issue, index = 0 }: { issue: IssueWithUrls; 
 
         <div className="mt-auto pt-2 flex items-center justify-between gap-2 text-xs text-silver">
           <span>
-            {issue.page_count ? `${issue.page_count} pages` : "PDF"}
+            {issue.read_count.toLocaleString()} {issue.read_count === 1 ? "read" : "reads"}
             {issue.download_count > 0 ? ` · ${issue.download_count} downloads` : ""}
           </span>
           <span className="relative z-10">
