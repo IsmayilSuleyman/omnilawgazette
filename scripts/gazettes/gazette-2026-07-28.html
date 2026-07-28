@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 2 | July 28, 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree { background: #2c3e50; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.bill   { background: #6b6b6b; }
+    .doc-tag.law    { background: #1a3a1a; }
+    .doc-tag.letter { background: #3a3a3a; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic letters table ── */
+    table.diplo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    table.diplo thead tr {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    table.diplo thead th {
+      padding: 5px 8px;
+      text-align: left;
+    }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #4a1a1a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Bill list ── */
+    .bill-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bill-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px dotted #d0d0d0;
+      font-size: 9.5pt;
+    }
+    .bill-list li:last-child { border-bottom: none; }
+    .bill-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .bill-text { flex: 1; }
+    .bill-status {
+      flex-shrink: 0;
+      font-size: 7pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col, .three-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════
+       MASTHEAD
+  ══════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 2</span>
+      <span>REPORTING PERIOD: 23 JULY – 28 JULY 2026</span>
+      <span>PUBLISHED: TUESDAY, 28 JULY 2026</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════
+       WEEK BANNER
+  ══════════════════════════════════ -->
+  <div class="week-banner">
+    Week 31, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <!-- ══════════════════════════════════
+       AT A GLANCE
+  ══════════════════════════════════ -->
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-count">13</div>
+        <div class="summary-label">Presidential<br>Decrees (Fərmanlar)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">17</div>
+        <div class="summary-label">Presidential<br>Orders (Sərəncamlar)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">16</div>
+        <div class="summary-label">Cabinet of Ministers<br>Instruments</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">10</div>
+        <div class="summary-label">Statutes Given Effect<br>by Decree</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       LEAD STORY
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Lead Story</span>
+    <span class="section-title">The July Package Lands: Ten Statutes Into Force in Six Days</span>
+    <span class="section-en">Decrees of 23, 24, 27 and 28 July 2026</span>
+  </div>
+
+  <p style="font-size:9.5pt; color:#333; margin-bottom:10px;">
+    This was the week the Milli Majlis's closing legislative burst of the spring session became operative law. Between
+    <strong>23 and 28 July</strong> the President issued <strong>thirteen decrees</strong> that applied
+    <strong>ten separate statutes</strong> — touching the Tax Code, the Labour Code, the Migration Code, the Housing Code,
+    and the laws on aviation, road traffic, execution, medical insurance, psychiatric care and crowdfunding. The Cabinet of
+    Ministers issued a further <strong>sixteen instruments</strong> in the same six days, most of them the second-order
+    implementing steps for the same package. For a single week outside session, this is an unusually dense volume of
+    operative change.
+  </p>
+
+  <p style="font-size:9.5pt; color:#333; margin-bottom:12px;">
+    Three of these decrees do more than switch a statute on — they open regulatory projects that will run into 2027. The
+    <strong>Crowdfunding Law</strong> hands six categories of rulemaking to the Central Bank. The
+    <strong>Aviation Law</strong> amendments require the Cabinet to build, from nothing, a regulatory regime for
+    <strong>ultralight aircraft</strong>. And the <strong>Tax Code</strong> decree creates a new VAT-deposit transfer
+    mechanism that commences on <strong>1 January 2027</strong>.
+  </p>
+
+  <div class="two-col">
+    <div>
+      <div class="spotlight" style="margin-top:0;">
+        <div class="spotlight-header">Flagship — Law No. 450-VIIQ "On Crowdfunding"</div>
+        <p style="font-size:9pt; color:#444; line-height:1.5;">
+          The decree of <strong>24 July</strong> brings into operation the Republic's first dedicated statutory framework
+          for investment- and lending-based crowdfunding. The President reserves the powers arising under
+          <strong>Articles 3.2 and 18.8</strong>. The <strong>Cabinet</strong> has four months to align presidential acts
+          and three months to designate the offshore zones caught by the Law's restrictions. The
+          <strong>Central Bank</strong> has <strong>six months</strong> to fix the parameters that will decide whether the
+          market is commercially workable: operator capital and minimum aggregate capital thresholds; platform technical
+          standards; per-project and per-platform investment ceilings for individual investors; the funding thresholds
+          triggering mandatory professional-investor participation; investor complaint procedure; and reporting forms.
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="spotlight" style="margin-top:0;">
+        <div class="spotlight-header">Newcomer — Ultralight Aircraft Regulation</div>
+        <p style="font-size:9pt; color:#444; line-height:1.5;">
+          The decree of <strong>28 July</strong> applying Law No. 467-VIIQD (Aviation) is the week's quiet surprise: it
+          requires the Cabinet, within <strong>three months</strong> and in coordination with six agencies — the State
+          Security Service, the Ministry of Digital Development, the Ministry of Justice, the Ministry of Youth and Sport,
+          the Strategic Objects Protection Agency and the Tourism Agency — to approve rules on ultralight aircraft
+          airspace use and flight operations. The rules must cover eight mandated areas including technical specifications,
+          registration, operator age/training/medical fitness, permitted and prohibited zones (borders, military sites,
+          aerodromes, special-regime areas), the commercial/non-commercial distinction, pre-flight safety, maintenance and
+          inspection, and the rights and duties of operators. A further <strong>four-month</strong> deadline applies to
+          proposals on liability for breach.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice" style="margin-top:14px;">
+    <strong>Why this matters for the firm:</strong> two entirely new regulated activities — crowdfunding platforms and
+    ultralight aviation — are being built from a standing start, and in both cases the implementing rules are still
+    unwritten. The three-to-six-month windows opening this week are, in practice, the consultation periods. Clients with an
+    interest in either sector are better served by engaging now than by reading the finished rules in the new year.
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 1: PRESIDENTIAL DECREES
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Office of the President</span>
+    <span class="section-title">Fərmanlar — Decrees</span>
+    <span class="section-en">Thirteen decrees, 23–28 July 2026 — president.az</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    Grouped by subject matter rather than date. Every decree below applies a statute adopted by the Milli Majlis between
+    30 June and 14 July 2026, except where noted.
+  </p>
+
+  <p style="font-size:8pt; letter-spacing:0.18em; text-transform:uppercase; color:#777; font-family:'Arial',sans-serif; border-bottom:1px solid #ddd; padding-bottom:3px; margin-bottom:10px;">Finance, Tax &amp; Capital Markets</p>
+
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Application of the Law "On Crowdfunding" No. 450-VIIQ of 14 July 2026</div>
+        <div class="doc-body">
+          Brings the new crowdfunding statute into operation. Powers under Arts. 3.2 and 18.8 retained by the President.
+          Cabinet: four months to align presidential acts; three months to designate offshore zones. Central Bank: six
+          months to issue six categories of implementing regulation (see lead story).
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">28 July 2026</span>
+        <div class="doc-title">Application of Law No. 445-VIIQD of 13 July 2026 amending the Tax Code</div>
+        <div class="doc-body">
+          The President assumes the competence under the third sentence of <strong>Tax Code Art. 175.8</strong>, and the
+          "relevant executive body" there is identified as the Cabinet of Ministers. The Cabinet has
+          <strong>three months</strong> to approve the procedure and conditions under which non-oil, private-sector
+          taxpayers may transfer <strong>VAT deposit amounts to the State Social Protection Fund</strong>. Presidential
+          Decree No. 393 of 30 August 2000 is amended accordingly. <strong>Sections 1 and 3 enter into force on
+          1 January 2027.</strong>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Application of Law No. 452-VIIQD of 14 July 2026 amending the Labour Code, the Civil Code and the laws on currency regulation, investment funds and the securities market</div>
+        <div class="doc-body">
+          Despite the Labour Code in the title, the decree's operative content is capital-markets institutional: the
+          President exercises the powers under Art. 9-4.5(2) of the Law on Investment Funds; the
+          <strong>Ministry of Economy</strong> is designated the relevant executive body for those provisions; and the
+          <strong>Ministry of Internal Affairs</strong> takes the functions under Art. 48.1-1 of that Law. The Cabinet is
+          to resolve arising questions; no deadline is stated. The decree does not itself specify which Labour Code
+          provisions were amended — the statute text should be consulted directly.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Implementation of Law No. 469-VIIQD of 14 July 2026 amending the Law "On Execution"</div>
+        <div class="doc-body">
+          Amends Presidential Decree <strong>No. 672 of 5 March 2002</strong>: the reference to the second sentence of
+          Article 27.4 is deleted from paragraph 2.1, and paragraph 2.2-1 is repealed in full. Part one of Presidential
+          Decree <strong>No. 406 of 5 June 2025</strong> — which had implemented Law No. 196-VIIQD of 16 May 2025 on civil
+          procedure and execution — is also repealed. The implementing scaffolding is being pruned, not extended.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:8pt; letter-spacing:0.18em; text-transform:uppercase; color:#777; font-family:'Arial',sans-serif; border-bottom:1px solid #ddd; padding-bottom:3px; margin:18px 0 10px;">Migration &amp; Public Service</p>
+
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Application of Law No. 465-VIIQD of 14 July 2026 amending the Migration Code and the laws on registration and state fees</div>
+        <div class="doc-body">
+          Migration administration goes paperless. Approves the form of the decision on extending the temporary stay of
+          foreigners and stateless persons; amends the State Migration Service's regulations to replace physical delivery
+          with electronic issue — documents are executed to electronic-signature requirements, placed in the applicant's
+          e-government portal cabinet and sent to the registered email address. Two earlier decrees (2009 and 2010) are
+          amended to remove references to the paper decision and to update the migration information system.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Amendment to the Regulation on competitions and interviews for candidates for service in the justice bodies</div>
+        <div class="doc-body">
+          A one-word amendment to paragraph 1.10 of the Regulation approved by Presidential Decree No. 673 of 13 December
+          2007 (the word "state" is inserted). Minor, but it alters the Regulation's scope wording; anyone advising on
+          entry to the justice service should read the amended paragraph in the consolidated text.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Decision on extending the temporary stay of foreigners and stateless persons — approved form</div>
+        <div class="doc-body">
+          The template approved under the Migration Code decree above, published as a separate instrument and made under
+          <strong>Art. 39.4 of the Migration Code</strong>. The decision carries the State Emblem, a
+          <strong>three-letter series "MOM" and a seven-digit number</strong>, the holder's identity and travel-document
+          particulars, the extended period, the registration address, and a <strong>QR code</strong> for automated
+          verification. It is issued in Azerbaijani and English, with names transliterated from the machine-readable zone
+          of the travel document, and it expressly confers the right to exit Azerbaijan when presented with the passport.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Amendment to the Statute of the Ministry of Economy</div>
+        <div class="doc-body">
+          Amends the Statute approved by Presidential Decree No. 911 of 30 December 2019. Institutional-competence change;
+          read together with the 27 July decree assigning the Ministry new investment-fund functions.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:8pt; letter-spacing:0.18em; text-transform:uppercase; color:#777; font-family:'Arial',sans-serif; border-bottom:1px solid #ddd; padding-bottom:3px; margin:18px 0 10px;">Transport &amp; Aviation</p>
+
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">28 July 2026</span>
+        <div class="doc-title">Application of Law No. 467-VIIQD of 14 July 2026 amending the Law "On Aviation"</div>
+        <div class="doc-body">
+          Creates a regulatory regime for <strong>ultralight aircraft</strong> from a standing start. Cabinet: three months
+          to approve rules on airspace use and flight operations, in coordination with six agencies, covering eight
+          mandated subject areas; four months to submit proposals on liability for breach. See lead story. In force on
+          issue.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">28 July 2026</span>
+        <div class="doc-title">Application of Law No. 471-VIIQD of 14 July 2026 amending the Law "On Road Traffic"</div>
+        <div class="doc-body">
+          The President assumes the competences previously vested in "the relevant executive body" under
+          <strong>Articles 30 and 85</strong> of the Law. The "relevant information system" is defined as the
+          <strong>central information system of the Main State Road Police Directorate</strong> of the Ministry of
+          Internal Affairs. Five textual amendments are made to the 1998 Regulation approved by Decree No. 24. Read with
+          Cabinet Decisions Nos. 239 and 240 of 27 July.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:8pt; letter-spacing:0.18em; text-transform:uppercase; color:#777; font-family:'Arial',sans-serif; border-bottom:1px solid #ddd; padding-bottom:3px; margin:18px 0 10px;">Health, Housing &amp; Social Protection</p>
+
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Application of Law No. 464-VIIQD of 14 July 2026 amending the Laws "On Medical Insurance" and "On the Rights of Persons with Disabilities"</div>
+        <div class="doc-body">
+          A structural reorganisation of mandatory medical insurance. Implementing authority passes from the State Agency
+          on Mandatory Health Insurance to the <strong>Ministry of Labour and Social Protection of the Population</strong>,
+          with a new <strong>State Medical Insurance and Expertise Agency</strong> established within the Ministry. A
+          "Mandatory Medical Insurance" subsystem is to be formed within the Ministry's centralised electronic information
+          system by <strong>1 January 2027</strong>. The Cabinet has three months to submit draft rules on the
+          classification and investment of MMI fund reserves. Conforming amendments to Decrees No. 502/2019 and
+          No. 634/2019.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">23 July 2026</span>
+        <div class="doc-title">Application of Law No. 444-VIIQD of 13 July 2026 amending the Law "On Psychiatric Care"</div>
+        <div class="doc-body">
+          Puts the psychiatric care amendments into effect and amends Presidential Decree <strong>No. 574 of 3 September
+          2001</strong>. Relevant to health-sector regulatory work and to capacity, guardianship and involuntary-treatment
+          questions.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">23 July 2026</span>
+        <div class="doc-title">Application of Law No. 432-VIIQD of 30 June 2026 amending the Housing Code and the legislation on refugees and internally displaced persons</div>
+        <div class="doc-body">
+          Implements the housing and IDP-status amendment package adopted at the close of the spring session. Read with the
+          Presidential Order of the same date amending the 2004 State Programme on refugees and IDPs (Section 2) — two
+          instruments touching resettlement entitlements on a single day.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 2: PRESIDENTIAL ORDERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Office of the President</span>
+    <span class="section-title">Sərəncamlar — Orders</span>
+    <span class="section-en">Seventeen orders, 23–28 July 2026 — president.az</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    Fourteen of the week's seventeen orders are diplomatic postings — a <strong>wholesale rotation of heads of mission</strong>
+    executed in three tranches on 24, 27 and 28 July, covering Türkiye, Uzbekistan, Italy, Kazakhstan, Tajikistan, the New
+    Delhi cluster, and the Istanbul and Kars consulates general. Several are direct successions, the recall and the
+    appointment issued minutes apart.
+  </p>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Action</th>
+        <th>Official</th>
+        <th>Post</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>28 Jul</td>
+        <td><span class="dir-in">APPOINTED</span></td>
+        <td>E.N. Hüseynli</td>
+        <td>Ambassador to the Italian Republic</td>
+      </tr>
+      <tr>
+        <td>28 Jul</td>
+        <td><span class="dir-out">RECALLED</span></td>
+        <td>E.N. Hüseynli</td>
+        <td>Ambassador to India, concurrently Bangladesh, Bhutan, Maldives, Nepal and Sri Lanka</td>
+      </tr>
+      <tr>
+        <td>28 Jul</td>
+        <td><span class="dir-in">APPOINTED</span></td>
+        <td>Ə.Q. Əskərov</td>
+        <td>Ambassador to the Republic of Kazakhstan</td>
+      </tr>
+      <tr>
+        <td>28 Jul</td>
+        <td><span class="dir-out">RECALLED</span></td>
+        <td>Ə.Q. Əskərov</td>
+        <td>Ambassador to the Republic of Tajikistan</td>
+      </tr>
+      <tr>
+        <td>28 Jul</td>
+        <td><span class="dir-in">APPOINTED</span></td>
+        <td>E.C. Qəhrəman</td>
+        <td>Ambassador to the Republic of Tajikistan</td>
+      </tr>
+      <tr>
+        <td>28 Jul</td>
+        <td><span class="dir-out">RECALLED</span></td>
+        <td>A.R. Atamoğlanov</td>
+        <td>Ambassador to the Republic of Kazakhstan</td>
+      </tr>
+      <tr>
+        <td>27 Jul</td>
+        <td><span class="dir-in">APPOINTED</span></td>
+        <td>Z.M. Əliyev</td>
+        <td>Consul General in Istanbul, Türkiye</td>
+      </tr>
+      <tr>
+        <td>27 Jul</td>
+        <td><span class="dir-out">RECALLED</span></td>
+        <td>Z.M. Əliyev</td>
+        <td>Consul General in Kars, Türkiye</td>
+      </tr>
+      <tr>
+        <td>27 Jul</td>
+        <td><span class="dir-in">APPOINTED</span></td>
+        <td>Q.A. Zeynalov</td>
+        <td>Consul General in Kars, Türkiye</td>
+      </tr>
+      <tr>
+        <td>27 Jul</td>
+        <td><span class="dir-out">RECALLED</span></td>
+        <td>N.E. Mustafayeva</td>
+        <td>Consul General in Istanbul, concurrently Permanent Representative to the BSEC</td>
+      </tr>
+      <tr>
+        <td>24 Jul</td>
+        <td><span class="dir-in">APPOINTED</span></td>
+        <td>R.F. Aslanov</td>
+        <td>Ambassador to the Republic of Türkiye</td>
+      </tr>
+      <tr>
+        <td>24 Jul</td>
+        <td><span class="dir-out">RECALLED</span></td>
+        <td>R.F. Aslanov</td>
+        <td>Ambassador to Italy (concurrently Malta and San Marino); Permanent Representative to FAO, WFP and IFAD</td>
+      </tr>
+      <tr>
+        <td>24 Jul</td>
+        <td><span class="dir-in">APPOINTED</span></td>
+        <td>R.E. Məmmədov</td>
+        <td>Ambassador to the Republic of Uzbekistan</td>
+      </tr>
+      <tr>
+        <td>24 Jul</td>
+        <td><span class="dir-out">RECALLED</span></td>
+        <td>R.E. Məmmədov</td>
+        <td>Ambassador to the Republic of Türkiye</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col" style="margin-top:14px;">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">23 July 2026</span>
+        <div class="doc-title">Amendment to the State Programme on refugees and internally displaced persons</div>
+        <div class="doc-body">
+          Amends Presidential Order <strong>No. 298 of 1 July 2004</strong> approving the "State Programme on improving the
+          living conditions and increasing the employment of refugees and internally displaced persons". The week's only
+          policy-instrument order.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Measures for the first World Championship and Festival in football for boys under 15, to be held in Azerbaijan in 2026</div>
+        <div class="doc-body">Organisational and funding measures for the tournament.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">25 July 2026</span>
+        <div class="doc-title">M.İ. Yevdayev decorated with the Order "For Service to the Motherland", 1st degree</div>
+        <div class="doc-body">State honour (<em>"Vətənə xidmətə görə" ordeni</em>).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 3: CABINET OF MINISTERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">10 Decisions &amp; 6 Orders — nk.gov.az</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    The Cabinet's six <em>Sərəncamlar</em> this week are all of one kind — instruments securing the execution of a named
+    presidential decree. They are the connective tissue of the July package and are listed separately below.
+  </p>
+
+  <div class="two-col">
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 236</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Model structure and staff units of enterprises providing restoration, construction and management services in the liberated territories</div>
+        <div class="doc-body">
+          The most commercially significant Cabinet instrument of the week. Approves a standard organisational template for
+          the entities delivering reconstruction and estate-management services in the territories. Relevant to
+          contractors, sub-contractors and anyone negotiating with these entities.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 240</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Rules on refunding to the vehicle owner the sum paid for removal of a vehicle to, and its storage at, an impound lot</div>
+        <div class="doc-body">
+          A new refund procedure where a vehicle has been impounded. Directly useful to road-traffic and administrative
+          practice, and to insurers handling recovery claims.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 239</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Amendments to certain Cabinet decisions pursuant to Presidential Decree No. 559 of 26 December 2025 (Law No. 307-VIIQD of 9 December 2025, "On Road Traffic")</div>
+        <div class="doc-body">
+          The Cabinet-level limb of the road traffic reform, catching up with the December 2025 amendments.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 233</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Repeal of Decisions No. 118 of 1 May 2014 and No. 38 of 29 January 2022</div>
+        <div class="doc-body">
+          A deregulatory step: repeals in full the List of information systems and resources required to connect to the
+          "Electronic Government" portal together with its Technical Requirements, and the thresholds for integrating
+          electronic information resources into the unified state procurement internet portal. Compliance teams relying on
+          either instrument should stop doing so and look for the replacement framework under the E-Government Information
+          System Statute.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 232</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Amendments to the Requirements for the energy management system (Decision No. 310 of 17 August 2022) and to the rules and criteria for assessing efficiency potential in electricity and heat generation and natural gas processing (Decision No. 123 of 18 April 2023)</div>
+        <div class="doc-body">
+          Energy-efficiency compliance obligations for generators and gas processors are adjusted. Relevant to energy and
+          industrial clients running mandated energy management systems.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 241</span>
+        <span class="doc-date">28 July 2026</span>
+        <div class="doc-title">Amendment to Decision No. 229 of 14 June 2016 on the composition of the Central Conscription Commission for fixed-term active military service</div>
+        <div class="doc-body">Membership change to the Central Conscription Commission.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 238</span>
+        <span class="doc-date">27 July 2026</span>
+        <div class="doc-title">Amendment to the List of unified indexes established for state bodies, state-owned legal entities and those whose controlling shareholding belongs to the state, public legal entities created on behalf of the state, and commissions (Decision No. 350 of 15 September 2022)</div>
+        <div class="doc-body">
+          Administrative indexing change affecting official correspondence and document referencing across the state sector.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 237</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Amendment to the unified budget classification (Decision No. 440 of 11 October 2018)</div>
+        <div class="doc-body">
+          Technical, but consequential for public-sector reporting lines and for clients whose funding flows through
+          classified budget headings.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 235</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Amendments to certain Cabinet decisions in connection with Law No. 364-VIIQD of 27 February 2026 amending the Law "On Cinematography"</div>
+        <div class="doc-body">
+          Secondary legislation catching up with the February cinematography amendments. Of interest to media, production
+          and IP practices.
+        </div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag">Decision</span>
+        <span class="doc-number">No. 234</span>
+        <span class="doc-date">24 July 2026</span>
+        <div class="doc-title">Amendments to the annual per-student cost of state-order education at bachelor's and basic medical education levels (Decision No. 120 of 25 June 2010) and to the Rules on student admission to higher education institutions (Decision No. 39 of 8 February 2017)</div>
+        <div class="doc-body">
+          Adjusts both the state-order funding rate per student and the admission rules. Relevant to education-sector
+          clients and to state-order contracting.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:8pt; letter-spacing:0.18em; text-transform:uppercase; color:#777; font-family:'Arial',sans-serif; border-bottom:1px solid #ddd; padding-bottom:3px; margin:18px 0 10px;">Cabinet Orders — Securing Execution of Presidential Decrees</p>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>No.</th>
+        <th>Secures execution of</th>
+        <th>Underlying statute</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>28 Jul</td>
+        <td>531s</td>
+        <td>Presidential Decree No. 731 of 22 July 2026 approving the Statute of the "Centre for Analysis of International Relations and Multiculturalism" public legal entity</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>27 Jul</td>
+        <td>530s</td>
+        <td>Presidential Decree No. 727 of 20 July 2026 (amending Decree No. 2307 of 19 August 2023 on public procurement)</td>
+        <td>Law No. 447-VIIQD of 13 July 2026, "On Public Procurement"</td>
+      </tr>
+      <tr>
+        <td>27 Jul</td>
+        <td>529s</td>
+        <td>Presidential Decree No. 726 of 17 July 2026 (amending Decree No. 936 of 4 July 2013 on customs tariff)</td>
+        <td>Law No. 441-VIIQD of 10 July 2026, "On Customs Tariff"</td>
+      </tr>
+      <tr>
+        <td>23 Jul</td>
+        <td>521s</td>
+        <td>Direct execution of the statute</td>
+        <td>Law No. 433-VIIQD of 7 July 2026 amending the Milli Majlis Internal Rules, the Law "On Public Participation" and the Law on citizens' exercise of the right of legislative initiative</td>
+      </tr>
+      <tr>
+        <td>23 Jul</td>
+        <td>520s</td>
+        <td>Presidential Decree No. 725 of 17 July 2026 on additional measures for involving citizens and civil society institutions in public administration, amending the Statute on the E-Government Information System (Decree No. 472 of 12 August 2025)</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>23 Jul</td>
+        <td>519s</td>
+        <td>Presidential Decree No. 722 of 15 July 2026 amending certain presidential decrees</td>
+        <td>Law No. 388-VIIQD of 21 April 2026 amending the Administrative Offences Code</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══════════════════════════════════
+       SECTION 4: MILLI MAJLIS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Laws, Decrees, Bills &amp; Reports — meclis.gov.az</span>
+  </div>
+
+  <div class="notice">
+    <strong>No parliamentary activity in the reporting period.</strong> The Milli Majlis is in summer recess. All four
+    monitored registers were checked and none records an entry between 23 and 28 July 2026: the most recent laws are dated
+    <strong>14 July 2026</strong>, the most recent parliamentary decree <strong>26 May 2026</strong> (No. 411-VIIQR), the
+    most recent bills tabled <strong>14 July 2026</strong>, and the most recent report <strong>26 May 2026</strong>. The
+    autumn session will resume the legislative programme adopted under Decree No. 342-VIIQR.
+  </div>
+
+  <div class="notice">
+    <strong>Carried forward — bills tabled 14 July.</strong> Nineteen bills were placed on the agenda at the close of the
+    spring session and remain live for the autumn: amendments to the Constitutional Law "On Normative Legal Acts"; to the
+    Civil, Criminal, Tax, Labour, Land, Migration and Administrative Offences Codes; to the laws on public service and
+    media, on information and its protection, on energy efficiency, on aviation, on road traffic, on state duty and
+    licensing, on selection achievements, and on real estate; and new draft laws <strong>on seed production</strong> and
+    <strong>on fisheries</strong>. The Land Code package flagged in Issue No. 1 remains on the agenda.
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 5: CONSTITUTIONAL COURT
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Konstitusiya Məhkəməsi</span>
+    <span class="section-title">Constitutional Court</span>
+    <span class="section-en">Decisions — constcourt.gov.az</span>
+  </div>
+
+  <div class="notice">
+    <strong>No decisions handed down in the reporting period.</strong> The portal was retrieved successfully this week (it
+    was unavailable when Issue No. 1 was compiled). The most recent decision on the register is dated
+    <strong>25 June 2026</strong>, interpreting Articles 3.1 and 3.1.2 of the Law on Combating the Legalisation of
+    Criminally Obtained Property and the Financing of Terrorism. Also from the June term, and not previously reported in
+    this digest: <strong>24 June</strong> (Art. 420 of the Criminal Procedure Code, judicial independence),
+    <strong>23 June</strong> (the <em>A. Şükürova</em> complaint — conformity of Art. 14.2 of the Housing Code with
+    Arts. 29(III) and 71(I, II) of the Constitution), <strong>22 June</strong> (Arts. 122.2.3 and 449.3 CPC) and
+    <strong>16 June</strong> (Arts. 329.1, 337.1 and 739.2 of the Civil Code — equality and property rights). The
+    23 June Housing Code decision is worth reading against the Housing Code amendments brought into force on 23 July.
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 6: E-QANUN
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Official Legislative Database</span>
+    <span class="section-title">e-Qanun</span>
+    <span class="section-en">Normative Acts Register — e-qanun.az</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>⚠ Data Not Extractable.</strong> The e-Qanun portal continues to render its listings dynamically via
+    JavaScript and exposes no static index to automated review; the retrieved page contained no act data. All acts
+    reported in this issue were sourced from the issuing institutions' own registers (president.az, nk.gov.az) and, for
+    the principal decrees, from the full text of the instrument itself. Readers should consult e-qanun.az directly for the
+    consolidated, in-force texts before advising on any item above.
+  </div>
+
+  <!-- ══════════════════════════════════
+       DIPLOMATIC CORRESPONDENCE
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Office of the President</span>
+    <span class="section-title">Diplomatic Correspondence</span>
+    <span class="section-en">Letters — 23–28 July 2026</span>
+  </div>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Direction</th>
+        <th>Counterparty</th>
+        <th>Office</th>
+        <th>Occasion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>26 Jul</td>
+        <td><span class="dir-out">OUTBOUND</span></td>
+        <td>Mohamed Muizzu</td>
+        <td>President of the Republic of Maldives</td>
+        <td>Independence Day greeting</td>
+      </tr>
+      <tr>
+        <td>23 Jul</td>
+        <td><span class="dir-out">OUTBOUND</span></td>
+        <td>Abdel Fattah El-Sisi</td>
+        <td>President of the Arab Republic of Egypt</td>
+        <td>Revolution Day (23 July) greeting</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notice" style="margin-top:12px;">
+    <strong>Context:</strong> correspondence volume is low, consistent with the summer period, and the substantive
+    diplomatic instrument of the month sits just outside this window — the Azerbaijan–Germany <em>Joint Declaration on a
+    Strategic Agenda for the Bilateral Partnership</em> and the accompanying press statements with Federal Chancellor
+    Friedrich Merz, both dated <strong>21 July 2026</strong>. Teams advising on German-market trade, energy and investment
+    should review that declaration. The scale of this week's ambassadorial rotation (Section 2) is the more telling
+    diplomatic signal.
+  </div>
+
+  <!-- ══════════════════════════════════
+       DEADLINES AHEAD
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Compliance Diary</span>
+    <span class="section-title">Deadlines Created This Week</span>
+    <span class="section-en">Derived from the decrees of 23–28 July 2026</span>
+  </div>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th>Indicative due date</th>
+        <th>Responsible body</th>
+        <th>Obligation</th>
+        <th>Source instrument</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>~24 Oct 2026<br><em>(3 months)</em></td>
+        <td>Cabinet of Ministers</td>
+        <td>Determine the offshore zones to which the Crowdfunding Law's restrictions attach</td>
+        <td>Decree of 24 Jul (Law 450-VIIQ)</td>
+      </tr>
+      <tr>
+        <td>~24 Oct 2026<br><em>(3 months)</em></td>
+        <td>Cabinet of Ministers</td>
+        <td>Submit to the President draft rules on the classification and investment of mandatory medical insurance fund reserves</td>
+        <td>Decree of 24 Jul (Law 464-VIIQD)</td>
+      </tr>
+      <tr>
+        <td>~28 Oct 2026<br><em>(3 months)</em></td>
+        <td>Cabinet of Ministers</td>
+        <td>Approve the procedure and conditions for non-oil private-sector taxpayers to transfer VAT deposit amounts to the State Social Protection Fund (Tax Code Art. 175.8)</td>
+        <td>Decree of 28 Jul (Law 445-VIIQD)</td>
+      </tr>
+      <tr>
+        <td>~28 Oct 2026<br><em>(3 months)</em></td>
+        <td>Cabinet of Ministers <em>+ 6 agencies</em></td>
+        <td>Approve rules on ultralight aircraft airspace use and flight operations, covering eight mandated subject areas</td>
+        <td>Decree of 28 Jul (Law 467-VIIQD)</td>
+      </tr>
+      <tr>
+        <td>~24 Nov 2026<br><em>(4 months)</em></td>
+        <td>Cabinet of Ministers</td>
+        <td>Submit proposals bringing presidential acts into conformity with the Crowdfunding Law</td>
+        <td>Decree of 24 Jul (Law 450-VIIQ)</td>
+      </tr>
+      <tr>
+        <td>~28 Nov 2026<br><em>(4 months)</em></td>
+        <td>Cabinet of Ministers</td>
+        <td>Submit proposals on liability for breach of ultralight aircraft airspace and flight requirements</td>
+        <td>Decree of 28 Jul (Law 467-VIIQD)</td>
+      </tr>
+      <tr>
+        <td>1 Jan 2027<br><em>(fixed date)</em></td>
+        <td>Ministry of Labour &amp; Social Protection</td>
+        <td>Complete formation of the "Mandatory Medical Insurance" subsystem within the centralised electronic information system</td>
+        <td>Decree of 24 Jul (Law 464-VIIQD)</td>
+      </tr>
+      <tr>
+        <td>1 Jan 2027<br><em>(fixed date)</em></td>
+        <td>—</td>
+        <td>Sections 1 and 3 of the Tax Code decree enter into force (VAT deposit transfer mechanism commences)</td>
+        <td>Decree of 28 Jul (Law 445-VIIQD)</td>
+      </tr>
+      <tr>
+        <td>~24 Jan 2027<br><em>(6 months)</em></td>
+        <td>Central Bank (CBAR)</td>
+        <td>Adopt regulatory acts on operator capital and minimum aggregate capital; platform technical standards; retail investment ceilings per project and per platform; professional-investor participation thresholds; investor complaint procedure; reporting forms and filing procedure</td>
+        <td>Decree of 24 Jul (Law 450-VIIQ)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notice" style="margin-top:12px;">
+    Due dates are computed from the date of the relevant decree and are <strong>indicative</strong>. The operative
+    instruments express these obligations as periods ("within three months", "within six months"); the precise running of
+    time should be confirmed against the published texts before any date is diarised for a client.
+  </div>
+
+  <!-- ══════════════════════════════════
+       REGULATORY SPOTLIGHT
+  ══════════════════════════════════ -->
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Key Themes, Week 31 / 2026</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>1. A New Market Opens — Crowdfunding</h4>
+        <p>Law 450-VIIQ is the first Azerbaijani statute to regulate crowdfunding as a distinct activity, and the 24 July decree starts the clock on the Central Bank's rulemaking. Until the CBAR acts land, the perimeter — who counts as an operator, what capital they must hold, what a retail investor may commit — is undefined. Corporate, banking and fintech teams should be scoping platform structures now and treating the next two quarters as the window in which this market's commercial parameters are settled.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>2. Ultralight Aviation From Zero</h4>
+        <p>The aviation decree of 28 July is the most striking new regulatory project of the week. An entire licensing-and-operations regime for ultralight aircraft must be built within three months, spanning registration, operator medical and training standards, geographic no-fly zones and the commercial/non-commercial divide — with liability rules following a month later. Any client operating, importing or insuring light aircraft should expect to be regulated for the first time, and should engage during the drafting window.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>3. Migration Administration Goes Paperless</h4>
+        <p>The 27 July Migration Code decree and its approved decision template replace physical documents with electronically signed instruments delivered to the applicant's e-government cabinet and email. The new temporary-stay extension decision carries an "MOM" series, a seven-digit number and a QR code, is bilingual, and expressly confers the right to exit on presentation with a passport. Immigration practices should update client guidance on what a valid extension now looks like — and stop expecting a paper decision.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>4. Road Traffic — A Three-Instrument Package</h4>
+        <p>The 28 July decree applying Law 471-VIIQD names the Road Police's central information system as the statutory "relevant information system" and pulls competences under Arts. 30 and 85 to the President. Cabinet Decisions 239 and 240 of 27 July complete the picture, the latter introducing a refund procedure for impound removal and storage charges. Administrative and insurance practices now have a concrete recovery route for wrongly impounded vehicles.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>5. Health Insurance Administration Restructured</h4>
+        <p>The 24 July decree on Law 464-VIIQD moves mandatory medical insurance out of the standalone State Agency and into the Ministry of Labour and Social Protection, creating a State Medical Insurance and Expertise Agency inside the Ministry. This is a change of counterparty as much as of competence: employers, insurers and providers should identify every contract, filing and correspondence channel currently addressed to the Agency. The 1 January 2027 systems deadline is the practical migration date.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>6. Two Quiet Deregulatory Moves</h4>
+        <p>Cabinet Decision 233 repeals outright the 2014 list of information systems required to connect to the e-government portal (with its technical requirements) and the 2022 procurement-portal integration thresholds. The execution decree of 24 July likewise deletes rather than adds, pruning Decree 672/2002 and revoking part of the 2025 implementing decree. In both areas the instruction is the same: verify that any compliance position or enforcement strategy still rests on a live provision.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       FOOTER
+  ══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled by Omni Law Firm for informational purposes only. It does not constitute legal advice. Document descriptions are derived from official government portals and, where a full text was consulted, from the instrument itself; readers should consult primary sources and full texts before relying on any item. Document numbers, dates and deadlines should be verified against e-qanun.az. Sources: president.az · nk.gov.az · meclis.gov.az · e-qanun.az · constcourt.gov.az
+    </div>
+    <div class="footer-issue">
+      <strong>Issue No. 2</strong><br>
+      Week of 23–28 July 2026<br>
+      Compiled: 28 July 2026<br>
+      © 2026 Omni Law Firm
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
