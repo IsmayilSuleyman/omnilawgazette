@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 9 | August 17, 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree { background: #2c3e50; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.bill   { background: #6b6b6b; }
+    .doc-tag.law    { background: #1a3a1a; }
+    .doc-tag.letter { background: #3a3a3a; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .doc-source {
+      font-size: 7.5pt;
+      color: #999;
+      font-family: 'Arial', sans-serif;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic letters table ── */
+    table.diplo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    table.diplo thead tr {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    table.diplo thead th {
+      padding: 5px 8px;
+      text-align: left;
+    }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #4a1a1a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col, .three-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════
+       MASTHEAD
+  ══════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 9</span>
+      <span>REPORTING PERIOD: 9 AUGUST – 16 AUGUST 2026</span>
+      <span>PUBLISHED: MONDAY, 17 AUGUST 2026</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════
+       WEEK BANNER
+  ══════════════════════════════════ -->
+  <div class="week-banner">
+    Week 33, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <!-- ══════════════════════════════════
+       AT A GLANCE
+  ══════════════════════════════════ -->
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-count">4</div>
+        <div class="summary-label">Presidential<br>Decrees</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">1</div>
+        <div class="summary-label">Presidential<br>Diplomatic Letter</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">0</div>
+        <div class="summary-label">Cabinet of Ministers<br>Decisions / Orders</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">0</div>
+        <div class="summary-label">New Laws or Court<br>Decisions Published</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Editorial note on this issue:</strong> This was a quiet week across most registers — consistent with
+    Milli Majlis's summer recess and a routine lull at the Cabinet of Ministers and Constitutional Court. The
+    President's office was the only source with confirmed activity dated within the reporting window. Where a
+    decree's text could not be pulled directly from president.az (its decree/order archive is JavaScript-rendered
+    and did not resolve on this pass), the entry is corroborated against wire reporting (APA.az, Trend.az, Axar.az)
+    that cites president.az as the primary source and gives an exact signing date; this is flagged per item below.
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 1: PRESIDENTIAL DECREES
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Office of the President</span>
+    <span class="section-title">Presidential Decrees</span>
+    <span class="section-en">Fərmanlar — 10–14 August 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    The President signed four decrees during the reporting period, spanning cybersecurity governance, agricultural
+    regulation, statistical cooperation with Belarus, and public-finance oversight infrastructure.
+  </p>
+
+  <div class="doc-entry">
+    <span class="doc-tag decree">Decree</span>
+    <span class="doc-date">10 Aug 2026</span>
+    <div class="doc-title">Implementation of Amendments to the Law "On Information, Informatization and Protection of Information"</div>
+    <div class="doc-body">Establishes Computer Emergency Response Teams (CERTs) for information infrastructure supporting public functions, and directs the Cabinet of Ministers to draft rules for the cybersecurity of state-body and strategic-facility information systems, plus a regulatory sandbox framework for testing new security measures.</div>
+    <div class="doc-source">Source: president.az, via APA.az / Trend.az reporting — signing date not independently re-verified on the primary site this pass.</div>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag decree">Decree</span>
+    <span class="doc-date">13 Aug 2026</span>
+    <div class="doc-title">Implementation of the Law "On Seed Production"</div>
+    <div class="doc-body">Directs the Cabinet of Ministers to establish state-control procedures and a seed and breeding-stock registry within five months, operationalizing the newly adopted Seed Production Law.</div>
+    <div class="doc-source">Source: president.az, via APA.az / Trend.az reporting — signing date not independently re-verified on the primary site this pass.</div>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag decree">Decree</span>
+    <span class="doc-date">14 Aug 2026</span>
+    <div class="doc-title">Approval of the Azerbaijan–Belarus Memorandum of Understanding on Statistical Cooperation</div>
+    <div class="doc-body">Approves the MoU signed in Minsk on 2 June 2026 and directs the relevant state bodies to take implementation steps for joint statistical work with Belarus.</div>
+    <div class="doc-source">Source: president.az, via APA.az / Trend.az reporting — signing date not independently re-verified on the primary site this pass.</div>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag decree">Decree</span>
+    <span class="doc-date">14 Aug 2026</span>
+    <div class="doc-title">Establishment of the "State Audit" Information System</div>
+    <div class="doc-body">Creates the "State Audit" information system and approves its governing regulation, tasking the Chamber of Accounts with its development — a step toward digitizing public-finance oversight.</div>
+    <div class="doc-source">Source: president.az, via APA.az / Trend.az reporting — signing date not independently re-verified on the primary site this pass.</div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 2: PRESIDENTIAL CORRESPONDENCE
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Office of the President</span>
+    <span class="section-title">Diplomatic Correspondence</span>
+    <span class="section-en">Letters &amp; Messages — 9 August 2026</span>
+  </div>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th style="width:80px;">Date</th>
+        <th style="width:70px;">Direction</th>
+        <th>Recipient</th>
+        <th>Subject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>9 Aug 2026</td>
+        <td class="dir-out">Outgoing</td>
+        <td>Tharman Shanmugaratnam, President of Singapore</td>
+        <td>Congratulatory letter on Singapore's national holiday.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══════════════════════════════════
+       SECTION 3: CABINET OF MINISTERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">İqtisadi Kabinet / Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">Decisions &amp; Orders — 9–16 August 2026</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>No new items in this reporting window.</strong> The Cabinet's public register (nk.gov.az) shows no
+    Decisions or Orders dated between 9 and 16 August 2026 as of publication. The most recent batch on record —
+    Decisions No. 253–258 and Orders No. 591s–599s, dated 3–4 August 2026 (covering competition-authority market
+    concentration rules, workplace-accident insurance procedures, the 2026–2030 Employment Strategy action plan,
+    and Crowdfunding Law implementation, among others) — was reported in Issue No. 8.
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 4: MILLI MAJLIS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Laws, Decrees, Bills &amp; Reports — 9–16 August 2026</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>No new items in this reporting window — Parliament appears to be in summer recess.</strong> All four
+    Milli Majlis registers (laws, decrees, current reports, and bills) were checked; none list anything dated
+    9–16 August 2026. The most recent enacted laws (No. 472-VIIQD, 455-VIIQ, 450-VIIQ) and the most recent slate of
+    nine bills under discussion both date to 13–14 July 2026. The most recent parliamentary decree (judicial
+    appointments to the Baku, Ganja, Sumgayit, Sheki and Shirvan Courts of Appeal and the Supreme Court) dates to
+    26 May 2026, as does the most recent activity report.
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 5: CONSTITUTIONAL COURT
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Constitutional Court of Azerbaijan</span>
+    <span class="section-title">Constitutional Court</span>
+    <span class="section-en">Decisions — 9–16 August 2026</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>No new decisions in this reporting window.</strong> The Court's published decisions register shows
+    nothing dated between 9 and 16 August 2026. The most recent decision on record is dated 25 June 2026
+    (interpretation of Articles 3.1/3.1.2 of the Anti-Money-Laundering and Counter-Terrorist-Financing Law).
+    e-qanun.az, Azerbaijan's national normative-acts register, did not return usable content on this pass and
+    could not be cross-checked.
+  </div>
+
+  <!-- ══════════════════════════════════
+       REGULATORY SPOTLIGHT
+  ══════════════════════════════════ -->
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Practitioner Notes</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>Cybersecurity: CERTs Become Mandatory Infrastructure</h4>
+        <p>The 10 August decree operationalizes the CERT requirement flagged in earlier information-security
+        reforms. Clients operating information systems that support "public functions" — a category likely to be
+        defined broadly by the Cabinet's forthcoming implementing rules — should start scoping what a CERT
+        stand-up would require, and watch for the regulatory sandbox framework, which may offer a lower-friction
+        path to pilot new security tooling ahead of full compliance deadlines.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>Public Finance: "State Audit" System Signals Digitization Push</h4>
+        <p>Pairing the new State Audit information system with the Chamber of Accounts' existing oversight mandate
+        suggests a move toward continuous, data-driven audit rather than periodic review. Entities that receive
+        state funding or operate under state audit jurisdiction should expect increased data-reporting requests as
+        the system comes online.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       FOOTER
+  ══════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-disclaimer">
+      Prepared for internal circulation at Omni Law Firm. Compiled from public government sources and,
+      where indicated, secondary wire reporting; not a substitute for review of official gazette texts.
+      Confirm citations against primary sources before relying on them in client-facing work.
+    </div>
+    <div class="footer-issue">
+      Omni Law Gazette<br>
+      Issue No. 9 · 17 August 2026
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
