@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Edition 2026-36 | 2 September 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree { background: #2c3e50; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.bill   { background: #6b6b6b; }
+    .doc-tag.law    { background: #1a3a1a; }
+    .doc-tag.letter { background: #3a3a3a; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic letters table ── */
+    table.diplo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    table.diplo thead tr {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    table.diplo thead th {
+      padding: 5px 8px;
+      text-align: left;
+    }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #4a1a1a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Bill list ── */
+    .bill-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bill-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px dotted #d0d0d0;
+      font-size: 9.5pt;
+    }
+    .bill-list li:last-child { border-bottom: none; }
+    .bill-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .bill-text { flex: 1; }
+    .bill-status {
+      flex-shrink: 0;
+      font-size: 7pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      @page { size: A4; margin: 12mm 12mm 14mm; }
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .footer { margin-top: 18px; break-inside: avoid; }
+      .spotlight, .summary-box, .unavailable { break-inside: avoid; }
+      table.diplo tr { break-inside: avoid; }
+      .two-col, .three-col { break-inside: auto; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════
+       MASTHEAD
+  ══════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>EDITION 2026-36</span>
+      <span>REPORTING PERIOD: 26 AUGUST – 2 SEPTEMBER 2026</span>
+      <span>PUBLISHED: WEDNESDAY, 2 SEPTEMBER 2026</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════
+       WEEK BANNER
+  ══════════════════════════════════ -->
+  <div class="week-banner">
+    Week 36, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <!-- ══════════════════════════════════
+       AT A GLANCE
+  ══════════════════════════════════ -->
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-count">5</div>
+        <div class="summary-label">Laws promulgated<br>(signed 14 July, published this week)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">7</div>
+        <div class="summary-label">Presidential Decrees<br>(<em>fərmanlar</em>)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">3</div>
+        <div class="summary-label">Presidential Orders<br>(<em>sərəncamlar</em>)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">11</div>
+        <div class="summary-label">Cabinet of Ministers<br>Instruments (1 Decision, 10 Orders)</div>
+      </div>
+    </div>
+    <p style="font-family:'Arial',sans-serif; font-size:8pt; color:#555; margin-top:10px; border-top:1px solid #e0e0e0; padding-top:8px;">
+      <strong>Headline:</strong> The week belongs to the executive. With the Milli Majlis in summer recess and the Constitutional Court between plenary terms, the Presidential Administration promulgated the remaining July land-and-cadastre package on 2 September, together with the application decrees and the long-awaited replacement of the 2004 Rules on the State Register of Immovable Property. The Cabinet, for its part, released a block of ten implementation orders that start four- and five-month clocks for secondary legislation on heat supply, seed production, fisheries-adjacent permits, state audit, SME governance and customs.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 1: PRESIDENTIAL OFFICE — LAWS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Administration of the President</span>
+    <span class="section-title">Laws Promulgated</span>
+    <span class="section-en">president.az › Sənədlər › Qanunlar — 27 August &amp; 2 September 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    All five laws below were adopted by the Milli Majlis on <strong>14 July 2026</strong> and signed by the President on the same date; they entered the public record when the Presidential Administration published them this week. Unless a law states otherwise, it enters into force on the day of its official publication.
+  </p>
+
+  <div class="doc-entry">
+    <span class="doc-tag law">Law</span><span class="doc-number">No. 457-VIIQ · 14 Jul 2026</span>
+    <span class="doc-date">Published 27 Aug 2026</span>
+    <div class="doc-title">Law of the Republic of Azerbaijan “On Fisheries” (<em>Balıqçılıq haqqında</em>)</div>
+    <div class="doc-body">A new framework law replacing the 1998 regime. It defines fishing, aquaculture, fishing quotas, fishing vessels (which must carry tracking equipment), fish-breeding and acclimatisation, and it regulates commercial, sport and amateur fishing in “fishery water bodies”. Aquaculture farms become registrable entities. Article 17 gives the state fisheries inspectorate the right to access data from technical control devices installed by operators and to build monitoring systems; Article 18 subjects facilities that may affect fishery water bodies to state ecological expertise. The regulator is designated by the companion decree (see below) as the Ministry of Agriculture.</div>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag law">Law</span><span class="doc-number">14 Jul 2026 (companion act)</span>
+    <span class="doc-date">Published 27 Aug 2026</span>
+    <div class="doc-title">Amendments to the Laws “On State Duty” and “On Licences and Permits”</div>
+    <div class="doc-body">Two-article law tied to the Fisheries Law. Article 18.69 of the State Duty Law is restated to set the fee for issuing an <strong>aquaculture farm registration certificate at AZN 70</strong>. Annex 3 to the Licences and Permits Law (the list of permits for entrepreneurial activity) is amended at item 16 to add the aquaculture registration certificate as a permit.</div>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag law">Law</span><span class="doc-number">No. 462-VIIQD · 14 Jul 2026</span>
+    <span class="doc-date">Published 2 Sep 2026</span>
+    <div class="doc-title">Amendments to the Code of Administrative Offences</div>
+    <div class="doc-body">A multi-topic amendment. <strong>New Article 37-1</strong> allows a prosecutor or authorised official to order a psychiatric examination, without the person's consent, where delay would endanger the person or others; involuntary placement follows the Law on Psychiatric Care and the Civil Procedure Code. Article 38.1 is extended to the cybersecurity of information infrastructure and a <strong>new Article 371-2</strong> creates cybersecurity offences (jurisdiction: National Cybersecurity Agency). Article 287 (seed production) is rewritten. A <strong>new Article 558.1-1</strong> penalises officials who fail to respond in time to queries from the immovable-property registry information system, with a warning or a fine of AZN 250–400. <strong>Entry into force:</strong> on publication, except items 1.2, 1.3 and 1.5 (cybersecurity) from <strong>1 July 2027</strong> and item 1.9 from <strong>1 January 2027</strong>.</div>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag law">Law</span><span class="doc-number">No. 460-VIIQD · 14 Jul 2026</span>
+    <span class="doc-date">Published 2 Sep 2026</span>
+    <div class="doc-title">Amendments to the Land Code, the Civil Code and the Laws on the State Cadastre of Immovable Property, on the Land Market and on the State Register of Immovable Property</div>
+    <div class="doc-body">Introduces <strong>Article 13-2 of the Land Code — consolidation of agricultural land</strong>. Consolidation is defined as the merger, division, re-delimitation or exchange of agricultural plots, with the owners' consent and on the basis of equivalent market value, followed by re-registration of ownership and other rights in rem and, where needed, adjustment of irrigation, road, energy and other infrastructure. Value is fixed by a licensed valuer under the Law on Valuation Activity; an increase in value creates no payment obligation for the owner, while a shortfall is compensated under a procedure to be set by the Cabinet (Art. 13-2.6). The State Register Law gains a new registrable document: the consolidation distribution document (Art. 8.0.13).</div>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag law">Law</span><span class="doc-number">No. 461-VIIQD · 14 Jul 2026</span>
+    <span class="doc-date">Published 2 Sep 2026</span>
+    <div class="doc-title">Amendments to the Land Code, the Civil Code, the Laws on Privatisation of the Housing Stock, on the State Land Cadastre, on the State Register of Immovable Property, Law No. 918-VQD of 2017 and the Law on Agrarian Insurance</div>
+    <div class="doc-body">The terminology shift from “state land cadastre” to “<strong>state cadastre of immovable property</strong>” is carried through seven acts. Article 41 of the Land Code is restated: the cadastre covers all immovable property within the country regardless of form of ownership and is maintained by the designated body through its information system (designated by decree as the State Service for Property Issues and its Electronic Registry and Cadastre system). Article 4 of Law No. 918-VQD (2017) is repealed and Article 13.4.3 of the Agrarian Insurance Law is conformed.</div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 2: PRESIDENTIAL DECREES & ORDERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Administration of the President</span>
+    <span class="section-title">Decrees &amp; Orders</span>
+    <span class="section-en">president.az › Fərmanlar / Sərəncamlar — 27 August &amp; 2 September 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    Seven decrees and three orders were signed in the period. Serial numbers for the 2 September instruments had not yet been assigned in the online record at the time of compilation; they will appear in the <em>Qanunvericilik Toplusu</em>. Deadlines noted below run from the signing date.
+  </p>
+
+  <div class="two-col">
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decrees (Fərmanlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">Application of Law 457-VIIQ</span>
+        <span class="doc-date">27 Aug 2026</span>
+        <div class="doc-title">Application of the Law “On Fisheries”; amendment and repeal of related decrees and orders</div>
+        <div class="doc-body">Allocates the “relevant executive authority” powers in the Fisheries Law among the President, the Cabinet of Ministers and, for the bulk of operational functions (quotas, fishing rules, aquaculture registration, monitoring), the <strong>Ministry of Agriculture</strong>. Repeals Decree No. 722 of 1998 (and later amendments) on the former regime. The Foreign Ministry is instructed to notify the Swiss Government, as CITES depositary, that the Ministry of Agriculture is the management and scientific authority for fish and aquatic bio-resources and the Ministry of Science and Education the scientific authority for other wild fauna and flora.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">Application of Law 462-VIIQD</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">Application of the Administrative Offences Code amendments; amendment of Decree No. 795 (2016)</div>
+        <div class="doc-body">Names the competent bodies: the <strong>Ministry of Internal Affairs</strong> for psychiatric-examination decisions (Art. 37-1.1); the Ministry of Agriculture's “Electronic Agriculture” seed sub-system (Art. 287); the <strong>Ministry of Digital Development and Transport, acting as National Cybersecurity Agency</strong>, for Art. 371-2 offences, with the State Security Service and the Special Communication and Information Security Service for the note to that article; and the Ministry of Economy's Electronic Registry and Cadastre system for Art. 558.1-1. The cybersecurity designations take effect on <strong>1 July 2027</strong>.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">Application of Law 460-VIIQD</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">Application of the land-consolidation amendments; amendment of Decree No. 176 (1999)</div>
+        <div class="doc-body">The President exercises the powers in Land Code Art. 13-2.5 and the Cabinet those in Art. 13-2.6. The <strong>Cabinet must adopt the agricultural land consolidation procedure within six months</strong> (by early March 2027) and report to the President. The State Water Resources Agency is added to the bodies named in the 1999 application decree.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">Application of Law 461-VIIQD</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">Application of the cadastre amendments; amendment of several decrees and repeal of Decree No. 135 (2004)</div>
+        <div class="doc-body">Designates the <strong>State Service for Property Issues under the Ministry of Economy</strong> as the body maintaining the state cadastre and register of immovable property through its Electronic Registry and Cadastre information system. Technical inventory is redefined as “field measurement work”. Decree No. 135 of 14 October 2004, which approved the Rules on Maintaining the State Register of Immovable Property, is <strong>repealed</strong>; two new instruments were published the same day: the <em>Rules on maintaining the state register of immovable property, including the composition of data held in the register</em> and the <em>Rules on maintaining the state cadastre of immovable property</em> (both available as PDFs on president.az).</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">Amending Decree No. 1361 (2017)</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">List of officials authorised to draw up protocols on administrative offences heard by district (city) and military courts</div>
+        <div class="doc-body">Adds part 41-1: protocols under Art. 428.9 may be drawn up by the Ministry of Internal Affairs or the State Agency for Antimonopoly and Consumer Market Control, whichever detected the offence. Part 68 is extended to cover new Art. 558.1-1 (registry-query offences).</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">Amending Decree No. 1573 (2017)</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">Statute of the “Icherisheher” State Historical-Architectural Reserve Administration</div>
+        <div class="doc-body">Implements Decree No. 629 of 19 March 2026 on the pay system of publicly funded public legal entities: the Administration's board gains power to set an incentive-pay system for staff (cl. 4.5.7) and clause 5.7 is repealed.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">International instrument</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">Approval of the Memorandum of Understanding on statistical cooperation between the State Statistics Committee of Azerbaijan and the National Statistics Committee of the Kyrgyz Republic</div>
+        <div class="doc-body">Signed in Cholpon-Ata on 31 July 2026. The State Statistics Committee will implement it once in force; the Foreign Ministry is to notify Bishkek of completion of domestic procedures.</div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders (Sərəncamlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">Conscription</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">Call-up of citizens to active military service from 1 to 30 October 2026 and discharge of conscripts to the reserve</div>
+        <div class="doc-body">Citizens born in 2008 who have reached 18 by the call-up date, and those born 1996–2007 under the age of 30 who have not served and have no deferment or exemption, are called up between <strong>1 and 30 October 2026</strong>. Conscripts who have completed the statutory term under Art. 38.1.1 of the Law on Military Duty and Military Service are discharged in the same window. HR teams should expect the usual employment-suspension requests under the Labour Code.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">Amending Order No. 3910 (2023)</span>
+        <span class="doc-date">2 Sep 2026</span>
+        <div class="doc-title">State Programme on the Socio-Economic Development of the Nakhchivan Autonomous Republic 2023–2027</div>
+        <div class="doc-body">Substantive rewrite of several priority directions. Para 4.1.2 now promises targeted logistics-support mechanisms for Nakhchivan producers to cut transport costs and reach domestic and foreign markets, and states that once the <strong>Zangezur corridor</strong> opens, the introduction of incentives for overland exports from Nakhchivan will be separately assessed. Organic-product branding language is dropped, afforestation measures are broadened to general greening, and AZAL is removed from the list of executing bodies.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">Reserve fund allocation</span>
+        <span class="doc-date">27 Aug 2026</span>
+        <div class="doc-title">Financial support to “Sabah” football club</div>
+        <div class="doc-body">Allocates <strong>AZN 5.0 million</strong> from the President's reserve fund in the 2026 state budget in connection with the club's qualification for the league phase of the UEFA Champions League. The Ministry of Finance funds; the Cabinet resolves consequential matters.</div>
+      </div>
+
+      <div style="margin-top:16px; background:#f0ede6; border:1px solid #ccc; padding:12px;">
+        <p style="font-family:'Arial',sans-serif; font-size:7.5pt; text-transform:uppercase; letter-spacing:0.15em; color:#777; border-bottom:1px solid #ccc; padding-bottom:5px; margin-bottom:8px;">Carried over — signed 25 August, published just before the period</p>
+        <p style="font-size:8.5pt; line-height:1.5; margin-bottom:6px;"><strong>Decree on silk and carpet weaving:</strong> additional measures for the development of sericulture and carpet-making and the protection of national craft heritage.</p>
+        <p style="font-size:8.5pt; line-height:1.5; margin-bottom:6px;"><strong>Decree on the Seaside Boulevard Administration and the Intellectual Property Agency:</strong> the Boulevard Administration public legal entity is converted into a closed joint-stock company; related matters for the IP Agency.</p>
+        <p style="font-size:8.5pt; line-height:1.5; margin-bottom:6px;"><strong>Order on Formula 1 visas:</strong> simplified visa procedure for foreigners and stateless persons arriving for the 2026 Baku race.</p>
+        <p style="font-size:8.5pt; line-height:1.5;"><strong>Order amending Order No. 2665 (2021):</strong> regulation of the study, exploration and development of the Gashgachay, Elbeydash and Aghduzdagh ore deposits.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 3: CABINET OF MINISTERS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">nk.gov.az › Sənədlər — 27–28 August 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    The Cabinet published <strong>one Decision</strong> and <strong>ten Orders</strong>. Nine of the orders (Nos. 628s–634s, 636s, 637s, all dated 27 August) follow an identical template: the Ministry of Justice, in coordination with named agencies, must submit proposals to align Cabinet normative acts with a recent presidential decree <strong>within five months</strong>, while central executive bodies must adopt their own conforming acts, or report that none are needed, <strong>within four months</strong>. Order numbers 635s and 638s had not been published on the portal at the time of compilation.
+  </p>
+
+  <div class="two-col">
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decisions (Qərarlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 261</span>
+        <span class="doc-date">27 Aug 2026 (publ. 28 Aug)</span>
+        <div class="doc-title">Amendment to the Rules on Guarantees and Compensation for Diplomatic Service Employees (Decision No. 11 of 2008)</div>
+        <div class="doc-body">On the petition of the Ministry of Foreign Affairs, the <strong>Islamic Republic of Iran</strong> is added as item 8 to Annex 6, the list of foreign states in a state of war or armed conflict where Azerbaijani missions and consulates operate, triggering the enhanced hardship compensation regime for posted staff. The decision applies retroactively from <strong>1 March 2026</strong> and remains in force until <strong>31 December 2026</strong>.</div>
+      </div>
+
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin:16px 0 10px;">Orders — programme implementation</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 639s</span>
+        <span class="doc-date">28 Aug 2026</span>
+        <div class="doc-title">Implementation of Presidential Order No. 1182 of 20 August 2026 approving the State Programme for Tourism Development 2026–2030</div>
+        <div class="doc-body">Sets the first deliverables under the new programme. The <strong>State Tourism Agency</strong> must submit proposals to improve the Law “On Tourism” by <strong>20 December 2026</strong>, and by <strong>20 October 2026</strong> proposals on issuing investment-promotion documents for tourism projects and on a flexible incentive framework (programme para 8.8.2). By the same October date the <strong>Ministry of Economy</strong> must propose interest subsidies on manat loans for hotels, sanatoria, winter-sports arenas and congress venues in tourism and recreation zones, and the Ministry of Digital Development and Transport must propose how aviation can contribute more to tourism. The Centre for Analysis of Economic Reforms and Communication builds a monitoring module on the e-monitoring portal within two months; monitoring runs from 2027 with annual reports by 30 April and a final evaluation by 30 June 2031. Executing bodies file quarterly project data from 2027.</div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders — alignment of secondary legislation (27 Aug)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 628s</span>
+        <div class="doc-title">Decree No. 762 (13 Aug) — Law “On Heat Supply” No. 222-VIIQ</div>
+        <div class="doc-body">Coordinating bodies: Ministry of Energy, Ministry of Economy, SOCAR, Azerishiq, Azerenerji, Azeristiliktechizat.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 629s</span>
+        <div class="doc-title">Decree No. 764 (14 Aug) — Law No. 456-VIIQD (selection achievements, state duty, licences and permits, technical regulation)</div>
+        <div class="doc-body">Coordinating bodies include the Ministry of Agriculture and the Antimonopoly and Consumer Market Control Agency.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 630s</span>
+        <div class="doc-title">Decree No. 763 (13 Aug) — Law “On Seed Production” No. 455-VIIQ</div>
+        <div class="doc-body">Adds a separate Ministry of Agriculture work-stream (with the Foreign, Finance and Digital Development ministries) handled by the Cabinet's agrarian and ecology department.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 631s</span>
+        <div class="doc-title">Decree No. 768 (14 Aug) — creation of the “State Audit” information system</div>
+        <div class="doc-body">Coordinating bodies include the Ministry of Finance, the Chamber of Accounts, the State Customs Committee and the security services.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 632s</span>
+        <div class="doc-title">Decree No. 767 (14 Aug) — Law No. 440-VIIQD (budget system, insurance activity, Chamber of Accounts)</div>
+        <div class="doc-body">Coordinating bodies: Ministries of Economy and Finance, Chamber of Accounts, Central Bank.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 633s</span>
+        <div class="doc-title">Decree No. 773 (20 Aug) — governance of MSME development, investment and export promotion (Decree No. 607 of 24 Feb 2026)</div>
+        <div class="doc-body">Coordinating bodies: Ministries of Economy and Finance.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 634s</span>
+        <div class="doc-title">Decree No. 770 (17 Aug) — improvement of a number of state bodies (Decree No. 599 of 20 Feb 2026)</div>
+        <div class="doc-body">Coordinating bodies include Ecology, Agriculture, Food Safety Agency and the State Water Resources Agency.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 636s</span>
+        <div class="doc-title">Decree No. 765 (14 Aug) — amendments to Decree No. 609 (1997, liberalisation of foreign trade) and Decree No. 499 (2011, application of the Customs Code)</div>
+        <div class="doc-body">Coordinating bodies include the State Customs Committee and the State Statistics Committee.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 637s</span>
+        <div class="doc-title">Decree No. 771 (17 Aug) — Law No. 459-VIIQD (Land Code, Civil Code, Law on Valuation Activity)</div>
+        <div class="doc-body">Coordinating bodies: Ministries of Economy, Agriculture and Ecology; part 2 assigned to the agrarian and ecology department.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 4: MILLI MAJLIS
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">meclis.gov.az — Recess</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    Parliament remains in <strong>summer recess</strong>. The last plenary sitting was held on <strong>14 July 2026</strong>, and no laws, resolutions or reports were adopted in the reporting period; the most recent parliamentary resolution dates to 26 May 2026 (No. 411-VIIQR). Under Article 88 of the Constitution the autumn session opens on <strong>30 September</strong>. The 14 July batch of laws (Nos. 449–472) continues to be promulgated by the President in tranches: five of them surfaced this week (Section 1), following ten released between 5 and 17 August.
+  </p>
+
+  <ul class="bill-list">
+    <li>
+      <div class="bill-num">1</div>
+      <div class="bill-text"><strong>Draft Constitutional Law amending the Constitutional Law “On Normative Legal Acts”</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Posted for public discussion on 14 July. Any change to the hierarchy, drafting or entry-into-force rules for normative acts affects every practice area; the text should be reviewed before the autumn session.</span>
+      </div>
+      <div class="bill-status">Public discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">2</div>
+      <div class="bill-text"><strong>Omnibus amendments to the Tax Code, Migration Code and the Laws on Social Insurance, Customs Tariff, Licences and Permits and Public Procurement</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Posted 14 July. Cross-cutting fiscal and compliance package.</span>
+      </div>
+      <div class="bill-status">Public discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">3</div>
+      <div class="bill-text"><strong>Amendments to the Laws “On Suspension of Inspections in the Field of Entrepreneurship” and “On Environmental Impact Assessment”</strong><br>
+        <span style="font-size:8.5pt; color:#555;">Posted 14 July. Relevant to the inspection moratorium and to EIA-linked permitting.</span>
+      </div>
+      <div class="bill-status">Public discussion</div>
+    </li>
+    <li>
+      <div class="bill-num">4</div>
+      <div class="bill-text"><strong>Land Code / cadastre / Administrative Offences Code drafts posted 14 July</strong><br>
+        <span style="font-size:8.5pt; color:#555;">These items on the bills page correspond to Laws 460-VIIQD, 461-VIIQD and 462-VIIQD, which were adopted the same day and published this week; they are no longer pending.</span>
+      </div>
+      <div class="bill-status">Enacted</div>
+    </li>
+  </ul>
+
+  <!-- ══════════════════════════════════
+       SECTION 5: CONSTITUTIONAL COURT
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Konstitusiya Məhkəməsi</span>
+    <span class="section-title">Constitutional Court</span>
+    <span class="section-en">constcourt.gov.az — Decisions &amp; Plenum Calendar</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    <strong>No decisions were published in the reporting period.</strong> The most recent published Plenum decision is dated 25 June 2026 (interpretation of Article 598.7 of the Code of Administrative Offences in conjunction with Articles 3.1 and 3.1.2 of the Law on Combating the Legalisation of Criminally Obtained Property and the Financing of Terrorism). The Court's published hearing calendar, however, shows a dense September docket that begins the day after this issue closes:
+  </p>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th>Hearing</th>
+        <th>Applicant</th>
+        <th>Subject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>3 Sep</td>
+        <td>Request (<em>sorğu</em>)</td>
+        <td>Interpretation of Annex 3 to the Law on Licences and Permits (list of business permits) with Articles 4, 5, 10, 11, 15 and 19 of the Law on Auditor Services</td>
+      </tr>
+      <tr>
+        <td>8 Sep</td>
+        <td>Baku Court of Appeal</td>
+        <td>Article 598.1.3 of the Administrative Offences Code with Article 14.3 of the anti-money-laundering law</td>
+      </tr>
+      <tr>
+        <td>9 Sep</td>
+        <td>K. Hashimov and others (constitutional complaint)</td>
+        <td>Constitutionality of para 1.1 of Cabinet Decision No. 420 of 30 Dec 2021 amending the veteran-status regulations (Decision No. 216 of 1995)</td>
+      </tr>
+      <tr>
+        <td>14 Sep</td>
+        <td>Prosecutor General's Office</td>
+        <td>Criminal Procedure Code Arts. 100.2.1, 100.3 and 469.4 with Arts. 65.7 and 142.2 and Chapter 33 of the Civil Procedure Code (limited or absent legal capacity)</td>
+      </tr>
+      <tr>
+        <td>15 Sep</td>
+        <td>Goychay District Court</td>
+        <td>Proportionality of the sanction in Art. 539.3 of the Administrative Offences Code against Art. 539-1.1; scope of Art. 116 in relation to Art. 539</td>
+      </tr>
+      <tr>
+        <td>18 Sep</td>
+        <td>Prosecutor General's Office</td>
+        <td>Criminal Code Art. 244-1 with Administrative Offences Code Art. 401 in light of Article 80 of the Constitution</td>
+      </tr>
+      <tr>
+        <td>Adjourned</td>
+        <td>Baku Court of Appeal; Jabrayil District Court</td>
+        <td>Two matters listed for 11 and 19 June (Administrative Procedure Code Art. 2.2.1 with ECHR Art. 6; Administrative Offences Code Arts. 192, 262, 264 and 539 on inspections of businesses) are adjourned indefinitely</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══════════════════════════════════
+       SECTION 6: E-QANUN
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Official Legislative Database</span>
+    <span class="section-title">e-Qanun</span>
+    <span class="section-en">Normative Acts Register — e-qanun.az</span>
+  </div>
+
+  <div class="unavailable">
+    <strong>⚠ Listing Not Extractable.</strong> The e-Qanun portal renders through a JavaScript application. Its public back-end reported <strong>three acts</strong> with an adoption date between 26 August and 2 September 2026, but the result-listing service returned server errors during compilation, so the acts could not be enumerated here. Readers should search e-qanun.az directly by date; the consolidated texts of the laws and decrees in Sections 1–3 will also appear there once registered.
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 7: DIPLOMATIC RECORD
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <span class="section-institution">Administration of the President</span>
+    <span class="section-title">Diplomatic Record</span>
+    <span class="section-en">Letters, Statements &amp; Addresses — 27 August – 2 September 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:10px; font-family:'Arial',sans-serif;">
+    <strong>Aliyev–Pashinyan meeting, Bishkek, 31 August.</strong> A press statement issued after the meeting on the margins of the SCO Summit records that the leaders reaffirmed the 8 August 2025 Washington Joint Declaration and the initialled text of the Agreement on the Establishment of Peace and Inter-State Relations. It cites as “dividends of peace” the export of Azerbaijani petroleum products to Armenia, the transit of third-country grain and other goods through Azerbaijan to Armenia, and the opening of trade relations; the sides also discussed the state-border delimitation commissions and practical steps on the Trump Route for International Peace and Prosperity (TRIPP). For trade and logistics clients this is the first official confirmation of operating commercial flows between the two countries.
+  </p>
+  <p style="font-size:9pt; color:#555; margin-bottom:12px; font-family:'Arial',sans-serif;">
+    <strong>4th International Mine Action Conference, Baku, 2 September.</strong> In his address the President put mine contamination at more than 13% of the national territory and recorded 437 mine and ordnance casualties since 2020 (73 deaths, 364 serious injuries), framing demining as the precondition for urban recovery in Karabakh and East Zangezur.
+  </p>
+
+  <table class="diplo">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Direction</th>
+        <th>Counterpart</th>
+        <th>Country / Title</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>2 Sep</td><td><span class="dir-out">OUTBOUND</span></td><td>To Lam</td><td>General Secretary, President of Vietnam</td><td>Independence Day greeting</td></tr>
+      <tr><td>1 Sep</td><td><span class="dir-out">OUTBOUND</span></td><td>Peter Pellegrini</td><td>President of Slovakia</td><td>Constitution Day greeting</td></tr>
+      <tr><td>31 Aug</td><td><span class="dir-out">OUTBOUND</span></td><td>Christine Carla Kangaloo</td><td>President of Trinidad and Tobago</td><td>Independence Day greeting</td></tr>
+      <tr><td>31 Aug</td><td><span class="dir-out">OUTBOUND</span></td><td>Sultan Ibrahim</td><td>King of Malaysia</td><td>Independence Day greeting</td></tr>
+      <tr><td>31 Aug</td><td><span class="dir-out">OUTBOUND</span></td><td>Sadyr Zhaparov</td><td>President of Kyrgyzstan</td><td>35th anniversary of independence</td></tr>
+      <tr><td>31 Aug</td><td><span class="dir-out">OUTBOUND</span></td><td>Tufan Erhürman</td><td>President of the Turkish Republic of Northern Cyprus</td><td>Condolences — boat capsizing near Kyrenia</td></tr>
+      <tr><td>29 Aug</td><td><span class="dir-out">OUTBOUND</span></td><td>Shavkat Mirziyoyev</td><td>President of Uzbekistan</td><td>35th anniversary of independence</td></tr>
+      <tr><td>27 Aug</td><td><span class="dir-out">OUTBOUND</span></td><td>Maia Sandu</td><td>President of Moldova</td><td>35th anniversary of independence</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══════════════════════════════════
+       REGULATORY SPOTLIGHT
+  ══════════════════════════════════ -->
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Key Themes, Week 36 / 2026</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>1. The immovable-property cadastre is rebuilt</h4>
+        <p>Laws 460 and 461-VIIQD, their application decrees and the two new sets of Rules published on 2 September replace the 2004 registry rules with a single “state cadastre of immovable property” run by the State Service for Property Issues through its electronic registry. Real-estate, project-finance and title-due-diligence teams should re-check document names, data composition and query procedures against the new Rules, and note the new administrative liability for officials who ignore registry queries (Art. 558.1-1).</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>2. Agricultural land consolidation arrives</h4>
+        <p>Article 13-2 of the Land Code makes voluntary, valuation-based consolidation of farmland a recognised legal process with its own registrable distribution document. The Cabinet has six months to write the procedure and compensation mechanism. Agribusiness clients holding fragmented plots, and lenders secured on such plots, should watch the draft procedure and consider how mortgages and leases survive re-delimitation.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>3. Fisheries and aquaculture get a modern statute</h4>
+        <p>The new Fisheries Law, its application decree and the AZN 70 registration certificate create a permit-based aquaculture sector under the Ministry of Agriculture, with vessel tracking, quota control and mandatory ecological expertise for facilities affecting fishery waters. Existing operators need to map their activities to the new registration and permit regime; the Cabinet's 27 August orders indicate that implementing regulations are due within five months.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>4. Cybersecurity enforcement from July 2027</h4>
+        <p>New Article 371-2 of the Administrative Offences Code, enforced by the National Cybersecurity Agency within the Ministry of Digital Development and Transport, takes effect on 1 July 2027. Operators of information infrastructure have ten months to align internal controls; the companion primary rules should be expected in the autumn session.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>5. Tourism programme: first deadlines in October</h4>
+        <p>Order 639s turns the 2026–2030 State Programme into concrete proposals due by 20 October (investment-promotion documents, incentive framework, interest subsidies for hotels and resorts, aviation) and 20 December (revision of the Law on Tourism). Hospitality and infrastructure investors have a window to feed proposals to the State Tourism Agency and the Ministry of Economy.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>6. Iran designated a conflict-zone posting</h4>
+        <p>Cabinet Decision 261 adds Iran to the list of war or armed-conflict states for diplomatic compensation purposes, retroactive to 1 March 2026 and expiring 31 December 2026. Beyond its HR effect for the Foreign Ministry, it is an official signal relevant to force-majeure, insurance and travel-risk assessments for clients with Iranian exposure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       COMPLIANCE CALENDAR
+  ══════════════════════════════════ -->
+  <div class="spotlight" style="margin-top:18px;">
+    <div class="spotlight-header">Compliance Calendar — Dates Set This Week</div>
+    <table class="diplo">
+      <thead>
+        <tr><th>Date</th><th>Event</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>3–18 Sep 2026</td><td>Constitutional Court Plenum hearings (six matters)</td><td>constcourt.gov.az calendar</td></tr>
+        <tr><td>30 Sep 2026</td><td>Autumn session of the Milli Majlis opens</td><td>Constitution, Art. 88</td></tr>
+        <tr><td>1–30 Oct 2026</td><td>Autumn conscription and discharge to reserve</td><td>Presidential Order, 2 Sep</td></tr>
+        <tr><td>20 Oct 2026</td><td>Tourism incentive, subsidy and aviation proposals due to the Cabinet</td><td>Cabinet Order 639s</td></tr>
+        <tr><td>20 Dec 2026</td><td>Proposals to revise the Law “On Tourism” due</td><td>Cabinet Order 639s</td></tr>
+        <tr><td>31 Dec 2026</td><td>Iran conflict-zone designation for diplomatic compensation lapses</td><td>Cabinet Decision 261</td></tr>
+        <tr><td>Late Dec 2026</td><td>Four-month deadline for central executive bodies' conforming acts under Orders 628s–637s</td><td>Cabinet Orders of 27 Aug</td></tr>
+        <tr><td>1 Jan 2027</td><td>Item 1.9 of the Administrative Offences Code amendments enters into force</td><td>Law 462-VIIQD</td></tr>
+        <tr><td>Late Jan 2027</td><td>Five-month deadline for Ministry of Justice alignment proposals under Orders 628s–637s</td><td>Cabinet Orders of 27 Aug</td></tr>
+        <tr><td>Early Mar 2027</td><td>Cabinet procedure on agricultural land consolidation due</td><td>Decree applying Law 460-VIIQD</td></tr>
+        <tr><td>1 Jul 2027</td><td>Cybersecurity offences (Art. 371-2) and related designations enter into force</td><td>Law 462-VIIQD; application decree</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════
+       FOOTER
+  ══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled by Omni Law Firm for informational purposes only. It does not constitute legal advice. Document descriptions are derived from official government portals; readers should consult primary sources and full texts before relying on any item. Sources: president.az · nk.gov.az · meclis.gov.az · e-qanun.az · constcourt.gov.az
+    </div>
+    <div class="footer-issue">
+      <strong>Edition 2026-36</strong><br>
+      Week of 26 August – 2 September 2026<br>
+      Compiled: 2 September 2026<br>
+      © 2026 Omni Law Firm
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
