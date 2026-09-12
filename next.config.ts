@@ -1,14 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // The gazette is mounted under /gazette of İsmayıl Hüquq Bələdçisi, which
-  // proxies that path here (Next.js multi-zones). Every route, asset and
-  // link of this app therefore lives under /gazette.
-  basePath: "/gazette",
-  async redirects() {
-    // Visiting this deployment's root directly still lands on the library.
-    return [{ source: "/", destination: "/gazette", basePath: false, permanent: false }];
+  reactStrictMode: true,
+  // Course content is read from disk at request time; make sure the MDX
+  // files ship with the server functions that render them on Vercel.
+  outputFileTracingIncludes: {
+    "/": ["./content/**/*"],
+    "/courses": ["./content/**/*"],
+    "/courses/[course]": ["./content/**/*"],
+    "/courses/[course]/[lesson]": ["./content/**/*"],
+    "/account": ["./content/**/*"],
   },
+  // Gazette covers are served from the public Supabase storage bucket.
   images: {
     remotePatterns: [
       {
@@ -17,6 +20,12 @@ const nextConfig: NextConfig = {
         pathname: "/storage/v1/object/public/**",
       },
     ],
+  },
+  // pdf.js probes for the optional `canvas` package; it is browser-only
+  // here, so tell webpack not to try resolving it.
+  webpack: (config) => {
+    config.resolve.alias = { ...config.resolve.alias, canvas: false };
+    return config;
   },
 };
 
