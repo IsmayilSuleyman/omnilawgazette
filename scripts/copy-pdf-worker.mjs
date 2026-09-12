@@ -11,7 +11,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const workerSrc = join(
   dirname(require.resolve("pdfjs-dist/package.json")),
   "build",
-  "pdf.worker.min.mjs",
+  "pdf.worker.min.mjs"
 );
 
 await mkdir(join(root, "public"), { recursive: true });
