@@ -42,7 +42,7 @@ export default function Logo({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       ref={imgRef}
-      src="/omni-logo.png"
+      src="/gazette/omni-logo.png"
       alt="Omni Law Firm"
       style={{ height: heights[size], width: "auto" }}
       className="select-none object-contain"

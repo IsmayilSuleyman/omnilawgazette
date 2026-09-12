@@ -3,8 +3,8 @@ import Logo from "@/components/Logo";
 
 // Sister site: İsmayıl Hüquq Bələdçisi (law courses). The pill next to the
 // masthead switches over, like the İRF ↔ İsmayılBank switch on the fund portal.
-const GUIDE_URL =
-  process.env.NEXT_PUBLIC_GUIDE_URL ?? "https://ismayilhuquqbeledchisi.vercel.app";
+// "/" is the guide's home page on the shared domain; override for other hosts.
+const GUIDE_URL = process.env.NEXT_PUBLIC_GUIDE_URL ?? "/";
 
 export default function SiteHeader() {
   return (
@@ -28,7 +28,7 @@ export default function SiteHeader() {
             className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/12 bg-white/5 hover:bg-white/10 hover:border-azure/40 transition-colors shrink-0"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/ihb-mark.svg" alt="" width={18} height={18} />
+            <img src="/gazette/ihb-mark.svg" alt="" width={18} height={18} />
             <span className="hidden md:inline text-[0.62rem] uppercase tracking-[0.2em] text-silver">
               Bələdçiyə keç
             </span>

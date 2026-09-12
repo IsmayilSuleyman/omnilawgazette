@@ -6,7 +6,7 @@ export async function analyzePdf(
   file: File
 ): Promise<{ pageCount: number; cover: Blob | null }> {
   const { pdfjs } = await import("react-pdf");
-  pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+  pdfjs.GlobalWorkerOptions.workerSrc = "/gazette/pdf.worker.min.mjs";
 
   const data = await file.arrayBuffer();
   const doc = await pdfjs.getDocument({ data }).promise;
