@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import Comments from "@/components/gazette/Comments";
 import DownloadButton from "@/components/gazette/DownloadButton";
 import PdfViewerShell from "@/components/gazette/PdfViewerShell";
 import RegisterRead from "@/components/gazette/RegisterRead";
 import { formatBytes, formatDate, weekOf } from "@/lib/gazette/format";
+import { readWithRetry } from "@/lib/gazette/retry";
 import { getServerSupabase, publicUrl } from "@/lib/gazette/supabase";
 import type { Issue } from "@/lib/gazette/types";
 
@@ -13,39 +15,53 @@ export const revalidate = 60;
 
 type Params = { number: string };
 
-async function getIssue(numberParam: string) {
+// One read per request: generateMetadata and the page share the result.
+// A missing row is null and becomes the 404 shelf; a failed read (the
+// gateway answering 5xx or refusing the key) is NOT a missing issue, so it
+// throws and the section's error boundary offers "Try again" instead.
+const getIssue = cache(async (numberParam: string): Promise<Issue | null> => {
   const issueNumber = Number(numberParam);
   if (!Number.isInteger(issueNumber) || issueNumber <= 0) return null;
   const supabase = getServerSupabase();
-  const { data } = await supabase
-    .from("issues")
-    .select("*")
-    .eq("issue_number", issueNumber)
-    .maybeSingle();
+  const { data, error } = await readWithRetry(() =>
+    supabase.from("issues").select("*").eq("issue_number", issueNumber).maybeSingle(),
+  );
+  if (error) throw new Error(`Failed to load issue ${issueNumber}: ${error.message}`);
   return (data as Issue | null) ?? null;
-}
+});
 
-async function getNeighbors(issueNumber: number) {
+type IssueRef = Pick<Issue, "issue_number" | "title">;
+
+// The earlier/later links are a convenience: if their read fails even after
+// retrying, the reading room still opens, just without them.
+async function getNeighbors(issueNumber: number): Promise<{ prev: IssueRef | null; next: IssueRef | null }> {
   const supabase = getServerSupabase();
   const [prev, next] = await Promise.all([
-    supabase
-      .from("issues")
-      .select("issue_number,title")
-      .lt("issue_number", issueNumber)
-      .order("issue_number", { ascending: false })
-      .limit(1)
-      .maybeSingle(),
-    supabase
-      .from("issues")
-      .select("issue_number,title")
-      .gt("issue_number", issueNumber)
-      .order("issue_number", { ascending: true })
-      .limit(1)
-      .maybeSingle(),
+    readWithRetry(() =>
+      supabase
+        .from("issues")
+        .select("issue_number,title")
+        .lt("issue_number", issueNumber)
+        .order("issue_number", { ascending: false })
+        .limit(1)
+        .maybeSingle(),
+    ),
+    readWithRetry(() =>
+      supabase
+        .from("issues")
+        .select("issue_number,title")
+        .gt("issue_number", issueNumber)
+        .order("issue_number", { ascending: true })
+        .limit(1)
+        .maybeSingle(),
+    ),
   ]);
+  for (const side of [prev, next]) {
+    if (side.error) console.error(`Failed to load neighbours of issue ${issueNumber}: ${side.error.message}`);
+  }
   return {
-    prev: prev.data as Pick<Issue, "issue_number" | "title"> | null,
-    next: next.data as Pick<Issue, "issue_number" | "title"> | null,
+    prev: (prev.data as IssueRef | null) ?? null,
+    next: (next.data as IssueRef | null) ?? null,
   };
 }
 
@@ -55,7 +71,9 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { number } = await params;
-  const issue = await getIssue(number);
+  // Metadata must not take the page down: on a failed read fall back to the
+  // section's default title and let the page itself decide what to show.
+  const issue = await getIssue(number).catch(() => null);
   if (!issue) return { title: "Issue not found" };
   return {
     title: `Issue No. ${issue.issue_number} — ${issue.title}`,

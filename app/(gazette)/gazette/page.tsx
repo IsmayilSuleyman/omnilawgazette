@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import DownloadButton from "@/components/gazette/DownloadButton";
 import LibraryExplorer from "@/components/gazette/LibraryExplorer";
 import type { IssueWithUrls } from "@/components/gazette/IssueCard";
 import { formatDate, weekOf } from "@/lib/gazette/format";
+import { readWithRetry } from "@/lib/gazette/retry";
 import { getServerSupabase, publicUrl } from "@/lib/gazette/supabase";
 import type { Issue } from "@/lib/gazette/types";
 
@@ -11,15 +13,19 @@ export const revalidate = 60;
 
 async function getIssues(): Promise<IssueWithUrls[]> {
   const supabase = getServerSupabase();
-  const { data, error } = await supabase
-    .from("issues")
-    .select("*")
-    .order("issue_number", { ascending: false });
+  const { data, error } = await readWithRetry(() =>
+    supabase.from("issues").select("*").order("issue_number", { ascending: false }),
+  );
   if (error) {
-    // A paused or unreachable database must not fail the build: render the
-    // empty library and let the 60 s revalidation retry.
+    // A paused or unreachable database must not fail the build: prerender
+    // the empty library and let the 60 s revalidation fill it in. At request
+    // time the opposite holds: a failed revalidation must NOT replace the
+    // library with an empty shelf for a minute, so throw and Next keeps
+    // serving the last good copy (or shows the "Try again" boundary when
+    // there is none yet).
     console.error(`Failed to load issues: ${error.message}`);
-    return [];
+    if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) return [];
+    throw new Error(`Failed to load issues: ${error.message}`);
   }
   return (data as Issue[]).map((issue) => ({
     ...issue,
