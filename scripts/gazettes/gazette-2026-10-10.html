@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 3 | 3 – 9 October 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree { background: #2c3e50; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.bill   { background: #6b6b6b; }
+    .doc-tag.law    { background: #1a3a1a; }
+    .doc-tag.letter { background: #3a3a3a; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic letters table ── */
+    table.diplo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    table.diplo thead tr {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    table.diplo thead th {
+      padding: 5px 8px;
+      text-align: left;
+    }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #4a1a1a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Bill list ── */
+    .bill-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bill-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px dotted #d0d0d0;
+      font-size: 9.5pt;
+    }
+    .bill-list li:last-child { border-bottom: none; }
+    .bill-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .bill-text { flex: 1; }
+    .bill-status {
+      flex-shrink: 0;
+      font-size: 7pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col, .three-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 3</span>
+      <span>REPORTING PERIOD: 3 – 9 OCTOBER 2026</span>
+      <span>PUBLISHED: SATURDAY, 10 OCTOBER 2026</span>
+    </div>
+  </header>
+
+  <div class="week-banner">
+    Week 41, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item"><div class="summary-count">0</div><div class="summary-label">Laws / Parliamentary<br>Decrees Adopted</div></div>
+      <div class="summary-item"><div class="summary-count">10</div><div class="summary-label">Cabinet of Ministers<br>Decisions</div></div>
+      <div class="summary-item"><div class="summary-count">4</div><div class="summary-label">Cabinet of Ministers<br>Orders</div></div>
+      <div class="summary-item"><div class="summary-count">1</div><div class="summary-label">Presidential<br>Order</div></div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Laws, Decrees, Bills &amp; Reports — 3 – 9 Oct 2026</span>
+  </div>
+
+  <div class="notice">
+    <strong>No new laws, parliamentary decrees or reports dated within the period.</strong> The latest entries on the registers at <em>meclis.gov.az</em> are dated <strong>30 September 2026</strong>: Constitutional Law No. 475-VIIKQD amending the Constitutional Law “On the Commissioner for Human Rights (Ombudsman)”; Decrees No. 474-VIIQR (legislative work plan of the 2026 autumn session) and No. 473-VIIQR (Statement for 27 September – Remembrance Day). The reports register is unchanged (latest: 26 May 2026).
+  </div>
+
+  <div class="notice" style="margin-top:14px;">
+    <strong>Bills register — autumn session pipeline.</strong> The bills page lists the following drafts, dated 30 September and 13 October 2026 (the 13 October entries carry a date after this issue’s publication and are presumably scheduled for the upcoming plenary sessions — verify on the portal). Of note: a <strong>draft Civil Service Code</strong> and a package aligning service-status legislation of tax, military, police, customs, prosecution, interior, justice, migration and emergency bodies.
+    <table style="margin-top:8px;font-size:9pt;font-family:'Arial',sans-serif;border-collapse:collapse;">
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">13 Oct 2026</td><td style="padding:4px 0">Amendments to the Laws “On suspension of inspections in entrepreneurship” and “On environmental impact assessment”</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">13 Oct 2026</td><td style="padding:4px 0">Amendments to the Labour Code and the Law “On aviation”</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">13 Oct 2026</td><td style="padding:4px 0">Amendment to the Law “On technical regulation”</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Amendment to the Law “On public procurement”</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Draft Civil Service Code — approval, entry into force and related legal regulation</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Package of amendments to service-status legislation for tax, military, police, customs, prosecution, interior, justice, migration and emergency bodies (incl. Tax Code, pensions law)</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Amendments to the Criminal Code and Criminal Procedure Code</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Approval of the Second Additional Protocol to the European Convention on Mutual Assistance in Criminal Matters</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Approval of the Azerbaijan–Mongolia Air Services Agreement</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Approval of the Protocol amending the Azerbaijan–Ukraine Agreement on Government Communications</td></tr>
+<tr><td style="white-space:nowrap;padding:4px 10px 4px 0;vertical-align:top;font-weight:700">30 Sep 2026</td><td style="padding:4px 0">Approval of the Production Sharing Agreement — Guba-Khazaryani area (SOCAR / Gran Tierra Energy (Azerbaijan) GmbH / SOCAR Guba-Khazaryani LLC)</td></tr>
+    </table>
+  </div>
+
+  <div class="section-header">
+    <span class="section-institution">Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">Decisions &amp; Orders — 5 – 9 October 2026</span>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">
+    The Cabinet issued <strong>ten Decisions</strong> (Nos. 321–330) and <strong>four Orders</strong> (Nos. 740s, 744s, 747s, 749s) between 5 and 9 October. Most implement recent Presidential Decrees (Nos. 792, 794, 797 and others).
+  </p>
+
+  <div class="two-col">
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decisions (Qərarlar)</p>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 330</span>
+        <span class="doc-date">9 Oct 2026</span>
+        <div class="doc-title">Embassy, Mission &amp; Consulate Regulations — Consequential Amendments</div>
+        <div class="doc-body">Amends several Cabinet decisions in implementation of Presidential Decree No. 638 of 3 April 2026, which approved the new Regulations on Embassies, Permanent Missions, Consulates and Honorary Consuls.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 329</span>
+        <span class="doc-date">9 Oct 2026</span>
+        <div class="doc-title">Foreign Trade Commodity Codes (Cabinet-Order Goods List) — Amendment</div>
+        <div class="doc-body">Amends the HS/FEA commodity-nomenclature codes in the List of goods whose export and import is carried out by Cabinet order, approved by Cabinet Decision No. 50 of 25 February 2025.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 328</span>
+        <span class="doc-date">8 Oct 2026</span>
+        <div class="doc-title">Labour Pension Rules — Amendment</div>
+        <div class="doc-body">Amends the Rules on the assignment, calculation, recalculation, conversion and payment of labour pensions (Cabinet Decision No. 175 of 28 April 2022).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 327</span>
+        <span class="doc-date">7 Oct 2026</span>
+        <div class="doc-title">Technical Regulation on Toy Safety (TR 002/2026/AZ) — Approval</div>
+        <div class="doc-body">Approves the new Technical Regulation on the Safety of Toys, TR 002/2026/AZ.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 326</span>
+        <span class="doc-date">7 Oct 2026</span>
+        <div class="doc-title">Naming of Khidirli Secondary School, Aghdam District</div>
+        <div class="doc-body">Names the Khidirli village full secondary school in Aghdam District after Aykol Manas.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 325</span>
+        <span class="doc-date">6 Oct 2026</span>
+        <div class="doc-title">Dress Requirements for Education Providers in State General Education</div>
+        <div class="doc-body">Approves the “Requirements on attire for education providers in state general education institutions”.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 324</span>
+        <span class="doc-date">6 Oct 2026</span>
+        <div class="doc-title">Restructuring of State Bodies — Implementation of Decree No. 599</div>
+        <div class="doc-body">Amends and repeals certain Cabinet decisions in implementation of Presidential Decree No. 599 of 20 February 2026 “On improving the activity of a number of state bodies”.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 323</span>
+        <span class="doc-date">6 Oct 2026</span>
+        <div class="doc-title">Model Regulation on Vehicle Parking Areas &amp; Garages — Amendment</div>
+        <div class="doc-body">Amends the Model Regulation on vehicle parking areas and garages (Cabinet Decision No. 60 of 6 April 1999).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 322</span>
+        <span class="doc-date">6 Oct 2026</span>
+        <div class="doc-title">Utility-Cost Support for Entrepreneurs in Liberated Territories — Amendment</div>
+        <div class="doc-body">Amends Cabinet Decision No. 180 of 2 June 2023 on the procedure for paying financial assistance for utilities (electricity, gas, water supply, wastewater) to entrepreneurs engaged in production in the liberated territories.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 321</span>
+        <span class="doc-date">6 Oct 2026</span>
+        <div class="doc-title">Shusha Monuments — Restriction of Hazardous Works Procedure — Amendment</div>
+        <div class="doc-body">Amends Cabinet Decision No. 296 of 11 August 2022 on the content of written instructions restricting or halting works endangering monuments in Shusha city, and the related procedure and timelines.</div>
+      </div>
+    </div>
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders (Sərəncamlar)</p>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 749s</span>
+        <span class="doc-date">8 Oct 2026</span>
+        <div class="doc-title">Baku Metro CJSC Reorganisation — Implementation of Decree No. 797</div>
+        <div class="doc-body">Ensures implementation of Presidential Decree No. 797 of 2 October 2026, amending Decree No. 662 of 7 May 2026 on the reorganisation of “Baku Metropoliteni” CJSC and related amendments/cancellations of presidential decrees and orders.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 747s</span>
+        <span class="doc-date">8 Oct 2026</span>
+        <div class="doc-title">Azerbaijan Investment Holding Asset List — Implementation of Decree No. 794</div>
+        <div class="doc-body">Ensures implementation of Presidential Decree No. 794 of 28 September 2026, amending the list of state companies and enterprises (and state-held companies) placed under the management of the Azerbaijan Investment Holding (Decree No. 1174 of 5 November 2020).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 744s</span>
+        <span class="doc-date">5 Oct 2026</span>
+        <div class="doc-title">Mining (Metal Ores) &amp; Metallurgy State Program 2027–2030 — Implementation</div>
+        <div class="doc-body">Ensures implementation of Presidential Order No. 1226 of 23 September 2026 approving the State Program for development of the mining (metal ores) and metallurgy industry for 2027–2030.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 740s</span>
+        <span class="doc-date">5 Oct 2026</span>
+        <div class="doc-title">AZCON Holding Asset List — Implementation of Decree No. 792</div>
+        <div class="doc-body">Ensures implementation of Presidential Decree No. 792 of 23 September 2026, amending the list of state enterprises, state-held companies and public legal entities placed under the management of the Azerbaijan Transport and Communication Holding (AZCON) (Decree No. 226 of 7 November 2024).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-institution">Administration of the President</span>
+    <span class="section-title">Presidential Office</span>
+    <span class="section-en">Orders, Letters &amp; Addresses — 3 – 7 Oct 2026</span>
+  </div>
+
+  <div class="doc-entry">
+    <span class="doc-tag order">Order</span><span class="doc-date">3 Oct 2026</span>
+    <div class="doc-title">Award of the “Dostlug” Order to Ladislau-Marius Vizer</div>
+    <div class="doc-body">Presidential Order awarding the “Dostlug” Order to the President of the International Judo Federation for his productive efforts and contributions to the advancement of his field (Clause 23, Article 109 of the Constitution).</div>
+  </div>
+
+  <p style="font-size:9pt; color:#555; margin:12px 0; font-family:'Arial',sans-serif;">
+    The English documents feed of president.az lists no presidential decrees (<em>fərmanlar</em>) for the period; decrees appear only through Cabinet implementing acts (e.g. Nos. 792, 794, 797, 793 of 23 Sep – 2 Oct). Remaining items are correspondence and addresses:
+  </p>
+  <table class="diplo">
+    <thead><tr><th>Date</th><th>Type</th><th>Counterpart / Subject</th><th>Country / Title</th><th>Context</th></tr></thead>
+    <tbody>
+<tr><td>3 Oct</td><td>Letter</td><td>Nizar Amedi</td><td>President of Iraq</td><td>Congratulations on Iraq’s National Day.</td></tr>
+<tr><td>3 Oct</td><td>Letter</td><td>Lee Jae Myung</td><td>President of South Korea</td><td>Congratulations on the National Day of the Republic of Korea.</td></tr>
+<tr><td>3 Oct</td><td>Letter</td><td>Frank-Walter Steinmeier</td><td>President of Germany</td><td>Congratulations on German Unity Day; Germany described as Azerbaijan’s key partner in the South Caucasus.</td></tr>
+<tr><td>6 Oct</td><td>Address</td><td>Pre-COP Leaders’ Event 2026</td><td>Fiji / Tuvalu / Australia</td><td>Address to participants; thanks to the convening governments.</td></tr>
+<tr><td>7 Oct</td><td>Address</td><td>4th Baku Dialogue conference</td><td>Missing persons</td><td>Address to the international conference on strengthening trust and effective mechanisms on missing persons.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-header">
+    <span class="section-institution">Constitutional Court</span>
+    <span class="section-title">Constitutional Court</span>
+    <span class="section-en">Decisions — 3 – 9 Oct 2026</span>
+  </div>
+  <div class="notice">
+    <strong>No new decisions in the period.</strong> The most recent decisions published at <em>constcourt.gov.az</em> are dated 22 September 2026 (compatibility of Criminal Code Art. 133.1 with Constitution Arts 24, 26, 28, 32, 60, 71) and 21 September 2026 (interpretation of “defence counsel” in Criminal Procedure Code Art. 288.2 in relation to advocates in civil proceedings).
+  </div>
+
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Key Themes, 3 – 9 Oct 2026</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>1. Parliament’s Autumn Agenda Takes Shape</h4>
+        <p>With the autumn work plan adopted on 30 September, the bills register now holds a draft Civil Service Code, a Criminal Code / Criminal Procedure Code amendment, Labour Code and aviation amendments, and changes to the laws on public procurement and technical regulation. Public-sector employment, procurement and criminal-procedure practitioners should monitor these drafts.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>2. State-Asset Consolidation</h4>
+        <p>Orders Nos. 747s and 740s and No. 749s implement decrees reshaping the portfolios of the Azerbaijan Investment Holding and AZCON, and the reorganisation of Baku Metropoliteni CJSC — relevant to M&amp;A, state-contract and corporate-restructuring work.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>3. Product &amp; Education Regulation</h4>
+        <p>Decision No. 327 approves Technical Regulation TR 002/2026/AZ on toy safety (importers, retailers); Decision No. 325 sets attire requirements in state general schools; Order No. 744s activates the 2027–2030 mining and metallurgy State Program.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>4. Social &amp; Trade Housekeeping</h4>
+        <p>Decision No. 328 amends the labour-pension rules and No. 329 updates commodity codes in the Cabinet-order goods list; No. 330 aligns Cabinet decisions with the new regulations on embassies, missions and consulates (Decree No. 638).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice" style="margin-top:14px;">
+    <strong>Compilation notes:</strong> e-qanun.az is JavaScript-rendered and could not be read automatically; it should be checked manually for newly registered normative acts. Descriptions of Cabinet acts are derived from official titles (Azerbaijani) and translated; full texts were not reviewed. This issue covers only 3–9 October; no issue was compiled for 5 September – 2 October 2026.
+  </div>
+
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled by Omni Law Firm for informational purposes only. It does not constitute legal advice. Document descriptions are derived from official government portals; readers should consult primary sources and full texts before relying on any item. Sources: president.az · nk.gov.az · meclis.gov.az · e-qanun.az · constcourt.gov.az
+    </div>
+    <div class="footer-issue">
+      <strong>Issue No. 3</strong><br>
+      Week of 3 – 9 Oct 2026<br>
+      Compiled: 10 October 2026<br>
+      © 2026 Omni Law Firm
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
