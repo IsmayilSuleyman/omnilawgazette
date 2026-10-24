@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 3 | 17 – 24 October 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree { background: #2c3e50; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.bill   { background: #6b6b6b; }
+    .doc-tag.law    { background: #1a3a1a; }
+    .doc-tag.letter { background: #3a3a3a; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic letters table ── */
+    table.diplo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    table.diplo thead tr {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    table.diplo thead th {
+      padding: 5px 8px;
+      text-align: left;
+    }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #4a1a1a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Bill list ── */
+    .bill-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bill-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px dotted #d0d0d0;
+      font-size: 9.5pt;
+    }
+    .bill-list li:last-child { border-bottom: none; }
+    .bill-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .bill-text { flex: 1; }
+    .bill-status {
+      flex-shrink: 0;
+      font-size: 7pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col, .three-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>ISSN 0000-0000 (PROTOTYPE)</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>omni-law-gazette.internal</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 3</span>
+      <span>REPORTING PERIOD: 17 – 24 OCTOBER 2026</span>
+      <span>PUBLISHED: SATURDAY, 24 OCTOBER 2026</span>
+    </div>
+  </header>
+  <div class="week-banner">Week 43, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor</div>
+
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item"><div class="summary-count">4</div><div class="summary-label">Presidential<br>Decrees</div></div>
+      <div class="summary-item"><div class="summary-count">6</div><div class="summary-label">Laws Signed<br>(published)</div></div>
+      <div class="summary-item"><div class="summary-count">14</div><div class="summary-label">Cabinet Decisions<br>&amp; Orders</div></div>
+      <div class="summary-item"><div class="summary-count">12</div><div class="summary-label">Bills Tabled<br>(incl. 2027 Budget)</div></div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-institution">Presidency of the Republic</span>
+    <span class="section-title">President of Azerbaijan</span>
+    <span class="section-en">Decrees, Laws signed &amp; Orders — 17–23 Oct 2026</span>
+  </div>
+<div class="two-col">
+<div>
+<p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decrees (Fərmanlar) &amp; Laws signed</p>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">22 Oct 2026</span>
+        <div class="doc-title">Technology Parks Model Regulation (Decree No. 168 of 2014) — Amended</div>
+        <div class="doc-body">Freelancers and foreign "digital nomads" earning income from abroad may now register as technopark residents; a new "non-resident" category covers entities leasing park infrastructure. Clause 8 on resident activities is fully replaced (AI, cloud, cybersecurity, blockchain, gaming, IoT, robotics added; 7-working-day registration; seven-member expert council). Cabinet must revise the expert-council regulation within 3 months. <strong>Effective 1 Jan 2027</strong>; existing residents must re-register by that date to keep certain tax benefits. <a href="https://president.az/az/articles/view/74263" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">22 Oct 2026</span>
+        <div class="doc-title">Implementation of Law No. 476-VIIQD (Tax, Migration, Social Insurance, Inspections, Procurement)</div>
+        <div class="doc-body">Allocates executive-body powers under the Tax Code (arts. 101.7.1, 102.1.21, 106.1.13, 113.2, 199.7, 207.3), the Social Insurance Law (art. 14.9.1) and the State Procurement Law (arts. 1.3, 46.4-1, 46.4-2). Cabinet to approve, within 3 months, thresholds for large technopark residents, non-cash R&amp;D expense rules and innovation-product procurement procedures. Amends the ASAN Visa regulation so e-visa data of digital nomads is transmitted in real time to the Ministry of Digital Development and Transport and the State Migration Service. The law itself was signed the same day (see below). <a href="https://president.az/az/articles/view/74262" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">19 Oct 2026</span>
+        <div class="doc-title">Measures to Improve Healthcare Governance</div>
+        <div class="doc-body">Places the "Tibbi Ərazi Bölmələrini İdarəetmə Birliyi" public legal entity under the Ministry of Health; its rights, obligations and property pass to the successor entity (TƏBİB) with a chair and four deputies appointed by the Ministry. The President retains founder powers (charter, governing bodies, reorganisation/liquidation). Implemented by Cabinet Order No. 794s (23 Oct). <a href="https://president.az/az/articles/view/74168" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Approval of Azerbaijan–Kyrgyzstan Agreement on Combating Crime</div>
+        <div class="doc-body">Approves the Agreement signed in Astana on 10 Sept 2026 between the two governments; Ministry of Internal Affairs to implement it once in force; MFA to notify Kyrgyzstan of completion of domestic procedures. <a href="https://president.az/az/articles/view/74293" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span>
+        <span class="doc-date">22 Oct 2026</span>
+        <div class="doc-title">Law amending the Tax Code, Migration Code, Social Insurance Law, Business Inspections Law and others</div>
+        <div class="doc-body">Signed by the President on 22 Oct; the accompanying Decree (above) cites it as Law No. 476-VIIQD of 30 Sept 2026. Introduces the framework for digital nomads/freelancers, technopark incentives and innovation-product procurement. <a href="https://president.az/az/articles/view/74261" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span>
+        <span class="doc-date">22 Oct 2026</span>
+        <div class="doc-title">Law amending the Annex "List of Municipalities" to the Law on Territories and Lands of Municipalities</div>
+        <div class="doc-body">Adopted by the Milli Majlis as Law No. 493-VIIQD (16 Oct 2026). <a href="https://president.az/az/articles/view/74260" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span>
+        <span class="doc-date">21 Oct 2026</span>
+        <div class="doc-title">Treaties and international agreements approved by Law</div>
+        <div class="doc-body">Four ratification laws published: Azerbaijan–Kyrgyzstan Treaty on Allied Relations; Azerbaijan–Kyrgyzstan Agreement on International Road Transport; Second Additional Agreement amending the 2022 Azerbaijan–Kyrgyz Development Fund Agreement; Host Country Agreement with the Non-Aligned Movement Youth Organization Secretariat. <a href="https://president.az/az/articles/view/74250" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+</div>
+<div>
+<p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders (Sərəncamlar) &amp; Letters</p>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">20 Oct 2026</span>
+        <div class="doc-title">Establishment of the Karabakh National Park</div>
+        <div class="doc-body">Creates a 88,418 ha specially protected natural area on state land in Aghdara (44,773.79 ha), Khojaly (24,597.80 ha), Kalbajar (13,514.98 ha), Shusha (5,314.34 ha) and Lachin (217.09 ha). Aims: biodiversity restoration, ecotourism, expanded protected-area network in liberated territories. Cabinet to resolve implementing issues; no deadlines set. <a href="https://president.az/az/articles/view/74217" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">21 Oct 2026</span>
+        <div class="doc-title">"Azykh-Taglar Archaeological Park" State Reserve</div>
+        <div class="doc-body">Declares the Azykh and Taglar cave-camp territory (Khojavend district) a state reserve. Cabinet to set boundaries and protection zone within 3 months and approve the regulations; Ministry of Culture manages it. <a href="https://president.az/az/articles/view/74254" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">20 Oct 2026</span>
+        <div class="doc-title">Additional measures on the Ganja Memorial Complex</div>
+        <div class="doc-body">Creates the Complex under the Ministry of Culture; Cabinet to fund operating costs from the Ministry's budget allocation. In force on signing. <a href="https://president.az/az/articles/view/74216" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">19 Oct 2026</span>
+        <div class="doc-title">Healthcare and government appointments</div>
+        <div class="doc-body">Anar Bayramov appointed Minister of Health (Teymur Musayev released from that post and appointed Deputy Prime Minister). Also: energy-sector honours (19 Oct), "Şərəf" Order award (17 Oct), "İstiqlal" Order to F.G. Khalilov (23 Oct), appointment of O. Mammadov as Head of Yardımlı District Executive Power and release of E. Yusubov as Special Representative in Khankendi, Aghdara and Khojaly (22 Oct). <a href="https://president.az/az/articles/view/74171" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag letter">Letter</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Congratulatory letter to People's Artist Farhad Khalilov (80th anniversary)</div>
+        <div class="doc-body">Non-legislative; listed for completeness. <a href="https://president.az/az/articles/view/74284" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+</div>
+</div>
+
+  <div class="section-header">
+    <span class="section-institution">Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">Decisions &amp; Orders — 19–23 Oct 2026</span>
+  </div>
+<p style="font-size:9pt; color:#555; margin-bottom:14px; font-family:'Arial',sans-serif;">Eleven Decisions (Nos. 344–354) and three Orders (Nos. 778s, 794s, 798s). Nothing recorded for 17–18 or 20–21 October.</p>
+<div class="two-col">
+<div>
+<p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decisions (Qərarlar)</p>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 354</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Compulsory Health Insurance — Governance Amendments</div>
+        <div class="doc-body">Amends several Cabinet decisions in the field of compulsory medical insurance. <a href="https://nk.gov.az/az/senedler/qerarlar/ehalinin-icbari-tibbi-sigortasi-sahesinde-idareetm-9843" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 353</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Implementing Amendments to the Labour Code and Related Laws</div>
+        <div class="doc-body">Amends Cabinet decisions following the 2026 law amending the Labour Code and legislation on penal enforcement, defence, veterans, police, residence registration and sports. <a href="https://nk.gov.az/az/senedler/qerarlar/azerbaycan-respublikasinin-emek-mecellesinde-azerb-9842" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 352</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Conformity Documents Issued Abroad — Rules Amended</div>
+        <div class="doc-body">Amends the rules on conformity documents issued in foreign states and on conformity certificates (technical regulation). <a href="https://nk.gov.az/az/senedler/qerarlar/texniki-reqlamentlerin-teleblerine-uygunluga-dair-9841" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 351</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Export Clearance Cost Compensation — Excluded Operations</div>
+        <div class="doc-body">Approves the list of operations and persons excluded from export clearance cost compensation. <a href="https://nk.gov.az/az/senedler/qerarlar/ixrac-resmilesdirilme-xerclerine-gore-kompensasiya-9840" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 350</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Export &amp; Domestic Transport Support — Excluded Operations</div>
+        <div class="doc-body">Approves the list of operations and persons excluded from export and domestic transport support. <a href="https://nk.gov.az/az/senedler/qerarlar/ixrac-ve-daxili-dasima-desteklerinin-samil-olunmad-9839" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 349</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Origin of Non-Oil Goods — Transport Support Rules</div>
+        <div class="doc-body">Approves rules for determining Azerbaijani origin of non-oil goods when paying export and domestic transport support. <a href="https://nk.gov.az/az/senedler/qerarlar/ixrac-ve-daxili-dasima-desteyi-mebleglerinin-odeni-9838" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 348</span>
+        <span class="doc-date">22 Oct 2026</span>
+        <div class="doc-title">Rights of Persons with Disabilities — State Monitoring Rules</div>
+        <div class="doc-body">Amends rules on state monitoring of the rights of persons with disabilities. <a href="https://nk.gov.az/az/senedler/qerarlar/azerbaycan-respublikasi-nazirler-kabinetinin-2019-9837" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 347</span>
+        <span class="doc-date">22 Oct 2026</span>
+        <div class="doc-title">Defence Industry Ministry — Board Composition</div>
+        <div class="doc-body">Amends the composition of the Ministry's board. <a href="https://nk.gov.az/az/senedler/qerarlar/azerbaycan-respublikasi-mudafie-senayesi-nazirliyi-9836" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 346</span>
+        <span class="doc-date">22 Oct 2026</span>
+        <div class="doc-title">Long-Term Low-Carbon Development Strategy</div>
+        <div class="doc-body">Approves the Azerbaijan Long-Term Low-Carbon Development Strategy. <a href="https://nk.gov.az/az/senedler/qerarlar/azerbaycanin-uzunmuddetli-asagikarbonlu-inkisaf-st-9835" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 345</span>
+        <span class="doc-date">19 Oct 2026</span>
+        <div class="doc-title">Solar Power Stations on Renewable Energy Sites — Permit Period</div>
+        <div class="doc-body">Extends the permit period for building solar power stations on renewable energy sites. <a href="https://nk.gov.az/az/senedler/qerarlar/berpa-olunan-enerji-menbelerinin-erazisinde-gunes-9833" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 344</span>
+        <span class="doc-date">19 Oct 2026</span>
+        <div class="doc-title">Vehicle Use in State-Budget Bodies — Rules Amended</div>
+        <div class="doc-body">Amends rules on the use of vehicles in bodies funded from the state budget. <a href="https://nk.gov.az/az/senedler/qerarlar/azerbaycan-respublikasinda-dovlet-budcesinden-mali-9832" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+</div>
+<div>
+<p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders (Sərəncamlar)</p>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 798s</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">"Digital Communications" Information System — Implementation</div>
+        <div class="doc-body">Implements the Presidential Decree of 15 Oct 2026 creating the "Rəqəmsal rabitə" (Digital Communications) information system. <a href="https://nk.gov.az/az/senedler/serencamlar/reqemsal-rabite-informasiya-sisteminin-yaradilmasi-9845" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 794s</span>
+        <span class="doc-date">23 Oct 2026</span>
+        <div class="doc-title">Healthcare Governance — Implementation</div>
+        <div class="doc-body">Implements the Presidential Decree of 19 Oct 2026 on improving healthcare governance (TƏBİB subordination). <a href="https://nk.gov.az/az/senedler/serencamlar/sehiyye-sahesinde-idareetmenin-tekmillesdirilmesi-9844" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 778s</span>
+        <span class="doc-date">19 Oct 2026</span>
+        <div class="doc-title">Officials Authorised to Hear Administrative Offence Cases — Implementation</div>
+        <div class="doc-body">Implements the Presidential Decree amending the 2017 list of officials authorised to consider administrative offence cases. <a href="https://nk.gov.az/az/senedler/serencamlar/azerbaycan-respublikasi-prezidentinin-2017-ci-il-2-9834" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+</div>
+</div>
+
+  <div class="section-header">
+    <span class="section-institution">Konstitusiya Məhkəməsi</span>
+    <span class="section-title">Constitutional Court</span>
+    <span class="section-en">Decisions — 17–24 Oct 2026</span>
+  </div>
+<div class="spotlight" style="margin-top:0">
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">Decision</span>
+        <span class="doc-date">20 Oct 2026</span>
+        <div class="doc-title">Interpretation of Article 157.1 of the Criminal Procedure Code (judicial control over detention)</div>
+        <div class="doc-body">On a Prosecutor's Office referral (arts. 156.1, 346.1, 447.5 CPC; Constitution arts. 28 and 60). The Court held that, when ruling on a detention application, a court must examine: (i) reasonable suspicion linking the <em>person</em> to the offence — not merely that an offence occurred; (ii) sufficiency of initial evidence in concrete case materials rather than abstract assumptions; (iii) the legal grounds for detention; and (iv) whether a lighter preventive measure suffices. Courts may request additional materials from investigators but must not prejudge guilt; a refusal for insufficient evidence does not bar a fresh application on new facts. Takes effect on publication; final. <a href="https://www.constcourt.gov.az/az/decision/1626" style="font-size:8pt;color:#555;">source ↗</a></div>
+      </div>
+</div>
+
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Laws, Decrees, Reports &amp; Bills — 17–24 Oct 2026</span>
+  </div>
+  <div class="notice">
+    <strong>Laws, parliamentary decrees, reports.</strong> The registers at <em>meclis.gov.az</em> show no new laws, decrees (qərarlar) or reports dated 17–24 October 2026. The latest laws are No. 493-VIIQD (16 Oct; municipality list) and Nos. 483 and 487-VIIQ (13 Oct); the latest decrees are Nos. 473–474-VIIQR (30 Sept); the latest report is dated 26 May 2026. <em>Note: the laws register returned HTTP 503 on first attempt and was re-read successfully; the decrees and reports pages were read at the first listing page only.</em>
+  </div>
+  <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin:14px 0 10px;">Bills Tabled — 23 Oct 2026 (12)</p>
+  <ul class="bill-list">
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2730</div><div class="bill-text">2027 State Budget of the Republic of Azerbaijan — draft law</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2729</div><div class="bill-text">Approval of the partially updated Radio Regulations and annexes</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2693</div><div class="bill-text">Amendment to the Law on State Procurement</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2704</div><div class="bill-text">Amendments to the Criminal Code and Criminal Procedure Code</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2707</div><div class="bill-text">Amendments to the Labour Code and the Aviation Law</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2708</div><div class="bill-text">Amendment to the Law on Technical Regulation</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2709</div><div class="bill-text">Amendments to the Law on Enforcement and the Law on the Securities Market</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2728</div><div class="bill-text">Amendments to military service and military duty legislation</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2724</div><div class="bill-text">Draft Law on the Agrarian Sector</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2727</div><div class="bill-text">Amendments to the Civil Code and laws on credit unions, the budget system, phytosanitary control and eco-clean agriculture</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2726</div><div class="bill-text">Draft Law on Product Certificates</div><div class="bill-status">Tabled 23 Oct</div></li>
+    <li><div class="bill-num" style="width:auto;padding:0 4px;">2725</div><div class="bill-text">Amendments to the Civil Code and the Law on Enforcement</div><div class="bill-status">Tabled 23 Oct</div></li>
+  </div>
+
+  <div class="section-header">
+    <span class="section-institution">Official Legislative Database</span>
+    <span class="section-title">e-Qanun</span>
+    <span class="section-en">Normative Acts Register — e-qanun.az</span>
+  </div>
+  <div class="unavailable">
+    <strong>⚠ Data Not Extractable.</strong> e-qanun.az renders dynamically and returned no listing (and timed out on direct request). Acts enacted this week should be cross-checked on the portal; this issue relies on president.az, nk.gov.az and meclis.gov.az for the same acts.
+  </div>
+
+  <div class="spotlight">
+    <div class="spotlight-header">Regulatory Spotlight — Key Themes, 17–24 Oct 2026</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item"><h4>1. Digital-Nomad &amp; Technopark Regime</h4><p>The 22 Oct package (Law 476-VIIQD, the implementing Decree, and the amended Technology Parks Model Regulation) opens technopark residency to freelancers and digital nomads, adds a non-resident category, and ties tax, migration (e-visa data sharing) and procurement rules together. Key date: <strong>1 Jan 2027</strong> re-registration; Cabinet acts due within three months. Relevant to tax, immigration, IT and start-up clients.</p></div>
+      <div class="spotlight-item"><h4>2. 2027 State Budget and Autumn Bill Wave</h4><p>The 2027 budget bill and eleven other bills were tabled on 23 Oct, including amendments to the Criminal and Criminal Procedure Codes, Labour Code, Civil Code (twice), Enforcement Law, State Procurement Law and a new Law on Product Certificates. Cabinet Decision No. 353 already implements the 2026 Labour Code amendments.</p></div>
+      <div class="spotlight-item"><h4>3. Healthcare Reshuffle</h4><p>Decree of 19 Oct moves TƏBİB under the Ministry of Health, with a new Minister (A. Bayramov) and T. Musayev as Deputy PM; Order No. 794s and Decision No. 354 (compulsory health insurance) follow. Watch for charter and contracting changes affecting medical-insurance clients.</p></div>
+      <div class="spotlight-item"><h4>4. Constitutional Court on Pre-Trial Detention</h4><p>The 20 Oct interpretation of CPC art. 157.1 sets a clearer test for detention hearings — person-specific reasonable suspicion, concrete evidence, and mandatory consideration of lighter measures. Directly relevant to criminal defence practice.</p></div>
+      <div class="spotlight-item"><h4>5. Export Support &amp; Low-Carbon Strategy</h4><p>Decisions 349–351 set origin rules and exclusion lists for export-clearance and transport support; Decision 346 adopts the Long-Term Low-Carbon Development Strategy; Decision 345 extends solar-plant permit periods.</p></div>
+      <div class="spotlight-item"><h4>6. Liberated Territories: Protected Areas</h4><p>Karabakh National Park (88,418 ha) and the Azykh-Taglar State Reserve continue the creation of specially protected areas; Cabinet deadlines (3 months for Azykh-Taglar) will generate implementing acts.</p></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled by Omni Law Firm for informational purposes only. It does not constitute legal advice. Document descriptions are derived from official government portals and summaries; readers should consult primary sources and full texts before relying on any item. Sources: president.az · nk.gov.az · meclis.gov.az · e-qanun.az · constcourt.gov.az
+    </div>
+    <div class="footer-issue">
+      <strong>Issue No. 3</strong><br>
+      Week of 17 – 24 Oct 2026<br>
+      Compiled: 24 October 2026<br>
+      © 2026 Omni Law Firm
+    </div>
+  </footer>
+</div>
+</body>
+</html>
