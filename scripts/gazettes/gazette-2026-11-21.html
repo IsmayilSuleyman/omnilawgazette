@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omni Law Gazette — Issue No. 22 | 16 – 21 November 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+
+    /* ── Page wrapper for print ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px 48px 60px;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      text-align: center;
+      padding: 18px 0 14px;
+      margin-bottom: 0;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      font-family: 'Arial', sans-serif;
+    }
+    .gazette-title {
+      font-size: 42pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-family: 'Georgia', serif;
+      text-transform: uppercase;
+    }
+    .gazette-title span {
+      font-weight: 300;
+      font-style: italic;
+    }
+    .masthead-sub {
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: 6px;
+      font-family: 'Arial', sans-serif;
+    }
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 10px 0 4px;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      padding-top: 4px;
+    }
+
+    /* ── Week Banner ── */
+    .week-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 7px 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      border: 1px solid #ccc;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+    .summary-box h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-count {
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+    .summary-label {
+      font-size: 7.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+      margin-top: 2px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0 4px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-institution {
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .section-title {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .section-en {
+      font-size: 8pt;
+      color: #888;
+      font-style: italic;
+      font-family: 'Arial', sans-serif;
+      margin-left: auto;
+    }
+
+    /* ── Two-column content ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Document Entry ── */
+    .doc-entry {
+      margin-bottom: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+    .doc-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .doc-tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1px 5px;
+      margin-bottom: 4px;
+    }
+    .doc-tag.decree { background: #2c3e50; }
+    .doc-tag.order  { background: #4a4a4a; }
+    .doc-tag.bill   { background: #6b6b6b; }
+    .doc-tag.law    { background: #1a3a1a; }
+    .doc-tag.letter { background: #3a3a3a; }
+
+    .doc-number {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+      margin-left: 5px;
+    }
+    .doc-date {
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      float: right;
+    }
+    .doc-title {
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2px;
+      clear: right;
+    }
+    .doc-body {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── Spotlight / Analysis ── */
+    .spotlight {
+      background: #f0ede6;
+      border: 1px solid #ccc;
+      padding: 14px 16px;
+      margin-top: 24px;
+    }
+    .spotlight-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .spotlight-item h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spotlight-item p {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Alert / Notice Box ── */
+    .notice {
+      border: 1px dashed #aaa;
+      padding: 10px 14px;
+      margin: 14px 0;
+      background: #f8f8f8;
+      font-size: 8.5pt;
+      color: #555;
+      font-family: 'Arial', sans-serif;
+    }
+    .notice strong { color: #333; }
+
+    /* ── Diplomatic letters table ── */
+    table.diplo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    table.diplo thead tr {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    table.diplo thead th {
+      padding: 5px 8px;
+      text-align: left;
+    }
+    table.diplo tbody tr:nth-child(even) { background: #f5f5f5; }
+    table.diplo tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    .dir-in  { color: #1a4a1a; font-weight: 600; }
+    .dir-out { color: #4a1a1a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 2px solid #1a1a1a;
+      margin-top: 36px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 7.5pt;
+      font-family: 'Arial', sans-serif;
+      color: #777;
+    }
+    .footer-disclaimer {
+      max-width: 60%;
+      line-height: 1.4;
+    }
+    .footer-issue {
+      text-align: right;
+    }
+
+    /* ── Bill list ── */
+    .bill-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bill-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px dotted #d0d0d0;
+      font-size: 9.5pt;
+    }
+    .bill-list li:last-child { border-bottom: none; }
+    .bill-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 7pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .bill-text { flex: 1; }
+    .bill-status {
+      flex-shrink: 0;
+      font-size: 7pt;
+      font-family: 'Arial', sans-serif;
+      color: #888;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── Source unavailable ── */
+    .unavailable {
+      background: #fff8e1;
+      border: 1px solid #e0c060;
+      border-left: 4px solid #c0a000;
+      padding: 10px 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 8.5pt;
+      color: #6b5900;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; font-size: 9.5pt; }
+      .page { padding: 0; margin: 0; max-width: 100%; }
+      .two-col, .three-col { break-inside: avoid; }
+      .section-header { break-after: avoid; }
+      .doc-entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>WEEKLY LEGISLATIVE DIGEST</span>
+      <span>INTERNAL CIRCULATION — OMNI LAW FIRM</span>
+      <span>REPUBLIC OF AZERBAIJAN</span>
+    </div>
+    <div class="gazette-title">OMNI <span>Law</span> GAZETTE</div>
+    <div class="masthead-sub">Legislative Intelligence for Legal Professionals</div>
+    <hr class="masthead-rule" />
+    <div class="masthead-meta">
+      <span>ISSUE No. 22</span>
+      <span>REPORTING PERIOD: 16 – 21 NOVEMBER 2026</span>
+      <span>COMPILED: SATURDAY, 21 NOVEMBER 2026</span>
+    </div>
+  </header>
+
+  <div class="week-banner">
+    Week 47, 2026 &nbsp;·&nbsp; Republic of Azerbaijan &nbsp;·&nbsp; Legislative Monitor
+  </div>
+
+  <!-- AT A GLANCE -->
+  <div class="summary-box">
+    <h3>This Week at a Glance</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-count">8</div>
+        <div class="summary-label">Laws signed<br>&amp; published</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">11</div>
+        <div class="summary-label">Presidential<br>Decrees (7) &amp; Orders (4)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">12</div>
+        <div class="summary-label">Cabinet of Ministers<br>Decisions (6) &amp; Orders (6)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-count">8</div>
+        <div class="summary-label">Bills on the Majlis register<br>(incl. 2027 budget package)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD STORY -->
+  <div class="section-header">
+    <span class="section-institution">Lead Story</span>
+    <span class="section-title">New Civil Service Code signed; implementing decree sets out who does what</span>
+  </div>
+  <div class="doc-entry">
+    <div class="doc-body" style="font-size:10pt;">
+      On <strong>16 November</strong> the President signed and published Law <strong>No. 490-VIIQ</strong> (adopted by the Milli Majlis on 16 October 2026) approving the <strong>Civil Service Code of the Republic of Azerbaijan</strong>. The Code replaces the framework that has governed public employment since 2000. On its entry into force it repeals six laws, among them the <em>Law on Civil Service</em> (2000, No. 926-IQ), the <em>Law on Ethical Conduct Rules for Civil Servants</em> (2007), the law on reduced working hours for some categories of civil servants, the law on the Civil Service Management Council, and the two laws on regional and hazardous-duty salary coefficients. Other acts stay in force insofar as they do not conflict with the Code until they are brought into line with it. Anyone holding a valid "Civil Service Certificate" from a test passed under the old law may still sit interviews under the Code until the certificate expires.
+      <br><br>
+      <strong>Decree No. 817</strong> of the same day puts the law into effect. It names the authority behind each "relevant body" in the Code: the President, the Cabinet of Ministers, the Presidential Administration, the State Examination Centre and individual ministries. It repeals four implementing decrees from 2000–2007. It also gives the Cabinet five months to draft or approve a series of rules: the classification of administrative and support posts, the interview procedure, internal investigations, the test-exam and certificate procedure, medical examinations, pay for independent interview experts, trainee and further training. The Tariff (Price) Council has three months to set the fees for taking the test and the interview. <em>HR and public-sector clients: expect a wave of secondary rules in Q1–Q2 2027.</em>
+    </div>
+  </div>
+
+  <!-- PRESIDENT -->
+  <div class="section-header">
+    <span class="section-institution">Prezident</span>
+    <span class="section-title">President of the Republic</span>
+    <span class="section-en">Decrees &amp; Orders — 16–21 Nov 2026</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decrees (Fərmanlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 821</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Caspian coastline: one body now runs land management</div>
+        <div class="doc-body">Makes the <strong>State Service for Property Issues</strong> (under the Ministry of Economy) responsible for state policy on managing, using and protecting land along Azerbaijan's Caspian coast. Islands, settlements, industrial, energy, port, defence and border areas, and other special-status zones are excluded. The Service gains 40 staff. Within six months the Cabinet must propose a special legal status and zoning regime for the coastal strip and draft tougher administrative and criminal liability for illegal land seizure. In the same period it must approve the strip's boundaries (on paper and in digital form) in agreement with the President. Leasing of coastal land is to run on a "one window" basis through the e-Government system, and a GIS-based information system is to be proposed.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 819</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">"Single Window" information system: Statute approved</div>
+        <div class="doc-body">Implements Decree No. 547 (15 Dec 2025) on digitalising import-export, transit, transport and logistics. It approves the Statute of the "Single Window" system, and the agencies that source its data have six months to upgrade their systems and integrate through the e-Government Information System. <em>Relevant to trade, customs and logistics clients.</em></div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 816</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Public procurement: AZCON designated</div>
+        <div class="doc-body">Implements Law No. 497-VIIQD. The <strong>Azerbaijan Transport and Communications Holding (AZCON)</strong> is the body named in new Articles 3.2.8-1 and 3.10-1 of the Law on Public Procurement, so AZCON approves the procurement rules for itself and the entities it manages.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span><span class="doc-number">No. 817</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Civil Service Code: implementation</div>
+        <div class="doc-body">See the lead story.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Technical regulation: recall of dangerous goods</div>
+        <div class="doc-body">Implements Law No. 500-VIIQD. The Cabinet has four months to approve rules on recalling, withdrawing, seizing, transporting, storing, neutralising or destroying goods that are subject to technical regulation and dangerous to life or health.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">17 Nov 2026</span>
+        <div class="doc-title">Aviation crew working time</div>
+        <div class="doc-body">Implements Law No. 499-VIIQD. The Cabinet has six months to approve rules on working and rest time (including flight time and flight duty time) for crews of aircraft used in commercial air transport.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decree</span>
+        <span class="doc-date">18 Nov 2026</span>
+        <div class="doc-title">Diaspora Committee Statute amended</div>
+        <div class="doc-body">In the first sentence of paragraph 13 of the Statute of the State Committee for Work with Diaspora (Decree No. 95 of 2009), "two" becomes "three".</div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders (Sərəncamlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 1311</span>
+        <span class="doc-date">19 Nov 2026</span>
+        <div class="doc-title">New Rector of Baku State University</div>
+        <div class="doc-body">Maleyka Abbaszade appointed Rector of Baku State University (No. 1311). Separate orders release her as Chair of the Board of the State Examination Centre (No. 1310) and release Elchin Babayev as BSU Rector (No. 1309).</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">"Yüksəliş" competition, 2027</div>
+        <div class="doc-body">AZN 1,000,000 from the President's reserve fund goes to the Ministry of Youth and Sports to prepare the next "Yüksəliş" (Rise) management talent competition in 2027.</div>
+      </div>
+
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin:18px 0 10px;">Laws signed &amp; published</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span><span class="doc-number">No. 502-VIIQD</span>
+        <span class="doc-date">pub. 17 Nov</span>
+        <div class="doc-title">Central Bank Law: AML/CFT supervision rewritten</div>
+        <div class="doc-body">Article 48-1 is restated. The Central Bank acts as supervisor under the AML/CFT Law and the Law on Targeted Financial Sanctions. It runs periodic risk profiling of financial institutions and groups, may demand documents by written request, and sets how often and how closely it supervises according to risk. Groups that include banks, life insurers, reinsurers, insurance intermediaries, investment firms and funds are supervised on a consolidated basis.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span><span class="doc-number">No. 499-VIIQD</span>
+        <span class="doc-date">pub. 17 Nov</span>
+        <div class="doc-title">Labour Code &amp; Aviation Law: flight crew hours</div>
+        <div class="doc-body">New Labour Code Articles 94-1 and 103-1, and Aviation Law Articles 1.1.82-1 ("flight duty period") and 27-1: crew working and rest time follows ICAO standards and Cabinet rules, with caps over any 7 and 14 consecutive days. The Labour Code fills any gaps.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span><span class="doc-number">No. 504-VIIQD</span>
+        <span class="doc-date">pub. 16 Nov</span>
+        <div class="doc-title">Labour Code: work stoppages in windy weather</div>
+        <div class="doc-body">Article 233 and Annex 2 now cover windy as well as cold and hot weather, including outdoor workplaces. Cranes may operate in winds of 6–8 Beaufort only where their technical passports allow it; above 8, all crane work stops.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span><span class="doc-number">No. 497-VIIQD</span>
+        <span class="doc-date">pub. 16 Nov</span>
+        <div class="doc-title">Public Procurement Law: carve-out for designated holding</div>
+        <div class="doc-body">The designated body (now AZCON; see Decree 816), its managed enterprises and the entities they hold stakes in buy under their own rules when spending budget funds, state-guaranteed loans, grants and similar money.</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span><span class="doc-number">No. 500-VIIQD</span>
+        <span class="doc-date">pub. 16 Nov</span>
+        <div class="doc-title">Technical Regulation Law: new Art. 15.5 on recalls</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span><span class="doc-number">No. 490-VIIQ</span>
+        <span class="doc-date">pub. 16 Nov</span>
+        <div class="doc-title">Civil Service Code approved (see lead story)</div>
+      </div>
+
+      <div class="doc-entry">
+        <span class="doc-tag law">Law</span><span class="doc-number">Nos. 507 &amp; 508-VIIQ</span>
+        <span class="doc-date">pub. 17 Nov</span>
+        <div class="doc-title">Uzbekistan: Treaty of Eternal Friendship and pensions agreement ratified</div>
+        <div class="doc-body">Both instruments were signed in Tashkent on 23 August 2026. The pensions agreement is relevant to cross-border employees and retirees.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CABINET -->
+  <div class="section-header">
+    <span class="section-institution">Nazirlər Kabineti</span>
+    <span class="section-title">Cabinet of Ministers</span>
+    <span class="section-en">Decisions &amp; Orders — 16–20 Nov 2026</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Decisions (Qərarlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 388</span>
+        <span class="doc-date">20 Nov 2026</span>
+        <div class="doc-title">Structure of the National Academy of Sciences amended</div>
+        <div class="doc-body">Amends the ANAS structure approved by Decision No. 374 (2022).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 387</span>
+        <span class="doc-date">20 Nov 2026</span>
+        <div class="doc-title">Protected historical and cultural monuments: classification amended</div>
+        <div class="doc-body">Amends Decision No. 132 (2001) on classifying state-protected immovable monuments by significance. <em>Relevant to real-estate and development due diligence.</em></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 386</span>
+        <span class="doc-date">18 Nov 2026</span>
+        <div class="doc-title">Water &amp; Melioration Design and Research Institute</div>
+        <div class="doc-body">Approves the structure, headcount and pay of the institute under the State Water Resources Agency.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 385</span>
+        <span class="doc-date">18 Nov 2026</span>
+        <div class="doc-title">Public-sector IT equipment and software compliance</div>
+        <div class="doc-body">Amends the Procedure (Decision No. 485, 2023) for checking that hardware and software used by state and municipal bodies meet the requirements. <em>Relevant to IT vendors in public procurement.</em></div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 384</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Narcological medical checks for certain professions</div>
+        <div class="doc-body">Amends the 2003 Procedure (Decision No. 18) for medical checks at state narcological facilities for people in certain professions and high-hazard activities.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag decree">Decision</span><span class="doc-number">No. 382</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Register of internet operators and providers</div>
+        <div class="doc-body">Amends the 2017 Procedure (Decision No. 427) for registering operators and providers of internet telecommunication services. (Adoption date on e-qanun.az: 13 Nov.)</div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:10px;">Orders (Sərəncamlar)</p>
+
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 855s</span>
+        <span class="doc-date">18 Nov 2026</span>
+        <div class="doc-title">State Reserves Agency: implementation</div>
+        <div class="doc-body">Implements Presidential Decree No. 813 (3 Nov 2026) on the activities of the State Reserves Agency.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 851s</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Criminal Code &amp; Criminal Procedure Code amendments: implementation</div>
+        <div class="doc-body">Implements Law No. 498-VIIQD (23 Oct 2026).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 850s</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Law on State Services: follow-on amendments</div>
+        <div class="doc-body">Implements Law No. 494-VIIQD (16 Oct 2026), which amended a range of laws to match the 2025 Law on State Services.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 841s</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Electronic Real Estate Registry &amp; Cadastre system</div>
+        <div class="doc-body">Implements Presidential Decree No. 812 (28 Oct 2026), which approved the Statute of the information system.</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 840s</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Enforcement &amp; Securities Market Laws: implementation</div>
+        <div class="doc-body">Implements Law No. 501-VIIQD (27 Oct 2026).</div>
+      </div>
+      <div class="doc-entry">
+        <span class="doc-tag order">Order</span><span class="doc-number">No. 839s</span>
+        <span class="doc-date">16 Nov 2026</span>
+        <div class="doc-title">Zangilan Agropark: implementation</div>
+        <div class="doc-body">Implements Presidential Decree No. 814 (5 Nov 2026), which created the Zangilan Agropark.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MILLI MAJLIS -->
+  <div class="section-header">
+    <span class="section-institution">Parliament of Azerbaijan</span>
+    <span class="section-title">Milli Majlis</span>
+    <span class="section-en">Laws, Resolutions, Bills &amp; Reports</span>
+  </div>
+
+  <div class="notice">
+    <strong>No new laws or resolutions were adopted this week.</strong> The latest entries on both registers are dated 3 November 2026 (Laws Nos. 507–508-VIIQ; Resolutions Nos. 505–506-VIIQR, including the election of the Ombudsman). The laws signed this week (above) were adopted in October and early November. No new reports: the latest is dated 26 May 2026.
+  </div>
+
+  <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin:14px 0 10px;">Bills dated 16 November 2026</p>
+  <ul class="bill-list">
+    <li><span class="bill-text"><strong>2027 State Budget</strong>, together with the 2027 budgets of the <strong>State Social Protection Fund</strong> and the <strong>Unemployment Insurance Fund</strong>, the 2027 <strong>subsistence minimum</strong> and the 2027 <strong>needs criterion</strong></span></li>
+    <li><span class="bill-text">Budget-package omnibus amending the Forest, Criminal, <strong>Tax</strong> and <strong>Administrative Offences</strong> Codes and the laws on subsoil, waste, environmental protection, medical insurance, the budget system, public debt, customs tariff, cashless payments, the Chamber of Accounts, <strong>public procurement</strong>, fisheries and others</span></li>
+    <li><span class="bill-text">Omnibus amending the <strong>Labour</strong>, Civil Procedure, Family, Civil, Election and <strong>Competition</strong> Codes and laws on social insurance, social benefits, indexation of deposits, education, trade unions, political parties, diplomatic service and others</span></li>
+    <li><span class="bill-text">Omnibus amending the Civil Procedure and Migration Codes and laws on passports, ID cards, consumer protection, <strong>insolvency and bankruptcy</strong>, notaries, state duty, enforcement, registration of legal entities, the real-estate registry and others</span></li>
+  </ul>
+
+  <p style="font-family:'Arial',sans-serif; font-size:8pt; text-transform:uppercase; letter-spacing:0.15em; color:#555; border-bottom:1px solid #ccc; padding-bottom:4px; margin:14px 0 10px;">Coming up: bills dated 24 November 2026</p>
+  <ul class="bill-list">
+    <li><span class="bill-text">New <strong>Law on Conflict of Interest</strong></span></li>
+    <li><span class="bill-text">Amended and restated <strong>Absheron block</strong> PSA (SOCAR, TotalEnergies EP Absheron B.V., SOCAR Absheron and ADNOC International ProjectCo 1 RSC Ltd): approval and authorisation</span></li>
+    <li><span class="bill-text">Civil Code and Law on Expropriation of Land for State Needs: amendments</span></li>
+    <li><span class="bill-text">Civil Procedure Code and Administrative Procedure Code: amendments</span></li>
+    <li><span class="bill-text">Law on Telecommunications: amendment</span></li>
+    <li><span class="bill-text">Statute on Service in Customs Authorities: amendment</span></li>
+  </ul>
+
+  <!-- CONSTITUTIONAL COURT -->
+  <div class="section-header">
+    <span class="section-institution">Konstitusiya Məhkəməsi</span>
+    <span class="section-title">Constitutional Court</span>
+  </div>
+  <div class="notice">
+    <strong>No new decisions published this week.</strong> The most recent is the decision of 2 November 2026 interpreting Civil Procedure Code Articles 100.2.1, 100.3 and 469.4, read with CPC 65.7, 142.2 and Chapter 33 of the Administrative Procedure Code.
+  </div>
+
+  <!-- SPOTLIGHT -->
+  <div class="spotlight">
+    <div class="spotlight-header">Practitioner Spotlight: What to Watch</div>
+    <div class="spotlight-grid">
+      <div class="spotlight-item">
+        <h4>1. Public employment reset</h4>
+        <p>The Civil Service Code and Decree 817 replace a 25-year-old framework. Testing, interviews, internal investigations and ethics rules all move to new procedures due within roughly five months. Existing Civil Service Certificates stay valid until they expire.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>2. Coastal land under one authority</h4>
+        <p>Decree 821 hands Caspian-coast land administration to the State Service for Property Issues and signals tougher penalties for illegal seizure. Clients with coastal leases or development plans should watch the boundary maps and zoning regime due within six months.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>3. AML/CFT supervision formalised</h4>
+        <p>The rewritten Art. 48-1 of the Central Bank Law sets risk-based, consolidated AML/CFT supervision and adds the Targeted Financial Sanctions Law to the Central Bank's remit. Banks, insurers and investment firms should check their group-level compliance.</p>
+      </div>
+      <div class="spotlight-item">
+        <h4>4. Budget season and a heavy 24 Nov agenda</h4>
+        <p>The 2027 budget package carries large omnibus amendments to the Tax, Labour, Competition and insolvency laws. A stand-alone Conflict of Interest Law and the restated Absheron PSA are listed for 24 November.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>Omni Law Gazette</strong> is an internal digest compiled for informational purposes only. It does not constitute legal advice. Descriptions are taken from the official portals and summarised in English. Check the full texts before relying on any item. Act numbers are given where the source shows them. Sources: president.az · nk.gov.az · meclis.gov.az · e-qanun.az · constcourt.gov.az. All sources checked on 21 November 2026.
+    </div>
+    <div class="footer-issue">
+      <strong>Issue No. 22</strong><br>
+      16 – 21 November 2026<br>
+      Compiled: 21 November 2026<br>
+      © 2026 Omni Law Firm
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
